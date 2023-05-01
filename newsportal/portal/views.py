@@ -70,6 +70,6 @@ class PostsView(View):
 
 
 def comment_submit(request):
-    Comment.objects.create(post=request.POST.get('id'), user=User.objects.get(username='Аноним'),
+    Comment.objects.create(post=Post.objects.get(id=request.POST.get('id')), user=User.objects.get(username='Аноним'),
                            text=request.POST.get('text'))
     return redirect(request.META.get('HTTP_REFERER', '/'))

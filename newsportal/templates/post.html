@@ -2,13 +2,14 @@
 {% block title %}{{post.title}}{% endblock title %}
 
 {% block body %}
+<p></p>
 <div class="container mx-auto">
-  <div class="card" style="background-color: #f4f1ffc7">
+  <div class="card">
   <div class="card-header">
       {{post.author}} Рейтинг автора: {{post.author.rating}}
   </div>
   <div class="container p-3">
-    <div class="card-body rounded-4" style="background-color: #fff">
+    <div class="card-body rounded-4">
     <h5 class="card-title">{{post.title}}</h5>
     <p class="card-text">{{post.text}}</p>
       <div class="text-muted">Рейтинг статьи: {{post.rating}}</div>
@@ -20,8 +21,8 @@
       {% csrf_token %}
       <input type="hidden" name="id" value="{{post.id}}">
       <div class="mb-3">
-        <button class="btn" name="Like" value="Like" type="submit" style="background-color: #4cbb0ec7">Лайк!</button>
-        <button class="btn" name="Dislike" value="Dislike" type="submit" style="background-color: #aa2121c7">Дизлайк!</button>
+        <button class="btn btn-outline-success" name="Like" value="Like" type="submit">Лайк!</button>
+        <button class="btn btn-outline-danger" name="Dislike" value="Dislike" type="submit">Дизлайк!</button>
       </div>
     </form>
   </div>
@@ -29,40 +30,42 @@
   <p></p>
 
 
-<div class="card" style="background-color: #f4f1ffc7">
+<div class="card">
   <div class="card-header">
       Коментарии
   </div>
 
   <div class="container p-3">
-    <form action="{% url 'comment_submit' %}">
+    <form action="{% url 'comment_submit' %}" method="post">
+      {% csrf_token %}
       <input type="hidden" name="id" value="{{post.id}}">
       <label class="form-label">Напишите свой комментарий сюда.</label>
       <textarea class="form-control" name="text" rows="3"></textarea>
       <p></p>
-      <button type="submit" class="btn" style="background-color: #0000005c">Комментировать</button>
+      <button type="submit" class="btn btn-outline-primary">Комментировать</button>
 
     </form>
   </div>
 
-
-  {% if comments %}
+<div class="border rounded-down-3">
+   {% if comments %}
     {%for comment in comments %}
       <div class="container p-3">
-        <div class="card-body rounded-4" style="background-color: #fff">
-        <h5 class="card-title rounded-2 w-50" style="background-color: #0000005c">{{comment.author}}</h5>
-        <p class="card-text">{{comment.text}}</p>
+        <div class="card-body border rounded-4">
+        <h5 class="card-title rounded-right w-25 border">{{comment.user}}</h5>
+        <p class="card-text border rounded">{{comment.text}}</p>
           <div class="text-muted">Рейтинг: {{comment.rating}}</div>
       </div>
       </div>
     {% endfor %}
   {% else %}
       <div class="container p-3">
-        <div class="card-body rounded-4" style="background-color: #fff">
-        <h5 class="card-title rounded-2 w-50" style="background-color: #0000005c">Комментариев нет.</h5>
+        <div class="card-body rounded-4">
+        <h5 class="card-title rounded-2 w-50">Комментариев нет.</h5>
       </div>
       </div>
   {% endif %}
+</div>
 
 
 </div>
