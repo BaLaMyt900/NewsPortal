@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body style="background-color: #70679b82">
+<div class="container">
+    <nav class="navbar navbar-expand-lg rounded-bottom-3" style="background-color: #7a9fd9">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="btn btn-outline-primary me-2 {% if data.page == 'home' %} active {% endif %}" href="/">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-primary me-2 {% if data.page == 'posts' %} active {% endif %}" aria-current="page" href="/posts">Посты</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-primary me-2 {% if data.page == 'authors' %} active {% endif %}" aria-current="page" href="/authors">Авторы</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-3 text-end">
+        <a class="btn btn-outline-primary me-2" href="#">Login</a>
+        <a class="btn btn-primary" href="#">Sing-up</a>
+      </div>
+  </div>
+    </nav>
+</div>
+
+<div class="container mx-auto p-2">
+    {% block body %}
+    {% endblock body %}
+</div>
+</body>
+</html>

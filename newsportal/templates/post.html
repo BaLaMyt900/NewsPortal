@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block title %}{{post.title}}{% endblock title %}
+
+{% block body %}
+<div class="card">
+  <div class="card-header">
+      {{post.author}} Рейтинг статьи: {{post.author.rating}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.text}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+  </div>
+</div>
+{% endblock body %}

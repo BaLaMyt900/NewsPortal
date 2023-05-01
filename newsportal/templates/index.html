@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block title %}Стартовая страница{% endblock title %}
+
+{% block body %}
+
+<div class="container mx-auto p-3 w-50">
+    <div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center h4">Добро пожаловать на наш Новостной сайт!</h5>
+    <p class="card-text text-center h5">Здесь будет много интересного!</p>
+  </div>
+</div>
+</div>
+
+
+<div class="container">
+    <div class="card">
+  <div class="card-header">Последние новости</div>
+      {% if data.posts %}
+        {% for post in data.posts %}
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                    <h6 class="fw-light">{{post.author}}  Рейтинг статьи: {{post.rating}}</h6>
+
+                <p class="card-text">{{post.text}}</p>
+                <a href="/post/?id={{post.id}}" class="btn btn-primary">Перейти куда-нибудь</a>
+            </div>
+        {% endfor %}
+      {% else %}
+        <div class="card-body">
+                <h5 class="card-title">Пока новостей нет :)</h5>
+            </div>
+      {% endif %}
+</div>
+</div>
+{% endblock body %}
