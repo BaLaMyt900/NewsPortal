@@ -13,17 +13,19 @@
 </div>
 
 
-<div class="container">
-    <div class="card">
+<div class="container rounded-4">
+    <div class="card" style="background-color: #f4f1ffc7">
   <div class="card-header">Последние новости</div>
       {% if data.posts %}
         {% for post in data.posts %}
-            <div class="card-body">
+            <div class="container p-3">
+                <div class="card-body border rounded-4" style="background-color: #fff">
                 <h5 class="card-title">{{post.title}}</h5>
-                    <h6 class="fw-light">{{post.author}}  Рейтинг статьи: {{post.rating}}</h6>
+                    <h6 class="fw-light">{{post.author}} Рейтинг статьи: {{post.rating}} <br> {{post.category}}</h6>
 
                 <p class="card-text">{{post.text}}</p>
-                <a href="/post/?id={{post.id}}" class="btn btn-primary">Перейти куда-нибудь</a>
+                <a href="/post/?id={{post.id}}" class="btn btn-primary text-black" style="background-color: #74ce62">Продолжение</a>
+            </div>
             </div>
         {% endfor %}
       {% else %}

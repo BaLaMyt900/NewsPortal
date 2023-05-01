@@ -74,14 +74,17 @@ class Post(models.Model):
         self.save()
 
     def preview(self):
-        return self.text[:124] + '...'
+        if len(self.text) > 124:
+            return self.text[:124] + '...'
+        else:
+            return self.text
 
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
-    date = models.DateTimeField(datetime.now())
+    date = models.DateTimeField(default=datetime.now())
     rating = models.IntegerField(default=0)
 
     def __str__(self):

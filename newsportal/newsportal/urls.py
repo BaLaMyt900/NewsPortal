@@ -5,8 +5,9 @@ from portal.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('authors/', authors),
-    path('posts/', posts),
-    path('post/', PostView.as_view())
+    path('', IndexView.as_view()),
+    path('authors/', AuthorView.as_view()),
+    path('posts/', PostsView.as_view()),
+    path('post/', PostView.as_view()),
+    path('ihjoudhgpreuahodfnbjofg/', comment_submit, name='comment_submit')
 ]
