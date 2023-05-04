@@ -5,44 +5,56 @@
 <p></p>
 <div class="container mx-auto">
   <div class="card">
-  <div class="card-header">
+  <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
       {{post.author}} Рейтинг автора: {{post.author.rating}}
   </div>
   <div class="container p-3">
     <div class="card-body rounded-4">
     <h5 class="card-title">{{post.title}}</h5>
-    <p class="card-text">{{post.text}}</p>
+    <p class="card-text text-body-emphasis">{{post.text}}</p>
       <div class="text-muted">Рейтинг статьи: {{post.rating}}</div>
   </div>
   </div>
-  <div class="card-footer text-muted">
+  <div class="card-footer text-muted bg-gradient bg-body-tertiary text-body-emphasis">
     Оцените статью! Для автора и нашего сайта это очень важно!!!
-    <form action="/post/" method="post">
+    {% if user.is_authenticated %}
+      <form method="post">
       {% csrf_token %}
       <input type="hidden" name="id" value="{{post.id}}">
-      <div class="mb-3">
-        <button class="btn btn-outline-success" name="Like" value="Like" type="submit">Лайк!</button>
-        <button class="btn btn-outline-danger" name="Dislike" value="Dislike" type="submit">Дизлайк!</button>
+      <div class="btn-group">
+        <button class="btn btn-outline-success" name="post" value="+" type="submit">Лайк!</button>
+        <button class="btn btn-outline-danger" name="post" value="-" type="submit">Дизлайк!</button>
       </div>
     </form>
+    {% else %}
+      <div class="text-muted">
+        Оценивать статью могут только авторизованные пользователи.
+      </div>
+    {% endif %}
   </div>
 </div>
   <p></p>
 
 
 <div class="card">
-  <div class="card-header">
+  <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
       Коментарии
   </div>
 
   <div class="container p-3">
-    <form action="{% url 'comment_submit' %}" method="post">
+    {% if user.is_authenticated %}
+      <form action="{% url 'comment_submit' %}" method="post">
       {% csrf_token %}
       <input type="hidden" name="id" value="{{post.id}}">
-      <label class="form-label">Напишите свой комментарий сюда.</label>
+      <label class="form-label text-body-emphasis">Напишите свой комментарий сюда.</label>
       <textarea class="form-control" name="text" rows="3"></textarea>
       <p></p>
       <button type="submit" class="btn btn-outline-primary">Комментировать</button>
+    {% else %}
+      <div class="text-muted">
+        Комментировать статью могут только авторизованные пользователи.
+      </div>
+    {% endif %}
 
     </form>
   </div>
@@ -51,10 +63,22 @@
    {% if comments %}
     {%for comment in comments %}
       <div class="container p-3">
-        <div class="card-body border rounded-4">
+        <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
         <h5 class="card-title rounded-right w-25 border">{{comment.user}}</h5>
         <p class="card-text border rounded">{{comment.text}}</p>
           <div class="text-muted">Рейтинг: {{comment.rating}}</div>
+          {% if user.is_authenticated %}
+            <form method="post">
+            {% csrf_token %}
+                <input type="hidden" name="id" value="{{comment.id}}">
+                <input type="hidden" name="post_id" value="{{post.id}}">
+                <div class="btn-group">
+                  <button class="btn btn-outline-success" name="comment" value="+" type="submit">Лайк!</button>
+                  <button class="btn btn-outline-danger" name="comment" value="-" type="submit">Дизлайк!</button>
+                </div>
+              </form>
+            {% endif %}
+
       </div>
       </div>
     {% endfor %}

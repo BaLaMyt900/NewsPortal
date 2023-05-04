@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark" class="p-3 text-body bg-body">
+<html lang="ru" data-bs-theme="dark" class="p-3 text-body bg-body">
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -24,18 +24,21 @@
         </li>
       </ul>
     </div>
-
-    <div class="col-md-3 text-end">
-        <a class="btn btn-outline-primary me-2" href="#">Логин</a>
-        <a class="btn btn-primary" href="#">Регистрация</a>
-      </div>
+      {% if request.user.is_authenticated %}
+          <div class="col-md-3 text-end">
+              Здравствуй {{user.username}}!
+              <a class="btn btn-outline-primary" aria-current="page" href="/account/account/?id={{user.id}}">Личный кабинет</a>
+          </div>
+      {% else %}
+        <div class="col-md-3 text-end">
+            <a class="btn btn-outline-primary me-2" href="/account/login">Логин</a>
+            <a class="btn btn-primary" href="/account/register">Регистрация</a>
+          </div>
+      {% endif %}
   </div>
     </nav>
 </div>
-
-
     {% block body %}
     {% endblock body %}
-
 </body>
 </html>
