@@ -2,6 +2,7 @@
 {% block title %}{{post.title}}{% endblock title %}
 
 {% block body %}
+{% load humanize %}
 <p></p>
 <div class="container mx-auto">
   <div class="card">
@@ -12,7 +13,7 @@
     <div class="card-body rounded-4">
     <h5 class="card-title">{{post.title}}</h5>
     <p class="card-text text-body-emphasis">{{post.text}}</p>
-      <div class="text-muted">Рейтинг статьи: {{post.rating}}</div>
+      <div class="text-muted">Рейтинг статьи: {{post.rating}} <br> Пост написан {{post.post_time|timesince}} назад</div>
   </div>
   </div>
   <div class="card-footer text-muted bg-gradient bg-body-tertiary text-body-emphasis">
@@ -66,8 +67,8 @@
         <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
         <h5 class="card-title rounded-right w-25 border">{{comment.user}}</h5>
         <p class="card-text border rounded">{{comment.text}}</p>
-          <div class="text-muted">Рейтинг: {{comment.rating}}</div>
-          {% if user.is_authenticated %}
+          <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
+          {% if user.is_authenticated and user != comment.user %}
             <form method="post">
             {% csrf_token %}
                 <input type="hidden" name="id" value="{{comment.id}}">

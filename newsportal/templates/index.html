@@ -11,7 +11,7 @@
   </div>
 </div>
 </div>
-
+{% load humanize %}
 
 <div class="container rounded-4 shadow bg-body-tertiary rounded text-body-emphasis">
     <div class="card">
@@ -22,8 +22,8 @@
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
                 <h5 class="card-title">{{post.title}}</h5>
                     <h6 class="fw-light">{{post.author}} Рейтинг статьи: {{post.rating}} <br> {{post.category}}</h6>
-
                 <p class="card-text">{{post.text}}</p>
+                <div class="text-muted">Пост написан {{post.date|timesince}} назад</div>
                 <a href="/post/?id={{post.id}}" class="btn btn-outline-primary">Продолжение</a>
             </div>
             </div>

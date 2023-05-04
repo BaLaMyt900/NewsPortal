@@ -27,7 +27,7 @@
       {% if request.user.is_authenticated %}
           <div class="col-md-3 text-end">
               Здравствуй {{user.username}}!
-              <a class="btn btn-outline-primary" aria-current="page" href="/account/account/?id={{user.id}}">Личный кабинет</a>
+              <a class="btn btn-outline-primary" aria-current="page" href="/account/?id={{request.user.id}}">Личный кабинет</a>
           </div>
       {% else %}
         <div class="col-md-3 text-end">
