@@ -11,5 +11,6 @@ urlpatterns = [
     path('post/', PostView.as_view()),
     path('ihjoudhgpreuahodfnbjofg/', comment_submit, name='comment_submit'),
     path('account/register/', register),
-    path('account/login/', user_login)
+    path('account/login/', user_login),
+    path('account/', LK.as_view())
 ]

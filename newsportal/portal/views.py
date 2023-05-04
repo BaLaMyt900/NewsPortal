@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from portal.models import Author, Post, PostCategory, Comment
 from django.views import View
-from django.contrib.auth.models import User
 from newsportal.forms import UserRegistrationForm, LoginForm
 from django.contrib.auth import authenticate, login
+
 
 class PostView(View):
     def get(self, request):
@@ -38,6 +39,43 @@ class PostView(View):
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
+class LK(View):
+    def get(self, request):
+        try:
+            user = User.objects.get(id=request.GET.get('id'))
+        except User.DoesNotExist:
+            return render(request, '404.html')
+        except ValueError:
+            return render(request, '404.html')
+        else:
+            owner = True if request.user == user.username else False
+            raw_comments = Comment.objects.filter(user=user)
+            if raw_comments:
+                comments = []
+                for comment in raw_comments:
+                    comments.append({
+                        'post': comment.post.title,
+                        'text': comment.text[:50],
+                        'rating': comment.rating,
+                        'date': comment.date,
+                        'post_id': comment.post.id
+                    })
+            else:
+                comments = False
+            if Author.objects.filter(user=user).exists():
+                print(123)
+                posts = Post.objects.filter(author=Author.objects.get(user=user))
+                return render(request, 'account/account.html', {'user': user, 'owner': owner,
+                                                                'comments': comments, 'posts': posts, 'author': True})
+            return render(request, 'account/account.html', {'user': user, 'owner': owner, 'comments': comments})
+
+    def post(self, request):
+        if request.POST.get('author') == '+':
+            Author.objects.create(user=User.objects.get(username=request.user))
+
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
 class AuthorView(View):
     def get(self, request):
         data = {
@@ -65,7 +103,8 @@ def indexview(request):
                 'rating': post.rating,
                 'category': PostCategory.objects.get(post=post.id).category,
                 'title': post.title,
-                'id': post.id
+                'id': post.id,
+                'date': post.post_time
             })
         data = {
             'page': 'home',
@@ -90,6 +129,7 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html', {'register_form': user_form})
 
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -99,9 +139,11 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('index.html')
+                    return redirect('/')
                 else:
                     return render(request, 'account/account_blocked.html')
+            else:
+                return render(request, 'account/login.html', {'form': form, 'error': 1})
 
     else:
         form = LoginForm()

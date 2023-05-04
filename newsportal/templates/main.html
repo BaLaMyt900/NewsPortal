@@ -9,7 +9,7 @@
 
 <body>
 <div class="container">
-    <nav class="navbar navbar-expand-lg rounded-bottom-3 bg-gradient shadow bg-body-tertiary rounded">
+    <nav class="navbar navbar-expand-lg rounded-bottom-3 bg-gradient shadow bg-body-tertiary rounded"  style="height: 50px;">
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
@@ -25,9 +25,9 @@
       </ul>
     </div>
       {% if request.user.is_authenticated %}
-          <div class="col-md-3 text-end">
+          <div class="col text-end">
               Здравствуй {{user.username}}!
-              <a class="btn btn-outline-primary" aria-current="page" href="/account/account/?id={{user.id}}">Личный кабинет</a>
+              <a class="btn btn-outline-primary" aria-current="page" href="/account/?id={{request.user.id}}">Личный кабинет</a>
           </div>
       {% else %}
         <div class="col-md-3 text-end">

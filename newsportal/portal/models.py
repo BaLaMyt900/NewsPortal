@@ -7,6 +7,7 @@ class PostCategory(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
 
+
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
@@ -102,3 +103,8 @@ class Comment(models.Model):
         ordering = ('-date',)
         verbose_name = 'Коментарий'
         verbose_name_plural = 'Коментарии'
+
+
+class Activity(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    activity = models.ForeignKey(Comment or Post, on_delete=models.CASCADE)
