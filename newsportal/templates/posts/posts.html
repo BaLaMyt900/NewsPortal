@@ -1,22 +1,22 @@
 {% extends 'main.html' %}
-{% block title %}Стартовая страница{% endblock title %}
+{% block title %}Все посты{% endblock title %}
 
 {% block body %}
-
-<div class="container mx-auto p-3 w-50">
-    <div class="card rounded-4 shadow-none bg-body-tertiary rounded text-body-emphasis">
-  <div class="card-body">
-    <h5 class="card-title text-center h4">Добро пожаловать на наш Новостной сайт!</h5>
-    <p class="card-text text-center h5">Здесь будет много интересного!</p>
-  </div>
-</div>
-</div>
-
 <div class="container rounded-4 shadow bg-body-tertiary rounded text-body-emphasis">
     <div class="card">
   <div class="card-header bg-gradient bg-body-tertiary">Последние новости</div>
-      {% if data.posts %}
-        {% for post in data.posts %}
+        <div class="card bg-gradient bg-body-tertiary md-auto py-4 my-4 mx-4">
+            <div class="text-center">Сортировка</div>
+            <div class="container">
+                <form method="post">{% csrf_token %}
+                    <button class="btn btn-outline-primary {% if ordering_type == '-post_time' %} active {% endif %}" name="order_by" value="-post_time">По дате</button>
+                    <button class="btn btn-outline-primary {% if ordering_type == 'title' %} active {% endif %}" name="order_by" value="title">По алфавиту</button>
+                    <button class="btn btn-outline-primary {% if ordering_type == '-rating' %} active {% endif %}" name="order_by" value="-rating">По рейтингу</button>
+                </form>
+            </div>
+        </div>
+      {% if posts %}
+        {% for post in posts %}
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
                 <h5 class="card-title">{{post.title}}</h5>

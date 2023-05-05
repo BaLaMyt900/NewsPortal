@@ -1,8 +1,8 @@
-from django.contrib.auth.models import User
+import django.utils.timezone
 from django.shortcuts import render, redirect
-from portal.models import Author, Post, PostCategory, Comment
+from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity
 from django.views import View
-from newsportal.forms import UserRegistrationForm, LoginForm
+from newsportal.forms import UserRegistrationForm, LoginForm, PostForm
 from django.contrib.auth import authenticate, login
 
 
@@ -16,25 +16,31 @@ class PostView(View):
             return render(request, '404.html')
         else:
             comments = Comment.objects.filter(post=post.id)
-            user = request.user
-            return render(request, 'post.html', {'post': post, 'comments': comments, 'user': user})
+            try:
+                post_activity = PostActivity.objects.get(user=request.user, activity=post)
+            except PostActivity.DoesNotExist:
+                post_activity = None
+            comment_activity = [item.activity.id for item in CommentActivity.objects.filter(user=request.user)]
+            return render(request, 'posts/post.html', {'post': post, 'comments': comments,
+                                                       'comment_activity': comment_activity,
+                                                       'post_activity': post_activity})
 
     def post(self, request):
         if request.POST.get('post'):
             if request.POST.get('post') == '+':
                 post = Post.objects.get(id=int(request.POST.get('id')))
-                post.like()
-                Author.objects.get(id=post.author.id).update_rating()
+                post.like(request.user)
+                Author.objects.get(user=post.author.user).update_rating()
             elif request.POST.get('post') == '-':
                 post = Post.objects.get(id=int(request.POST.get('id')))
-                post.dislike()
-                Author.objects.get(id=post.author.id).update_rating()
+                post.dislike(request.user)
+                Author.objects.get(user=post.author.user).update_rating()
         elif request.POST.get('comment'):
             if request.POST.get('comment') == '+':
-                Comment.objects.get(id=request.POST.get('id')).like()
+                Comment.objects.get(id=request.POST.get('id')).like(request.user)
                 Post.objects.get(id=request.POST.get('post_id')).author.update_rating()
             elif request.POST.get('comment') == '-':
-                Comment.objects.get(id=request.POST.get('id')).dislike()
+                Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
                 Post.objects.get(id=request.POST.get('post_id')).author.update_rating()
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -42,8 +48,8 @@ class PostView(View):
 class LK(View):
     def get(self, request):
         try:
-            user = User.objects.get(id=request.GET.get('id'))
-        except User.DoesNotExist:
+            user = PortalUser.objects.get(id=request.GET.get('id'))
+        except PortalUser.DoesNotExist:
             return render(request, '404.html')
         except ValueError:
             return render(request, '404.html')
@@ -71,7 +77,7 @@ class LK(View):
 
     def post(self, request):
         if request.POST.get('author') == '+':
-            Author.objects.create(user=User.objects.get(username=request.user))
+            Author.objects.create(user=PortalUser.objects.get(username=request.user))
 
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -86,34 +92,38 @@ class AuthorView(View):
 
 class PostsView(View):
     def get(self, request):
-        data = {
-            'page': 'posts'
-        }
-        return render(request, 'posts.html', {'data': data})
+        posts = Post.objects.all().order_by('-post_time')
+        ordering_type = '-post_time'
+        return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
+                                                    'ordering_type': ordering_type})
+
+    def post(self, request):
+        order_type = request.POST.get('order_by')
+        posts = Post.objects.all().order_by(order_type)
+        return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
+                                                    'ordering_type': order_type})
+
+
+def post_create(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        new_post = PostForm(request.POST)
+        if new_post.is_valid():
+            new_post = new_post.cleaned_data
+            post = Post.objects.create(author=Author.objects.get(user=request.user), title=new_post['title'],
+                                text=new_post['text'], type=new_post['type'])
+            post.save()
+            return redirect(f'/post/?id={post.id}')
+    else:
+        new_post = PostForm()
+    return render(request, 'posts/new_post.html', {'form': new_post})
 
 
 def indexview(request):
-    raw_posts = Post.objects.all()[:8]
-    if raw_posts:
-        posts = []
-        for post in raw_posts:
-            posts.append({
-                'author': post.author,
-                'text': post.preview(),
-                'rating': post.rating,
-                'category': PostCategory.objects.get(post=post.id).category,
-                'title': post.title,
-                'id': post.id,
-                'date': post.post_time
-            })
-        data = {
-            'page': 'home',
-            'posts': posts
-        }
-    else:
-        data = {
-            'page': 'home'
-        }
+    posts = Post.objects.all()[:8]
+    data = {
+        'page': 'home',
+        'posts': posts
+    }
     return render(request, 'index.html', {'data': data})
 
 

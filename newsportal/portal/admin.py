@@ -6,5 +6,7 @@ admin.site.register(Author)
 admin.site.register(Post)
 admin.site.register(Category)
 admin.site.register(Comment)
+admin.site.register(PostActivity)
+admin.site.register(CommentActivity)
 
 

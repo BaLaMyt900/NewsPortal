@@ -9,6 +9,7 @@ urlpatterns = [
     path('authors/', AuthorView.as_view()),
     path('posts/', PostsView.as_view()),
     path('post/', PostView.as_view()),
+    path('post/new_post', post_create),
     path('ihjoudhgpreuahodfnbjofg/', comment_submit, name='comment_submit'),
     path('account/register/', register),
     path('account/login/', user_login),

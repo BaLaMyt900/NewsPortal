@@ -5,7 +5,7 @@
 <div class="container mx-auto py-5">
       <div class="card shadow">
           <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
-              Личный кабинет   {% if author %} Рейтинг автора: {{author.rating}} {% endif %}
+              Личный кабинет   {% if author %} Рейтинг автора: {{author.rating}} {% else %} Рейтинг пользователя: {{user.rating}} {% endif %}
           </div>
           <div class="card-body container">
               <div class="row">
@@ -15,11 +15,11 @@
                               Имя пользователя:
                               <input class="form-control w-50 shadow" type="text" name="username" value="{{user.username}}">
                               Имя
-                              <input class="form-control w-50 shadow" type="text" name="first_name" value="{% if user.first_name %}user.first_name{% else %}Не указано{% endif %}">
+                              <input class="form-control w-50 shadow" type="text" placeholder="{% if user.first_name %}user.first_name{% else %}Не указано{% endif %}"   name="first_name" value="">
                               Фамилия
-                              <input class="form-control w-50 shadow" type="text" value="{% if user.second_name %}user.second_name{% else %}Не указано{% endif %}">
+                              <input class="form-control w-50 shadow" type="text" placeholder="{% if user.second_name %}user.second_name{% else %}Не указано{% endif %}" value="">
                               Почта
-                              <input class="form-control w-50 shadow" type="email" name="email" value="{% if user.email %}user.email{% else %}Не указано{% endif %}">
+                              <input class="form-control w-50 shadow" type="email" placeholder="{% if user.email %}user.email{% else %}Не указано{% endif %}" name="email" value="">
                               Для подверждения изменений, введите пароль <br>
                               {% if error == 'password' %} <br> Неправильный пароль. {% endif %}
                               <input class="form-control w-50 shadow" type="password">
@@ -56,7 +56,8 @@
                        {% if author %}
                           <div class="row">
                               <div class="card py-1 border-0">
-                          <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи</div>
+                          <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи <a
+                                  href="/post/new_post">Создать новую статью</a></div>
                               {% if posts %}
                                   <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px;">
                                 {% for post in posts %}

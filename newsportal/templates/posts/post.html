@@ -17,7 +17,9 @@
   </div>
   </div>
   <div class="card-footer text-muted bg-gradient bg-body-tertiary text-body-emphasis">
-    Оцените статью! Для автора и нашего сайта это очень важно!!!
+    {% if not post_activity %}
+    {% if not request.user == post.author.user %}
+        Оцените статью! Для автора и нашего сайта это очень важно!!!
     {% if user.is_authenticated %}
       <form method="post">
       {% csrf_token %}
@@ -32,6 +34,10 @@
         Оценивать статью могут только авторизованные пользователи.
       </div>
     {% endif %}
+    {% endif %}
+    {% else %}
+    Спасибо за вашу оценку!
+    {% endif %}
   </div>
 </div>
   <p></p>
@@ -43,7 +49,7 @@
   </div>
 
   <div class="container p-3">
-    {% if user.is_authenticated %}
+    {% if request.user.is_authenticated %}
       <form action="{% url 'comment_submit' %}" method="post">
       {% csrf_token %}
       <input type="hidden" name="id" value="{{post.id}}">
@@ -68,7 +74,7 @@
         <h5 class="card-title rounded-right w-25 border">{{comment.user}}</h5>
         <p class="card-text border rounded">{{comment.text}}</p>
           <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
-          {% if user.is_authenticated and user != comment.user %}
+        {% if request.user.is_authenticated and request.user != comment.user %}
             <form method="post">
             {% csrf_token %}
                 <input type="hidden" name="id" value="{{comment.id}}">

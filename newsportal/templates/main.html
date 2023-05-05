@@ -6,7 +6,7 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <title>{% block title %}{% endblock title %}</title>
 </head>
-
+{% load humanize %}
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg rounded-bottom-3 bg-gradient shadow bg-body-tertiary rounded"  style="height: 50px;">
@@ -17,7 +17,7 @@
           <a class="btn me-2 btn-outline-primary {% if data.page == 'home' %} active {% endif %}" href="/">Главная</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-primary me-2 {% if data.page == 'posts' %} active {% endif %}" aria-current="page" href="/posts">Посты</a>
+          <a class="btn btn-outline-primary me-2 {% if page == 'posts' %} active {% endif %}" aria-current="page" href="/posts">Посты</a>
         </li>
         <li class="nav-item">
           <a class="btn btn-outline-primary me-2 {% if data.page == 'authors' %} active {% endif %}" aria-current="page" href="/authors">Авторы</a>
