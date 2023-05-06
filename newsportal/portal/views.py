@@ -95,12 +95,26 @@ class LK(View):
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-class AuthorView(View):
+class AuthorsView(View):
     def get(self, request):
-        data = {
-            'page': 'authors'
-        }
-        return render(request, 'authors.html', {'data': data})
+        authors = Author.objects.all().order_by('user')
+        ordering_type = 'user'
+        return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
+                                                    'ordering_type': ordering_type})
+
+    def post(self, request):
+        order_type = request.POST.get('order_by')
+        authors = Author.objects.all().order_by(order_type)
+        return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
+                                                    'ordering_type': order_type})
+
+
+# class AuthorView(View):
+#     def get(self, request):
+#         data = {
+#             'page': 'authors'
+#         }
+#         return render(request, 'authors.html', {'data': data})
 
 
 class PostsView(View):

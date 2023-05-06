@@ -24,6 +24,16 @@
                               {% if error == 'password' %} <br> Неправильный пароль. {% endif %}
                               <input class="form-control w-50 shadow" type="password">
                           </form>
+                            <div class="card py-3 border-0 w-50">
+                            <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Удаление аккаунта</div>
+                            <div class="card-body container border">
+                                Внимание! Удаление безвозвратно!
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <button class="btn btn-outline-danger" value="delete_acc">Удаление аккаунта!</button>
+                                </form>
+                            </div>
+                        </div>
                           {% if not author %}
                             <form method="post">
                                 {% csrf_token %}
@@ -40,23 +50,13 @@
                               <div class="text rounded border w-50 shadow">{% if user.second_name %} user.second_name {% else %} Не указано {% endif %}</div>
                               Почта
                               <div class="text rounded border w-50 shadow">{% if user.email %} user.email {% else %} Не указано {% endif %}</div>
-                        <div class="card">
-                            <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Удаление аккаунта</div>
-                            <div class="card-body container">
-                                Внимание! Удаление безвозвратно!
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <button class="btn btn-outline-danger" value="delete_acc">Удаление аккаунта!</button>
-                                </form>
-                            </div>
-                        </div>
                       {% endif %}
                   </div>
                   <div class="col-6 col-md-5">
                        {% if author %}
                               <div class="row card py-1 border-0">
                           <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи
-                              <a class="text-end" href="/post/new_post">Создать новую статью</a></div>
+                              {% if request.user == user %}<a class="text-end" href="/post/new_post">Создать новую статью</a></div>{% endif %}
                               {% if posts %}
                                   <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px;">
                                 {% for post in posts %}
@@ -65,9 +65,11 @@
                                         <p class="card-text border rounded bg-body">{{post.text}}</p>
                                         <div class="row">
                                             <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time|timesince}} назад</small>
-                                            <form class="col form" method="post">{% csrf_token %}
+                                            {% if request.user == user %}
+                                                <form class="col form" method="post">{% csrf_token %}
                                                 <button class="btn btn-outline-danger" name="delete_post" value="{{post.pk}}">Удалить статью.</button>
                                             </form>
+                                            {% endif %}
                                         </div>
                                         </div>
                                 {% endfor %}
