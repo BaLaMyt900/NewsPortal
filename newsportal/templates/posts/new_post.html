@@ -11,9 +11,6 @@
 </div>
 
 <div class="container mx-auto">
-<!--    {% if error %}-->
-<!--        <p class="card-text text-center h5">Неправильный логин или пароль.</p>-->
-<!--    {% endif %}-->
     <form class="border rounded px-5 py-4 bg-gradient bg-body-tertiary text-body-emphasis shadow" method="post">
         {% csrf_token %}
         {{form.as_p}}

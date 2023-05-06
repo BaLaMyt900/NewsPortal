@@ -8,7 +8,7 @@
               Личный кабинет   {% if author %} Рейтинг автора: {{author.rating}} {% else %} Рейтинг пользователя: {{user.rating}} {% endif %}
           </div>
           <div class="card-body container">
-              <div class="row">
+              <div class="row mx-auto">
                   <div class="col">
                       {% if request.user == user %}
                             <form method="post">
@@ -54,17 +54,21 @@
                   </div>
                   <div class="col-6 col-md-5">
                        {% if author %}
-                          <div class="row">
-                              <div class="card py-1 border-0">
-                          <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи <a
-                                  href="/post/new_post">Создать новую статью</a></div>
+                              <div class="row card py-1 border-0">
+                          <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи
+                              <a class="text-end" href="/post/new_post">Создать новую статью</a></div>
                               {% if posts %}
                                   <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px;">
                                 {% for post in posts %}
-                                    <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis py-2">
-                                        <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{comment.post_id}}"> {{post.title}}</a>
+                                    <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
+                                        <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{post.id}}">{{post.title}}</a>
                                         <p class="card-text border rounded bg-body">{{post.text}}</p>
-                                        <small class="text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_date|timesince}} назад</small>
+                                        <div class="row">
+                                            <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time|timesince}} назад</small>
+                                            <form class="col form" method="post">{% csrf_token %}
+                                                <button class="btn btn-outline-danger" name="delete_post" value="{{post.pk}}">Удалить статью.</button>
+                                            </form>
+                                        </div>
                                         </div>
                                 {% endfor %}
                                       </div>
@@ -80,13 +84,12 @@
                       {% endif %}
                           </div>
 
-                      <div class="row">
-                          <div class="card py-1 border-0">
+                          <div class="row card py-1 border-0">
                           <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Комментарии</div>
                               {% if comments %}
                                   <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                                 {% for comment in comments %}
-                                    <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis py-2">
+                                    <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
                                         <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{comment.post_id}}"> {{comment.post}}</a>
                                         <p class="card-text border rounded bg-body">{{comment.text}}</p>
                                         <small class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</small>
@@ -106,8 +109,6 @@
                       </div>
                     </div>
                   </div>
-              </div>
-          </div>
           <div class="card-footer text-muted bg-gradient bg-body-tertiary text-body-emphasis">
             <p></p>
           </div>
@@ -119,4 +120,3 @@
 
 
 
-<!--

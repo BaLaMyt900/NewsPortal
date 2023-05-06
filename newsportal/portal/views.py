@@ -1,8 +1,8 @@
 import django.utils.timezone
 from django.shortcuts import render, redirect
-from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity
+from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity, Category
 from django.views import View
-from newsportal.forms import UserRegistrationForm, LoginForm, PostForm
+from portal.forms import UserRegistrationForm, LoginForm, PostForm
 from django.contrib.auth import authenticate, login
 
 
@@ -20,7 +20,20 @@ class PostView(View):
                 post_activity = PostActivity.objects.get(user=request.user, activity=post)
             except PostActivity.DoesNotExist:
                 post_activity = None
-            comment_activity = [item.activity.id for item in CommentActivity.objects.filter(user=request.user)]
+            except TypeError:
+                post_activity = None
+            try:
+                comment_activity = [item.activity.id for item in CommentActivity.objects.filter(user=request.user)]
+            except CommentActivity.DoesNotExist:
+                comment_activity = None
+            except TypeError:
+                comment_activity = None
+            try:
+                post.category = [__.name for __ in Category.objects.filter(id__in=
+                                                [_.category_id for _ in PostCategory.objects.filter(post_id=post.id)])]
+                post.category = ', '.join(post.category)
+            except PostCategory.DoesNotExist:
+                post.category = None
             return render(request, 'posts/post.html', {'post': post, 'comments': comments,
                                                        'comment_activity': comment_activity,
                                                        'post_activity': post_activity})
@@ -69,7 +82,6 @@ class LK(View):
             else:
                 comments = False
             if Author.objects.filter(user=user).exists():
-                print(123)
                 posts = Post.objects.filter(author=Author.objects.get(user=user))
                 return render(request, 'account/account.html', {'user': user, 'owner': owner,
                                                                 'comments': comments, 'posts': posts, 'author': True})
@@ -78,7 +90,8 @@ class LK(View):
     def post(self, request):
         if request.POST.get('author') == '+':
             Author.objects.create(user=PortalUser.objects.get(username=request.user))
-
+        elif request.POST.get('delete_post'):
+            Post.objects.get(pk=request.POST.get('delete_post')).delete()
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -106,16 +119,16 @@ class PostsView(View):
 
 def post_create(request):
     if request.method == 'POST' and request.user.is_authenticated:
-        new_post = PostForm(request.POST)
-        if new_post.is_valid():
-            new_post = new_post.cleaned_data
-            post = Post.objects.create(author=Author.objects.get(user=request.user), title=new_post['title'],
-                                text=new_post['text'], type=new_post['type'])
+        post_form = PostForm(request.POST)
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.author = Author.objects.get(user=request.user)
             post.save()
+            post_form.save_m2m()
             return redirect(f'/post/?id={post.id}')
     else:
-        new_post = PostForm()
-    return render(request, 'posts/new_post.html', {'form': new_post})
+        post_form = PostForm()
+    return render(request, 'posts/new_post.html', {'form': post_form})
 
 
 def indexview(request):
