@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity, Category
 from django.views import View
 from portal.forms import UserRegistrationForm, LoginForm, PostForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user
 
 
 class PostView(View):
@@ -59,7 +59,7 @@ class PostView(View):
 
 
 class LK(View):
-    def get(self, request):
+    def get(self, request, error=None):
         try:
             user = PortalUser.objects.get(id=request.GET.get('id'))
         except PortalUser.DoesNotExist:
@@ -85,13 +85,26 @@ class LK(View):
                 posts = Post.objects.filter(author=Author.objects.get(user=user))
                 return render(request, 'account/account.html', {'user': user, 'owner': owner,
                                                                 'comments': comments, 'posts': posts, 'author': True})
+            if error:
+                return render(request, 'account/account.html', {'user': user, 'owner': owner, 'comments': comments, 'error': 'password'})
             return render(request, 'account/account.html', {'user': user, 'owner': owner, 'comments': comments})
 
     def post(self, request):
-        if request.POST.get('author') == '+':
+        if request.POST.get('author'):
             Author.objects.create(user=PortalUser.objects.get(username=request.user))
         elif request.POST.get('delete_post'):
-            Post.objects.get(pk=request.POST.get('delete_post')).delete()
+            PortalUser.objects.get(pk=request.POST.get('delete_post')).delete()
+        elif request.POST.get('change_acc'):
+            user = get_user(request)
+            if user.check_password(request.POST.get('password')):
+                user.username = request.POST.get('username')
+                user.first_name = request.POST.get('first_name')
+                user.last_name = request.POST.get('last_name')
+                user.email = request.POST.get('email')
+                user.save()
+                return self.get(request)
+            else:
+                return self.get(request, 'error')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 

@@ -28,6 +28,7 @@
           <div class="col text-end">
               Здравствуй {{user.username}}!
               <a class="btn btn-outline-primary" aria-current="page" href="/account/?id={{request.user.id}}">Личный кабинет</a>
+              <a class="btn btn-outline-danger" aria-current="page" href="{% url 'exit' %}">Выход</a>
           </div>
       {% else %}
         <div class="col-md-3 text-end">

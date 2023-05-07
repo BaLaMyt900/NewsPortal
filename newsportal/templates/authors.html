@@ -2,7 +2,7 @@
 {% block title %}Авторы{% endblock title %}
 
 {% block body %}
-<div class="container rounded-4 shadow bg-body-tertiary rounded text-body-emphasis">
+<div class="container rounded-4 py-3 shadow bg-body-tertiary rounded text-body-emphasis">
     <div class="card">
   <div class="card-header bg-gradient bg-body-tertiary">Список авторов</div>
         <div class="card bg-gradient bg-body-tertiary md-auto py-4 my-4 mx-4">
@@ -18,7 +18,7 @@
         {% for author in authors %}
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
-                <h5 class="card-title">{{author.user.username}}</h5>
+                <h5 class="card-title"><a href="/account/?id={{author.user.id}}">{{author.user.username}}</a></h5>
                     <h6 class="fw-light">Рейтинг автора: {{author.rating}}</h6>
                 <p class="card-text"></p>
                 <a href="/account/?id={{author.id}}" class="btn btn-outline-primary">Карточка автора</a>
