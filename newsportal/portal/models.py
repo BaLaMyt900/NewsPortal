@@ -15,7 +15,7 @@ class PortalUser(AbstractUser):
 
 
 class Author(models.Model):
-    user = models.OneToOneField(PortalUser, on_delete=models.PROTECT)
+    user = models.OneToOneField(PortalUser, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 
     def __str__(self):

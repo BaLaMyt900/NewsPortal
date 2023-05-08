@@ -27,22 +27,12 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}))
 
 
-types = [
-        ('A', 'Статья'),
-        ('N', 'Новость')
-    ]
-
-
 class PostForm(ModelForm):
-    title = forms.CharField(label='Заголовок', widget=forms.TextInput(attrs={'class': 'form-control mb-3'}))
-    categories = forms.ModelMultipleChoiceField(label='Категория (для множественного выбора, выберите зажав Ctrl)',
-                                                queryset=Category.objects.all(),
-                                                widget=forms.SelectMultiple(attrs={'class': 'form-control',
-                                                                                   'role': 'switch',
-                                                                                   'type': 'checkbox'}))
-    types = [('A', 'Статья'), ('N', 'Новость')]
-    type = forms.ChoiceField(label='Тип поста', choices=types, widget=forms.Select(attrs={'class': 'form-control'}))
-    text = forms.CharField(label='Текст поста', widget=forms.Textarea(attrs={'class': 'form-control mb-3'}))
+    title = forms.CharField()
+    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
+    __types = [('A', 'Статья'), ('N', 'Новость')]
+    type = forms.ChoiceField(choices=__types)
+    text = forms.CharField()
 
     class Meta:
         model = Post

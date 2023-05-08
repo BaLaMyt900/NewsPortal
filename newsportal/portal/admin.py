@@ -8,5 +8,6 @@ admin.site.register(Category)
 admin.site.register(Comment)
 admin.site.register(PostActivity)
 admin.site.register(CommentActivity)
+admin.site.register(PortalUser)
 
 

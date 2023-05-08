@@ -34,6 +34,8 @@ class PostView(View):
                 post.category = ', '.join(post.category)
             except PostCategory.DoesNotExist:
                 post.category = None
+            # text = str(post.text).replace('\n', '<br>')
+            # post.text = text
             return render(request, 'posts/post.html', {'post': post, 'comments': comments,
                                                        'comment_activity': comment_activity,
                                                        'post_activity': post_activity})
@@ -82,9 +84,18 @@ class LK(View):
             else:
                 comments = False
             if Author.objects.filter(user=user).exists():
-                posts = Post.objects.filter(author=Author.objects.get(user=user))
+                author = Author.objects.get(user=user)
+                posts = Post.objects.filter(author=author)
+                if posts:
+                    for post in posts:
+                        if len(post.text) > 130:
+                            post.text = post.text[:100] + '...'
+                if comments:
+                    for comm in comments:
+                        if len(comm.text) > 130:
+                            comm.text = comm.text[:100] + '...'
                 return render(request, 'account/account.html', {'user': user, 'owner': owner,
-                                                                'comments': comments, 'posts': posts, 'author': True})
+                                                                'comments': comments, 'posts': posts, 'author': author})
             if error:
                 return render(request, 'account/account.html', {'user': user, 'owner': owner, 'comments': comments, 'error': 'password'})
             return render(request, 'account/account.html', {'user': user, 'owner': owner, 'comments': comments})
@@ -93,7 +104,7 @@ class LK(View):
         if request.POST.get('author'):
             Author.objects.create(user=PortalUser.objects.get(username=request.user))
         elif request.POST.get('delete_post'):
-            PortalUser.objects.get(pk=request.POST.get('delete_post')).delete()
+            Post.objects.get(pk=request.POST.get('delete_post')).delete()
         elif request.POST.get('change_acc'):
             user = get_user(request)
             if user.check_password(request.POST.get('password')):
@@ -105,6 +116,9 @@ class LK(View):
                 return self.get(request)
             else:
                 return self.get(request, 'error')
+        elif request.POST.get('delete_acc'):
+            PortalUser.objects.get(username=request.user).delete()
+            return redirect('/exit/')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -120,14 +134,6 @@ class AuthorsView(View):
         authors = Author.objects.all().order_by(order_type)
         return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
                                                     'ordering_type': order_type})
-
-
-# class AuthorView(View):
-#     def get(self, request):
-#         data = {
-#             'page': 'authors'
-#         }
-#         return render(request, 'authors.html', {'data': data})
 
 
 class PostsView(View):
@@ -155,11 +161,15 @@ def post_create(request):
             return redirect(f'/post/?id={post.id}')
     else:
         post_form = PostForm()
-    return render(request, 'posts/new_post.html', {'form': post_form})
+    category = [(_.id, _.name) for _ in Category.objects.all()]
+    return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category})
 
 
 def indexview(request):
     posts = Post.objects.all()[:8]
+    if posts:
+        for post in posts:
+            post.text = post.preview()
     data = {
         'page': 'home',
         'posts': posts
@@ -174,6 +184,13 @@ def register(request):
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
+
+            if new_user is not None:
+                if new_user.is_active:
+                    login(request, new_user)
+                    return redirect('/')
+                else:
+                    return render(request, 'account/account_blocked.html')
             return render(request, 'account/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()

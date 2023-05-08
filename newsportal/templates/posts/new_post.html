@@ -13,9 +13,33 @@
 <div class="container mx-auto">
     <form class="border rounded px-5 py-4 bg-gradient bg-body-tertiary text-body-emphasis shadow" method="post">
         {% csrf_token %}
-        {{form.as_p}}
+            <label for="id_title">Заголовок</label>
+            <input class="form-control" type="text" id="id_title" name="title" required>
+        <div class="row mb-auto">
+            <div class="col-2 mb-auto">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="type" value="A" id="type_check_1" required>
+                  <label class="form-check-label" for="type_check_1">Статья</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="type" value="N" id="type_check_2" required>
+                  <label class="form-check-label" for="type_check_2">Новость</label>
+                </div>
+            </div>
+                <div class="col-3 mb-auto" aria-required="true">
+                    {% for id, cat in categories %}
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" value="{{id}}" name="categories" type="checkbox" role="switch" id="id_{{id}}">
+                          <label class="form-check-label" for="id_{{id}}">{{cat}}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        <div class="mb-auto py-2">
+            <label for="text">Текст поста</label>
+            <textarea class="form-control pre" name="text" id="text" cols="1" rows="15" required></textarea>
+        </div>
         <button class="btn btn-outline-primary" type="submit">Опубликовать</button>
     </form>
-
 </div>
 {% endblock body %}
