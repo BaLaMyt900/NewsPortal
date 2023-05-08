@@ -74,8 +74,8 @@
                         <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                             {% for post in posts %}
                             <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
-                                <a class="card-title rounded-right nav-link bg-body w-75 rounded border h-4" href="/post/?id={{post.id}}">{{post.title}}</a>
-                                <p class="card-text border rounded bg-body">{{post.text}}</p>
+                                <a class="card-title rounded-right nav-link bg-body w-75 rounded border h-4" href="/post/?id={{post.id}}">&nbsp{{post.title}}</a>
+                                <p class="card-text border rounded bg-body">&nbsp{{post.text}}</p>
                                 <div class="row">
                                 <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time|timesince}} назад</small>
                                     {% if request.user == user %}
@@ -106,8 +106,8 @@
                     <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                         {% for comment in comments %}
                         <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
-                            <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{comment.post_id}}"> {{comment.post}}</a>
-                            <p class="card-text border rounded bg-body">{{comment.text}}</p>
+                            <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{comment.post_id}}">&nbsp{{comment.post}}</a>
+                            <p class="card-text border rounded bg-body"> &nbsp{{comment.text}}</p>
                             <small class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</small>
                         </div>
                         {% endfor %}

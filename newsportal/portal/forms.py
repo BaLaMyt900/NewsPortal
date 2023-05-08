@@ -35,9 +35,11 @@ types = [
 
 class PostForm(ModelForm):
     title = forms.CharField(label='Заголовок', widget=forms.TextInput(attrs={'class': 'form-control mb-3'}))
-    categories = forms.ModelMultipleChoiceField(label='Категория (для множественного выбора, выберите зажав Ctrl)', queryset=Category.objects.all(),
+    categories = forms.ModelMultipleChoiceField(label='Категория (для множественного выбора, выберите зажав Ctrl)',
+                                                queryset=Category.objects.all(),
                                                 widget=forms.SelectMultiple(attrs={'class': 'form-control',
-                                                                                   'role': 'switch', 'type': 'checkbox'}))
+                                                                                   'role': 'switch',
+                                                                                   'type': 'checkbox'}))
     types = [('A', 'Статья'), ('N', 'Новость')]
     type = forms.ChoiceField(label='Тип поста', choices=types, widget=forms.Select(attrs={'class': 'form-control'}))
     text = forms.CharField(label='Текст поста', widget=forms.Textarea(attrs={'class': 'form-control mb-3'}))
@@ -45,20 +47,3 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'categories', 'type', 'text')
-
-
-
-# class PostForm(forms.Form):
-#     title = forms.CharField(label='Заголовок', widget=forms.TextInput(attrs={'class': 'form-control mb-3'}))
-#     category = [(_.pk, _.name) for _ in Category.objects.all()]
-#     categories = forms.ModelMultipleChoiceField(label='Категория', queryset=Category.objects.all(),
-#                                                 widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
-#     types = [
-#         ('A', 'Статья'),
-#         ('N', 'Новость')
-#     ]
-#     type = forms.ChoiceField(label='Тип поста', choices=types, widget=forms.Select(attrs={'class': 'form-control'}))
-#     text = forms.CharField(label='Текст поста', widget=forms.Textarea(attrs={'class': 'form-control mb-3'}))
-#     class Meta:
-#         model = Post
-#         fields = ('title', 'categories', 'type', 'text')
