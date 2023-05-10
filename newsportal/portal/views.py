@@ -36,6 +36,7 @@ class PostView(View):
                 post.category = None
             # text = str(post.text).replace('\n', '<br>')
             # post.text = text
+
             return render(request, 'posts/post.html', {'post': post, 'comments': comments,
                                                        'comment_activity': comment_activity,
                                                        'post_activity': post_activity})
@@ -140,6 +141,8 @@ class PostsView(View):
     def get(self, request):
         posts = Post.objects.all().order_by('-post_time')
         ordering_type = '-post_time'
+        for post in posts:
+            post.text = post.text[:150] + '...'
         return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
                                                     'ordering_type': ordering_type})
 
@@ -162,7 +165,7 @@ def post_create(request):
     else:
         post_form = PostForm()
     category = [(_.id, _.name) for _ in Category.objects.all()]
-    return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category})
+    return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category, 'edit': True if request.POST.get('edit_post') else False})
 
 
 def indexview(request):

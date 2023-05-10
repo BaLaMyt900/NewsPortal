@@ -107,7 +107,7 @@
                         {% for comment in comments %}
                         <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
                             <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{comment.post_id}}">&nbsp{{comment.post}}</a>
-                            <p class="card-text border rounded bg-body"> &nbsp{{comment.text}}</p>
+                            <p class="card-text border rounded bg-body">{{comment.text}}</p>
                             <small class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</small>
                         </div>
                         {% endfor %}
