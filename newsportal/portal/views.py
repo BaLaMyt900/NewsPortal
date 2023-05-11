@@ -77,7 +77,7 @@ class LK(View):
                 for comment in raw_comments:
                     comments.append({
                         'post': comment.post.title,
-                        'text': comment.text[:50],
+                        'text': comment.text[:50] + '...' if len(comment.text) > 47 else comment.text,
                         'rating': comment.rating,
                         'date': comment.date,
                         'post_id': comment.post.id
@@ -91,10 +91,6 @@ class LK(View):
                     for post in posts:
                         if len(post.text) > 130:
                             post.text = post.text[:100] + '...'
-                if comments:
-                    for comm in comments:
-                        if len(comm.text) > 130:
-                            comm.text = comm.text[:100] + '...'
                 return render(request, 'account/account.html', {'user': user, 'owner': owner,
                                                                 'comments': comments, 'posts': posts, 'author': author})
             if error:
