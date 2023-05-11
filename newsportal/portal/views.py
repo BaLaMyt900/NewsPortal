@@ -127,14 +127,16 @@ class AuthorsView(View):
     def get(self, request):
         authors = Author.objects.all().order_by('user')
         ordering_type = 'user'
+        posts_count = [(author, len(Post.objects.filter(author=author))) for author in authors]
         return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
-                                                    'ordering_type': ordering_type})
+                                                    'ordering_type': ordering_type, 'posts_count': posts_count})
 
     def post(self, request):
         order_type = request.POST.get('order_by')
         authors = Author.objects.all().order_by(order_type)
+        posts_count = [(author, len(Post.objects.filter(author=author))) for author in authors]
         return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
-                                                    'ordering_type': order_type})
+                                                    'ordering_type': order_type, 'posts_count': posts_count})
 
 
 class PostsView(View):
@@ -156,6 +158,8 @@ class PostsView(View):
 def post_create(request):
     if request.method == 'POST' and request.user.is_authenticated:
         post_form = PostForm(request.POST)
+        forms_category = [_.category_id for _ in PostCategory.objects.filter(post_id=request.POST.get('post_id'))]
+        print(forms_category)
         if post_form.is_valid():
             post = post_form.save(commit=False)
             post.author = Author.objects.get(user=request.user)
@@ -165,7 +169,9 @@ def post_create(request):
     else:
         post_form = PostForm()
     category = [(_.id, _.name) for _ in Category.objects.all()]
-    return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category, 'edit': True if request.POST.get('edit_post') else False})
+    return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category,
+                                                   'edit': True if request.POST.get('edit_post') else False,
+                                                   'post_cat': forms_category if forms_category else None})
 
 
 def indexview(request):

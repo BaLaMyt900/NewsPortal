@@ -20,6 +20,13 @@
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
                 <h5 class="card-title"><a href="/account/?id={{author.user.id}}">{{author.user.username}}</a></h5>
                     <h6 class="fw-light">Рейтинг автора: {{author.rating}}</h6>
+                    <h6 class="fw-light">
+                        {% for authorr, count in posts_count %}
+                            {% if author == authorr %}
+                                Колличесвво постов: {{count}}
+                            {% endif %}
+                        {% endfor %}
+                    </h6>
                 <p class="card-text"></p>
                 <a href="/account/?id={{author.id}}" class="btn btn-outline-primary">Карточка автора</a>
             </div>
