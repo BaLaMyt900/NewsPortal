@@ -87,7 +87,7 @@
       <div class="container p-3">
         <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
         <h5 class="card-title rounded-right rounded bg-body w-25 border">&nbsp{{comment.user}}</h5>
-          <div class="card-text border bg-body rounded">{{comment.text}}</div>
+          <div class="card-text border bg-body rounded p-1">{{comment.text}}</div>
           <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
         {% if request.user.is_authenticated and request.user != comment.user %}
           {% if comment.id not in comment_activity %}

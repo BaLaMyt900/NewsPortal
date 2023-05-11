@@ -6,7 +6,7 @@
     <div class="card">
   <div class="card-header bg-gradient bg-body-tertiary">Последние новости</div>
         <div class="card bg-gradient bg-body-tertiary md-auto py-4 my-4 mx-4">
-            <div class="text-center">Сортировка</div>
+            <div class="text-start">Сортировка</div>
             <div class="container">
                 <form method="post">{% csrf_token %}
                     <button class="btn btn-outline-primary {% if ordering_type == '-post_time' %} active {% endif %}" name="order_by" value="-post_time">По дате</button>

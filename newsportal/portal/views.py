@@ -1,4 +1,3 @@
-import django.utils.timezone
 from django.shortcuts import render, redirect
 from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity, Category
 from django.views import View
@@ -6,7 +5,7 @@ from portal.forms import UserRegistrationForm, LoginForm, PostForm
 from django.contrib.auth import authenticate, login, get_user
 
 
-class PostView(View):
+class PostView(View):  # класс отображения одиночного поста
     def get(self, request):
         try:
             post = Post.objects.get(id=request.GET.get('id'))
@@ -34,9 +33,6 @@ class PostView(View):
                 post.category = ', '.join(post.category)
             except PostCategory.DoesNotExist:
                 post.category = None
-            # text = str(post.text).replace('\n', '<br>')
-            # post.text = text
-
             return render(request, 'posts/post.html', {'post': post, 'comments': comments,
                                                        'comment_activity': comment_activity,
                                                        'post_activity': post_activity})
@@ -61,7 +57,7 @@ class PostView(View):
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-class LK(View):
+class LK(View):  # класс отображения личного кабинета
     def get(self, request, error=None):
         try:
             user = PortalUser.objects.get(id=request.GET.get('id'))
@@ -77,7 +73,7 @@ class LK(View):
                 for comment in raw_comments:
                     comments.append({
                         'post': comment.post.title,
-                        'text': comment.text[:50],
+                        'text': comment.text[:50] + '...' if len(comment.text) > 47 else comment.text,
                         'rating': comment.rating,
                         'date': comment.date,
                         'post_id': comment.post.id
@@ -91,10 +87,6 @@ class LK(View):
                     for post in posts:
                         if len(post.text) > 130:
                             post.text = post.text[:100] + '...'
-                if comments:
-                    for comm in comments:
-                        if len(comm.text) > 130:
-                            comm.text = comm.text[:100] + '...'
                 return render(request, 'account/account.html', {'user': user, 'owner': owner,
                                                                 'comments': comments, 'posts': posts, 'author': author})
             if error:
@@ -123,7 +115,7 @@ class LK(View):
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-class AuthorsView(View):
+class AuthorsView(View):  # класс отображения списка авторов
     def get(self, request):
         authors = Author.objects.all().order_by('user')
         ordering_type = 'user'
@@ -139,7 +131,7 @@ class AuthorsView(View):
                                                     'ordering_type': order_type, 'posts_count': posts_count})
 
 
-class PostsView(View):
+class PostsView(View):  # класс отображения списка постов с фильтрацией
     def get(self, request):
         posts = Post.objects.all().order_by('-post_time')
         order_type = '-post_time'
@@ -171,7 +163,7 @@ class PostsView(View):
                                                     'ordering_type': order_type})
 
 
-def post_create(request):
+def post_create(request):  # функция отображения формы создания поста
     if request.method == 'POST' and request.user.is_authenticated:
         post_form = PostForm(request.POST)
         if post_form.is_valid():
@@ -187,7 +179,7 @@ def post_create(request):
                                                    'edit': True if request.POST.get('edit_post') else False})
 
 
-def post_edit(request):
+def post_edit(request):  # функция редактирования поста
     if request.method == 'POST' and request.user.is_authenticated:
         post_form = PostForm(request.POST)
         post_id = request.POST.get('post_id')
@@ -209,7 +201,7 @@ def post_edit(request):
                                                    'post_cat': forms_category if forms_category else None})
 
 
-def indexview(request):
+def indexview(request):  # функция отображения стартовой старницы
     posts = Post.objects.all()[:8]
     if posts:
         for post in posts:
@@ -221,7 +213,7 @@ def indexview(request):
     return render(request, 'index.html', {'data': data})
 
 
-def register(request):
+def register(request):  # функция регистрации клиента
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -241,7 +233,7 @@ def register(request):
     return render(request, 'account/register.html', {'register_form': user_form})
 
 
-def user_login(request):
+def user_login(request):  # функция логирования клиента
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -255,13 +247,12 @@ def user_login(request):
                     return render(request, 'account/account_blocked.html')
             else:
                 return render(request, 'account/login.html', {'form': form, 'error': 1})
-
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
 
 
-def comment_submit(request):
+def comment_submit(request):  # функция создания комментария
     Comment.objects.create(post=Post.objects.get(id=request.POST.get('id')), user=request.user,
                            text=request.POST.get('text'))
     return redirect(request.META.get('HTTP_REFERER', '/'))
