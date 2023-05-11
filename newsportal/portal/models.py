@@ -86,6 +86,12 @@ class Post(models.Model):
         else:
             return self.text
 
+    def edit(self, new):
+        self.title = new.title
+        self.type = new.type
+        self.text = new.text
+        self.save()
+
     class Meta:
         ordering = ('-post_time', )
         verbose_name = 'Пост'

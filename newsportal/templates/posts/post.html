@@ -11,7 +11,7 @@
       {% if request.user == post.author.user %}
       <div class="col">
         <div class="text-end">
-          <form action="/post/new_post" method="post">
+          <form action="/post/post_edit" method="post">
             {% csrf_token %}
             <input type="hidden" name="text" value="{{post.text}}">
             <input type="hidden" name="title" value="{{post.title}}">
@@ -29,8 +29,8 @@
     <div class="card-body rounded-4">
       <h6 class="card-title">Категории: {{post.category}}</h6>
       <h5 class="card-title text-body-emphasis">{{post.title}}</h5>
-      <div class="card-text border rounded p-1">
-        <div class="text">{{post.text}}</div>
+      <div class="card-text p-1">
+        <textarea class="form-control" cols="30" rows="20" wrap="soft">{{post.text}}</textarea>
       </div>
 
       <div class="text-muted">Рейтинг статьи: {{post.rating}} <br> Пост написан {{post.post_time|timesince}} назад</div>

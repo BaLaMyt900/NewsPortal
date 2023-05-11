@@ -1,15 +1,10 @@
 {% extends 'main.html' %}
-{% block title %}Новый пост{% endblock title %}
+{% block title %}Редактировать пост{% endblock title %}
 
 {% block body %}
 <div class="container mx-auto p-3 w-50">
     <div class="card rounded-4 shadow-none bg-body-tertiary rounded text-body-emphasis">
-  <div class="card-body">
-    {% if not edit %}
-      <h5 class="card-title text-center h4">Новый пост</h5>
-    {% else %}
-      <h5 class="card-title text-center h4">Редактирование поста</h5>
-    {% endif %}
+  <div class="card-body"><h5 class="card-title text-center h4">Редактирование поста</h5>
   </div>
 </div>
 </div>
@@ -17,18 +12,20 @@
 <div class="container mx-auto">
     <form class="border rounded px-5 py-4 bg-gradient bg-body-tertiary text-body-emphasis shadow" method="post">
         {% csrf_token %}
-            <label for="id_title">Заголовок</label>
-            <input class="form-control" type="text" id="id_title" name="title" required
-                   {% if edit %} value="{{form.title.value}}" {% endif %}>
+        <input type="hidden" name="post_id" value="{{request.POST.post_id}}">
+        <label for="id_title">Заголовок</label>
+        <input class="form-control" type="text" id="id_title" name="title" required value="{{form.title.value}}">
         <div class="row mb-auto">
             <div class="col-2 mb-auto">
                 <div class="form-check" aria-required="true">
                   <label class="form-check-label" for="type_check_1">Статья</label>
-                  <input class="form-check-input" type="radio" name="type" value="A" id="type_check_1" {% if request.POST.type == 'A' %} checked {% endif %} required>
+                  <input class="form-check-input" type="radio" name="type" value="A" id="type_check_1"
+                         {% if request.POST.type == 'A' %} checked {% endif %} required>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label" for="type_check_2">Новость</label>
-                  <input class="form-check-input" type="radio" name="type" value="N" id="type_check_2" {% if request.POST.type == 'N' %} checked {% endif %} required>
+                  <input class="form-check-input" type="radio" name="type" value="N" id="type_check_2"
+                         {% if request.POST.type == 'N' %} checked {% endif %} required>
                 </div>
             </div>
                 <div class="col-3 mb-auto" aria-required="true">
@@ -43,7 +40,7 @@
             </div>
         <div class="mb-auto py-2">
             <label for="text">Текст поста</label>
-            <textarea class="form-control pre" name="text" id="text" cols="1" rows="15" required></textarea>
+            <textarea class="form-control" name="text" id="text" cols="1" rows="15" wrap="soft" required>{{form.text.value}}</textarea>
         </div>
         <button class="btn btn-outline-primary" type="submit">Опубликовать</button>
     </form>

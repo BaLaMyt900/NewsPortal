@@ -12,6 +12,8 @@
                     <button class="btn btn-outline-primary {% if ordering_type == '-post_time' %} active {% endif %}" name="order_by" value="-post_time">По дате</button>
                     <button class="btn btn-outline-primary {% if ordering_type == 'title' %} active {% endif %}" name="order_by" value="title">По алфавиту</button>
                     <button class="btn btn-outline-primary {% if ordering_type == '-rating' %} active {% endif %}" name="order_by" value="-rating">По рейтингу</button>
+                    <button class="btn btn-outline-primary {% if ordering_type == 'news' %} active {% endif %}" name="order_by" value="news">Только новости</button>
+                    <button class="btn btn-outline-primary {% if ordering_type == 'stats' %} active {% endif %}" name="order_by" value="stats">Только статьи</button>
                 </form>
             </div>
         </div>

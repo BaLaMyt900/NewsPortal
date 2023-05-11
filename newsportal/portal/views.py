@@ -142,15 +142,31 @@ class AuthorsView(View):
 class PostsView(View):
     def get(self, request):
         posts = Post.objects.all().order_by('-post_time')
-        ordering_type = '-post_time'
+        order_type = '-post_time'
         for post in posts:
             post.text = post.text[:150] + '...'
         return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
-                                                    'ordering_type': ordering_type})
+                                                    'ordering_type': order_type})
 
     def post(self, request):
-        order_type = request.POST.get('order_by')
-        posts = Post.objects.all().order_by(order_type)
+        if request.POST.get('order_by') == 'news':
+            order_type = request.POST.get('order_by')
+            posts = Post.objects.filter(type='N').order_by('-post_time')
+            for post in posts:
+                if len(post.text) > 150:
+                    post.text = post.text[:150] + '...'
+        elif request.POST.get('order_by') == 'stats':
+            order_type = request.POST.get('order_by')
+            posts = Post.objects.filter(type='A').order_by('-post_time')
+            for post in posts:
+                if len(post.text) > 150:
+                    post.text = post.text[:150] + '...'
+        else:
+            order_type = request.POST.get('order_by')
+            posts = Post.objects.all().order_by(order_type)
+            for post in posts:
+                if len(post.text) > 150:
+                    post.text = post.text[:150] + '...'
         return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
                                                     'ordering_type': order_type})
 
@@ -158,8 +174,6 @@ class PostsView(View):
 def post_create(request):
     if request.method == 'POST' and request.user.is_authenticated:
         post_form = PostForm(request.POST)
-        forms_category = [_.category_id for _ in PostCategory.objects.filter(post_id=request.POST.get('post_id'))]
-        print(forms_category)
         if post_form.is_valid():
             post = post_form.save(commit=False)
             post.author = Author.objects.get(user=request.user)
@@ -170,6 +184,27 @@ def post_create(request):
         post_form = PostForm()
     category = [(_.id, _.name) for _ in Category.objects.all()]
     return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category,
+                                                   'edit': True if request.POST.get('edit_post') else False})
+
+
+def post_edit(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        post_form = PostForm(request.POST)
+        post_id = request.POST.get('post_id')
+        forms_category = [_.category_id for _ in PostCategory.objects.filter(post_id=post_id)]
+        if post_form.is_valid():
+            post_new = post_form.save(commit=False)
+            post = Post.objects.get(id=post_id)
+            post.edit(post_new)
+            for cat in PostCategory.objects.filter(post_id=post_id):
+                cat.delete()
+            for cat in request.POST.getlist('categories'):
+                PostCategory.objects.create(post_id=post_id, category_id=int(cat))
+            return redirect(f'/post/?id={post.id}')
+    else:
+        post_form = PostForm()
+    category = [(_.id, _.name) for _ in Category.objects.all()]
+    return render(request, 'posts/post_edit.html', {'form': post_form, 'categories': category,
                                                    'edit': True if request.POST.get('edit_post') else False,
                                                    'post_cat': forms_category if forms_category else None})
 
