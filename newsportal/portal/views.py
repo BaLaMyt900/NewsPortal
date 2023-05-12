@@ -82,7 +82,7 @@ class LK(View):  # класс отображения личного кабине
                 comments = False
             if Author.objects.filter(user=user).exists():
                 author = Author.objects.get(user=user)
-                posts = Post.objects.filter(author=author)
+                posts = Post.objects.filter(author=author).order_by('-rating')
                 if posts:
                     for post in posts:
                         if len(post.text) > 130:
