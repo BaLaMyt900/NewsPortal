@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from portal.models import PortalUser, Category, Post
 
 
-class UserRegistrationForm(forms.ModelForm):
+class UserRegistrationForm(forms.ModelForm):  # Форма регистрации пользователя
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}))
     password2 = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}))
 
@@ -22,12 +22,12 @@ class UserRegistrationForm(forms.ModelForm):
         return cd['password2']
 
 
-class LoginForm(forms.Form):
+class LoginForm(forms.Form):  # форма авторизации пользователя
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}))
 
 
-class PostForm(ModelForm):
+class PostForm(ModelForm):  # форма создания и редактирования поста
     title = forms.CharField()
     categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
     __types = [('A', 'Статья'), ('N', 'Новость')]
