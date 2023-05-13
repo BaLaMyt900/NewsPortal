@@ -2,7 +2,7 @@
 {% block title %}Стартовая страница{% endblock title %}
 
 {% block body %}
-
+{% load my_filters %}
 <div class="container mx-auto p-3 w-50">
     <div class="card rounded-4 shadow-none bg-body-tertiary rounded text-body-emphasis">
   <div class="card-body">
@@ -18,9 +18,9 @@
         {% for post in data.posts %}
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
-                <h5 class="card-title">{{post.title}}</h5>
+                <h5 class="card-title">{{post.title|censor}}</h5>
                     <h6 class="fw-light"><a href="/account/?id={{post.author.user.id}}">{{post.author}}</a> Рейтинг статьи: {{post.rating}} <br> {{post.category}}</h6>
-                <p class="card-text bg-body rounded">&nbsp{{post.text}}</p>
+                <p class="card-text bg-body rounded">&nbsp{{post.text|censor}}</p>
                 <div class="text-muted">Пост написан {{post.post_time|timesince}} назад</div>
                 <a href="/post/?id={{post.id}}" class="btn btn-outline-primary">Продолжение</a>
             </div>

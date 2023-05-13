@@ -2,6 +2,7 @@
 {% block title %}Все посты{% endblock title %}
 
 {% block body %}
+{% load my_filters %}
 <div class="container rounded-4 py-2 shadow bg-body-tertiary rounded text-body-emphasis">
     <div class="card">
   <div class="card-header bg-gradient bg-body-tertiary">Последние новости</div>
@@ -17,14 +18,6 @@
                             <button class="btn btn-outline-primary {% if ordering_type == 'news' %} active {% endif %}" name="order_by" value="news">Только новости</button>
                             <button class="btn btn-outline-primary {% if ordering_type == 'stats' %} active {% endif %}" name="order_by" value="stats">Только статьи</button>
                         </div>
-                        <div class="row-4">
-                            <div class="text-start">Сортировка по категориям</div>
-                            <button class="btn btn-outline-primary {% if category == '-post_time' %} active {% endif %}" name="order_by" value="-post_time">По дате</button>
-                            <button class="btn btn-outline-primary {% if category == 'title' %} active {% endif %}" name="order_by" value="title">По алфавиту</button>
-                            <button class="btn btn-outline-primary {% if category == '-rating' %} active {% endif %}" name="order_by" value="-rating">По рейтингу</button>
-                            <button class="btn btn-outline-primary {% if category == 'news' %} active {% endif %}" name="order_by" value="news">Только новости</button>
-                            <button class="btn btn-outline-primary {% if category == 'stats' %} active {% endif %}" name="order_by" value="stats">Только статьи</button>
-                        </div>
                     </div>
                 </form>
             </div>
@@ -33,10 +26,10 @@
         {% for post in posts %}
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
-                <h5 class="card-title">{{post.title}}</h5>
+                <h5 class="card-title">{{post.title|censor}}</h5>
                     <h6 class="fw-light"><a href="/account/?id={{post.author.user.id}}">{{post.author}}</a> Рейтинг статьи: {{post.rating}} <br> {{post.category}}</h6>
-                <p class="card-text bg-body rounded">&nbsp{{post.text}}</p>
-                <div class="text-muted">Пост написан {{post.post_time|timesince}} назад</div>
+                <p class="card-text bg-body rounded">&nbsp{{post.text|censor}}</p>
+                <div class="text-muted">{{post.post_time}} <br> Пост написан {{post.post_time|timesince}} назад</div>
                 <a href="/post/?id={{post.id}}" class="btn btn-outline-primary">Продолжение</a>
             </div>
             </div>

@@ -2,6 +2,7 @@
 {% block title %}{{post.title}}{% endblock title %}
 
 {% block body %}
+{% load my_filters %}
 <p></p>
 <div class="container mx-auto">
   <div class="card">
@@ -27,13 +28,13 @@
     </div>
   <div class="container p-3">
     <div class="card-body rounded-4">
-      <h6 class="card-title">Категории: {{post.category}}</h6>
-      <h5 class="card-title text-body-emphasis">{{post.title}}</h5>
+      <h6 class="card-title">Тип статьи:{% if post.type == "N" %} Новость {% else %} Статья {% endif %}<br>Категории: {{post.category}}</h6>
+      <h5 class="card-title text-body-emphasis">{{post.title|censor}}</h5>
       <div class="card-text p-1">
-        <textarea class="form-control" cols="30" rows="20" wrap="soft">{{post.text}}</textarea>
+        <textarea class="form-control" cols="30" rows="20" wrap="soft">{{post.text|censor}}</textarea>
       </div>
 
-      <div class="text-muted">Рейтинг статьи: {{post.rating}} <br> Пост написан {{post.post_time|timesince}} назад</div>
+      <div class="text-muted">Рейтинг статьи: {{post.rating}} <br> {{post.post_time}} <br> Пост написан {{post.post_time|timesince}} назад</div>
   </div>
   </div>
   <div class="card-footer text-muted bg-gradient bg-body-tertiary text-body-emphasis">

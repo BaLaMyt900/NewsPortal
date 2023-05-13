@@ -136,7 +136,8 @@ class PostsView(View):  # класс отображения списка пос�
         posts = Post.objects.all().order_by('-post_time')
         order_type = '-post_time'
         for post in posts:
-            post.text = post.text[:150] + '...'
+            if len(post.text) > 20:
+                post.text = post.text[:20] + '...'
         return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
                                                     'ordering_type': order_type})
 
@@ -145,20 +146,20 @@ class PostsView(View):  # класс отображения списка пос�
             order_type = request.POST.get('order_by')
             posts = Post.objects.filter(type='N').order_by('-post_time')
             for post in posts:
-                if len(post.text) > 150:
-                    post.text = post.text[:150] + '...'
+                if len(post.text) > 20:
+                    post.text = post.text[:20] + '...'
         elif request.POST.get('order_by') == 'stats':
             order_type = request.POST.get('order_by')
             posts = Post.objects.filter(type='A').order_by('-post_time')
             for post in posts:
-                if len(post.text) > 150:
-                    post.text = post.text[:150] + '...'
+                if len(post.text) > 20:
+                    post.text = post.text[:20] + '...'
         else:
             order_type = request.POST.get('order_by')
             posts = Post.objects.all().order_by(order_type)
             for post in posts:
-                if len(post.text) > 150:
-                    post.text = post.text[:150] + '...'
+                if len(post.text) > 20:
+                    post.text = post.text[:20] + '...'
         return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
                                                     'ordering_type': order_type})
 
