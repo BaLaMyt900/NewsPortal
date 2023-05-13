@@ -85,8 +85,10 @@ class LK(View):  # класс отображения личного кабине
                 posts = Post.objects.filter(author=author).order_by('-rating')
                 if posts:
                     for post in posts:
-                        if len(post.text) > 130:
-                            post.text = post.text[:100] + '...'
+                        if len(post.title) > 40:
+                            post.title = post.title[:37] + '...'
+                        if len(post.text) > 60:
+                            post.text = post.text[:57   ] + '...'
                 return render(request, 'account/account.html', {'user': user, 'owner': owner,
                                                                 'comments': comments, 'posts': posts, 'author': author})
             if error:
@@ -136,8 +138,12 @@ class PostsView(View):  # класс отображения списка пос�
         posts = Post.objects.all().order_by('-post_time')
         order_type = '-post_time'
         for post in posts:
-            if len(post.text) > 20:
-                post.text = post.text[:20] + '...'
+            categories = [_.get('category_id') for _ in PostCategory.objects.filter(post_id=post.id).values('category_id')]
+            categories = Category.objects.filter(id__in=categories)
+            if len(categories) > 0:
+                post.category = ', '.join([_.name for _ in categories])
+            if len(post.text) > 100:
+                post.text = post.text[:97] + '...'
         return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
                                                     'ordering_type': order_type})
 
@@ -146,20 +152,35 @@ class PostsView(View):  # класс отображения списка пос�
             order_type = request.POST.get('order_by')
             posts = Post.objects.filter(type='N').order_by('-post_time')
             for post in posts:
-                if len(post.text) > 20:
-                    post.text = post.text[:20] + '...'
+                categories = [_.get('category_id') for _ in
+                              PostCategory.objects.filter(post_id=post.id).values('category_id')]
+                categories = Category.objects.filter(id__in=categories)
+                if len(categories) > 0:
+                    post.category = ', '.join([_.name for _ in categories])
+                if len(post.text) > 100:
+                    post.text = post.text[:97] + '...'
         elif request.POST.get('order_by') == 'stats':
             order_type = request.POST.get('order_by')
             posts = Post.objects.filter(type='A').order_by('-post_time')
             for post in posts:
-                if len(post.text) > 20:
-                    post.text = post.text[:20] + '...'
+                categories = [_.get('category_id') for _ in
+                              PostCategory.objects.filter(post_id=post.id).values('category_id')]
+                categories = Category.objects.filter(id__in=categories)
+                if len(categories) > 0:
+                    post.category = ', '.join([_.name for _ in categories])
+                if len(post.text) > 100:
+                    post.text = post.text[:97] + '...'
         else:
             order_type = request.POST.get('order_by')
             posts = Post.objects.all().order_by(order_type)
             for post in posts:
-                if len(post.text) > 20:
-                    post.text = post.text[:20] + '...'
+                categories = [_.get('category_id') for _ in
+                              PostCategory.objects.filter(post_id=post.id).values('category_id')]
+                categories = Category.objects.filter(id__in=categories)
+                if len(categories) > 0:
+                    post.category = ', '.join([_.name for _ in categories])
+                if len(post.text) > 100:
+                    post.text = post.text[:97] + '...'
         return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
                                                     'ordering_type': order_type})
 

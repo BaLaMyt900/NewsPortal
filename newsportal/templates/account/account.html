@@ -77,7 +77,7 @@
                                 <a class="card-title rounded-right nav-link bg-body w-75 rounded border h-4" href="/post/?id={{post.id}}">&nbsp{{post.title}}</a>
                                 <p class="card-text border rounded bg-body">&nbsp{{post.text}}</p>
                                 <div class="row">
-                                <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time|timesince}} назад</small>
+                                <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан в {{post.post_time}}</small>
                                     {% if request.user == user %}
                                     <form class="col form" method="post">{% csrf_token %}
                                         <button class="btn btn-outline-danger" name="delete_post" value="{{post.pk}}">Удалить статью.</button>

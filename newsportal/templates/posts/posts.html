@@ -27,7 +27,7 @@
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
                 <h5 class="card-title">{{post.title|censor}}</h5>
-                    <h6 class="fw-light"><a href="/account/?id={{post.author.user.id}}">{{post.author}}</a> Рейтинг статьи: {{post.rating}} <br> {{post.category}}</h6>
+                    <h6 class="fw-light"><a href="/account/?id={{post.author.user.id}}">{{post.author}}</a> Рейтинг статьи: {{post.rating}} {% if post.category %} <br> Категория: {{post.category}} {% endif %}</h6>
                 <p class="card-text bg-body rounded">&nbsp{{post.text|censor}}</p>
                 <div class="text-muted">{{post.post_time}} <br> Пост написан {{post.post_time|timesince}} назад</div>
                 <a href="/post/?id={{post.id}}" class="btn btn-outline-primary">Продолжение</a>
