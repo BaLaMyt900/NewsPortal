@@ -89,7 +89,7 @@ class Post(models.Model):
 
     def preview(self):
         if len(self.text) > 124:
-            return self.text[:124] + '...'
+            return self.text[:121] + '...'
         else:
             return self.text
 
