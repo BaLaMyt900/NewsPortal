@@ -5,15 +5,15 @@ user1 = PortalUser.objects.create_user("shell_user1")
 user2 = PortalUser.objects.create_user("shell_user2")
 # Добавление категорий
 Category.objects.create(name="Категория из shell")
-# Создание автора. По умолчанию пользователь - просто пользователь. Автором он может стать из личного кабинета.
-
+# Создание автора. По умолчанию пользователь - просто пользователь. Автором он может стать из личного кабинета. Второй пользователь просто пользователь
+author1 = Author.objects.create(user=user1)
 # Добавление статей и сразу добавление категорий
-post1 = Post.objects.create(title="Заголовок статьи из shell", text="Текст статьи из shell", type="A", author=Author.objects.get(user=PortalUser.objects.get(username="shell_user1")))
+post1 = Post.objects.create(title="Заголовок статьи из shell", text="Текст статьи из shell", type="A", author=author1)
 PostCategory.objects.create(post=post1,category=Category.objects.get(name="Категория из shell"))
-post2 = Post.objects.create(title="Заголовок статьи из shell 2", text="Текст статьи из shell 2", type="A", author=Author.objects.get(user=PortalUser.objects.get(username="shell_user1")))
+post2 = Post.objects.create(title="Заголовок статьи из shell 2", text="Текст статьи из shell 2", type="A", author=author1)
 PostCategory.objects.create(post=post2,category=Category.objects.get(name="Экономика"))
 PostCategory.objects.create(post=post2,category=Category.objects.get(name="Происшествия"))
-post3 = Post.objects.create(title="Заголовок новости из shell", text="Текст новости из shell", type="N", author=Author.objects.get(user=PortalUser.objects.get(username="shell_user1")))
+post3 = Post.objects.create(title="Заголовок новости из shell", text="Текст новости из shell", type="N", author=author1)
 PostCategory.objects.create(post=post3,category=Category.objects.get(name="Категория из shell"))
 
 # Добавлиение коментариев
@@ -23,7 +23,26 @@ comm3 = Comment.objects.create(post=post3, user=user1, text="Комментар�
 comm4 = Comment.objects.create(post=post3, user=user2, text="Комментарий от 2го пользователя на третью статью")
 
 # Лайки, дизлайки У меня реализована система единичного оценивания коммента или статьи. Поэтому нужно передавать пользователя для проверки
-comm1.like(user=user1)
-comm2.dislike(user=user1)
-comm3.like(user=user2)
-comm4.dislike(user=user1)
+comm1.like(user1)
+comm2.dislike(user1)
+comm3.like(user2)
+comm4.dislike(user1)
+post1.like(user2)
+post2.dislike(user2)
+
+# Обновление рейтингов
+user1.update_rating()
+user2.update_rating()
+
+# Вывод лучшего пользователя
+ratings_list = [(_.username, _.rating) for _ in PortalUser.objects.all().order_by("-rating")]
+print(ratings_list)
+
+# Вывод лучшей статьи
+best_post = Post.objects.all().order_by("-rating")[0]
+print(f"{best_post.post_time} {best_post.author.user.username} {best_post.rating} {best_post.title} {best_post.text[:30]}")
+
+# Вывод комментариев лучшей статьи
+best_post_comments = Comment.objects.filter(post=best_post)
+for comment in best_post_comments:
+    print(f"{comment.date} {comment.user} {comment.rating} {comment.text}")

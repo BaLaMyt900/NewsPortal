@@ -10,7 +10,14 @@ class PortalUser(AbstractUser):
     comment_active = models.ManyToManyField("Comment", through="CommentActivity")
 
     def update_rating(self):
-        self.rating = Comment.objects.filter(user=self).aggregate(sum('rating'))
+        self.rating = Comment.objects.filter(user=self).aggregate(Sum('rating'))['rating__sum']
+        try:
+            if_author = Author.objects.get(user=self)
+        except Author.DoesNotExist:
+            pass
+        else:
+            if_author.update_rating()
+            self.rating += if_author.rating
         self.save()
 
 
@@ -114,6 +121,7 @@ class Comment(models.Model):
         except CommentActivity.DoesNotExist:
             self.rating += 1
             self.save()
+            PortalUser.objects.get(pk=self.user.pk).update_rating()
             CommentActivity.objects.create(user=user, activity=self)
 
     def dislike(self, user):

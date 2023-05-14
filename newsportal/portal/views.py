@@ -42,18 +42,18 @@ class PostView(View):  # класс отображения одиночного 
             if request.POST.get('post') == '+':
                 post = Post.objects.get(id=int(request.POST.get('id')))
                 post.like(request.user)
-                Author.objects.get(user=post.author.user).update_rating()
+                PortalUser.objects.get(id=post.author.user.id).update_rating()
             elif request.POST.get('post') == '-':
                 post = Post.objects.get(id=int(request.POST.get('id')))
                 post.dislike(request.user)
-                Author.objects.get(user=post.author.user).update_rating()
+                PortalUser.objects.get(id=post.author.user.id).update_rating()
         elif request.POST.get('comment'):
             if request.POST.get('comment') == '+':
                 Comment.objects.get(id=request.POST.get('id')).like(request.user)
-                Post.objects.get(id=request.POST.get('post_id')).author.update_rating()
+                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
             elif request.POST.get('comment') == '-':
                 Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
-                Post.objects.get(id=request.POST.get('post_id')).author.update_rating()
+                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
