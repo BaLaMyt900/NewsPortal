@@ -1,0 +1,29 @@
+# Импорт моделей из проекта
+from portal.models import PortalUser, Author, Category, Post, Comment, PostCategory
+# Создание пользователей
+user1 = PortalUser.objects.create_user("shell_user1")
+user2 = PortalUser.objects.create_user("shell_user2")
+# Добавление категорий
+Category.objects.create(name="Категория из shell")
+# Создание автора. По умолчанию пользователь - просто пользователь. Автором он может стать из личного кабинета.
+
+# Добавление статей и сразу добавление категорий
+post1 = Post.objects.create(title="Заголовок статьи из shell", text="Текст статьи из shell", type="A", author=Author.objects.get(user=PortalUser.objects.get(username="shell_user1")))
+PostCategory.objects.create(post=post1,category=Category.objects.get(name="Категория из shell"))
+post2 = Post.objects.create(title="Заголовок статьи из shell 2", text="Текст статьи из shell 2", type="A", author=Author.objects.get(user=PortalUser.objects.get(username="shell_user1")))
+PostCategory.objects.create(post=post2,category=Category.objects.get(name="Экономика"))
+PostCategory.objects.create(post=post2,category=Category.objects.get(name="Происшествия"))
+post3 = Post.objects.create(title="Заголовок новости из shell", text="Текст новости из shell", type="N", author=Author.objects.get(user=PortalUser.objects.get(username="shell_user1")))
+PostCategory.objects.create(post=post3,category=Category.objects.get(name="Категория из shell"))
+
+# Добавлиение коментариев
+comm1 = Comment.objects.create(post=post1, user=user2, text="Комментарий от 2го пользователя на первую статью")
+comm2 = Comment.objects.create(post=post2, user=user2, text="Комментарий от 2го пользователя на Вторую статью")
+comm3 = Comment.objects.create(post=post3, user=user1, text="Комментарий от первого пользователя(автора статьи) на третью статью")
+comm4 = Comment.objects.create(post=post3, user=user2, text="Комментарий от 2го пользователя на третью статью")
+
+# Лайки, дизлайки У меня реализована система единичного оценивания коммента или статьи. Поэтому нужно передавать пользователя для проверки
+comm1.like(user=user1)
+comm2.dislike(user=user1)
+comm3.like(user=user2)
+comm4.dislike(user=user1)
