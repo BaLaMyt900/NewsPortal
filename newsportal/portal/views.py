@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity, Category
 from django.views import View
+from django.views.generic import ListView
 from portal.forms import UserRegistrationForm, LoginForm, PostForm
 from django.contrib.auth import authenticate, login, get_user
-
+from django.core.paginator import Paginator
+from .filters import PostFilter
 
 class PostView(View):  # класс отображения одиночного поста
     def get(self, request):
@@ -133,56 +135,30 @@ class AuthorsView(View):  # класс отображения списка ав�
                                                     'ordering_type': order_type, 'posts_count': posts_count})
 
 
-class PostsView(View):  # класс отображения списка постов с фильтрацией
-    def get(self, request):
-        posts = Post.objects.all().order_by('-post_time')
-        order_type = '-post_time'
-        for post in posts:
-            categories = [_.get('category_id') for _ in PostCategory.objects.filter(post_id=post.id).values('category_id')]
-            categories = Category.objects.filter(id__in=categories)
-            if len(categories) > 0:
-                post.category = ', '.join([_.name for _ in categories])
-            if len(post.text) > 100:
-                post.text = post.text[:97] + '...'
-        return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
-                                                    'ordering_type': order_type})
+class PostsView(ListView):
+    model = Post
+    template_name = 'posts/posts.html'
+    context_object_name = 'posts'
+    ordering = ['-post_time']
+    paginate_by = 10
 
-    def post(self, request):
-        if request.POST.get('order_by') == 'news':
-            order_type = request.POST.get('order_by')
-            posts = Post.objects.filter(type='N').order_by('-post_time')
-            for post in posts:
-                categories = [_.get('category_id') for _ in
-                              PostCategory.objects.filter(post_id=post.id).values('category_id')]
-                categories = Category.objects.filter(id__in=categories)
-                if len(categories) > 0:
-                    post.category = ', '.join([_.name for _ in categories])
-                if len(post.text) > 100:
-                    post.text = post.text[:97] + '...'
-        elif request.POST.get('order_by') == 'stats':
-            order_type = request.POST.get('order_by')
-            posts = Post.objects.filter(type='A').order_by('-post_time')
-            for post in posts:
-                categories = [_.get('category_id') for _ in
-                              PostCategory.objects.filter(post_id=post.id).values('category_id')]
-                categories = Category.objects.filter(id__in=categories)
-                if len(categories) > 0:
-                    post.category = ', '.join([_.name for _ in categories])
-                if len(post.text) > 100:
-                    post.text = post.text[:97] + '...'
+    def __toint(self, value):
+        try:
+            value = int(value)
+        except TypeError:
+            return None
         else:
-            order_type = request.POST.get('order_by')
-            posts = Post.objects.all().order_by(order_type)
-            for post in posts:
-                categories = [_.get('category_id') for _ in
-                              PostCategory.objects.filter(post_id=post.id).values('category_id')]
-                categories = Category.objects.filter(id__in=categories)
-                if len(categories) > 0:
-                    post.category = ', '.join([_.name for _ in categories])
-                if len(post.text) > 100:
-                    post.text = post.text[:97] + '...'
-        return render(request, 'posts/posts.html', {'page': 'posts', 'posts': posts,
-                                                    'ordering_type': order_type})
+            return value
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+        context['page'] = 'posts'
+        context['authors'] = Author.objects.values('user__username', 'id')
+        context['categories'] = Category.objects.values('name', 'id')
+        context['curr_author'] = self.__toint(self.request.GET.get('author'))
+        context['curr_type'] = self.request.GET.get('type')
+        context['curr_categories'] = list(map(int, self.request.GET.getlist('categories')))
+        return context
 
 
 def post_create(request):  # функция отображения формы создания поста

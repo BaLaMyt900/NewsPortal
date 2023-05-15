@@ -57,11 +57,11 @@ class Category(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    types = [
+    __types = [
         ('A', 'Статья'),
         ('N', 'Новость')
     ]
-    type = models.CharField(max_length=1, choices=types)
+    type = models.CharField(max_length=1, choices=__types)
     post_time = models.DateTimeField(default=django.utils.timezone.now)
     categories = models.ManyToManyField(Category, through="PostCategory")
     title = models.CharField(max_length=255, null=False)
