@@ -259,7 +259,7 @@ def user_login(request):  # функция логирования клиента
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('/')
+                    return redirect(request.META.get('HTTP_REFERER', '/'))
                 else:
                     return render(request, 'account/account_blocked.html')
             else:

@@ -46,11 +46,27 @@
                     <div class="card py-3 border-0 w-50">
                         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Удаление аккаунта</div>
                         <div class="card-body container border">
-                            Внимание! Удаление безвозвратно!
-                            <form method="post">
-                                {% csrf_token %}
-                                <button class="btn btn-outline-danger" name="delete_acc" value="+">Удаление аккаунта!</button>
-                            </form>
+                                Внимание! Удаление безвозвратно!
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteaccount">Удаление аккаунта!</button>
+                                <div class="modal fade" id="deleteaccount" data-value="" tabindex="-1" aria-labelledby="test" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Вы уверены, что хотите удалить аккаунт?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                После потверждения, аккаунт будет безвозвозвратно удален!<br>Вы уверены?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
+                                                <form class="form" method="post">{% csrf_token %}
+                                                    <button class="btn btn-outline-danger" name="delete_acc" value="+">Удаление аккаунта!</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     {% else %}
@@ -81,7 +97,7 @@
                                 <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time}}</small>
                                     {% if request.user == user %}
                                     <div class="col"><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletepost{{ post.pk }}">Удалить статью</button></div>
-                                        <div class="modal fade" id="deletepost{{ post.pk }}" data-value="" tabindex="-1" aria-labelledby="test" aria-hidden="true">
+                                        <div class="modal fade" id="deletepost{{ post.pk }}" tabindex="-1" aria-labelledby="test" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -149,25 +165,4 @@
     <p></p>
     </div>
 </div>
-{#    Модальное окно подверждения#}
-    <div class="modal fade" id="deletepost" data-value="" tabindex="-1" aria-labelledby="test" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Вы уверены, что хотите удалить статью?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    После потверждения, статья будет безвозвозвратно удалена!<br>Вы уверены?
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
-                    <form class="form" method="post">{% csrf_token %}
-                        <button class="btn btn-outline-danger" name="delete_post" value="{{post.pk}}">Удалить статью.</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 {% endblock body %}
