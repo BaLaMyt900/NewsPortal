@@ -18,24 +18,23 @@
     <form class="border rounded px-5 py-4 bg-gradient bg-body-tertiary text-body-emphasis shadow" method="post">
         {% csrf_token %}
             <label for="id_title">Заголовок</label>
-            <input class="form-control" type="text" id="id_title" name="title" required
-                   {% if edit %} value="{{form.title.value}}" {% endif %}>
+            <input class="form-control" type="text" id="id_title" name="title" required>
         <div class="row mb-auto">
             <div class="col-2 mb-auto">
                 <div class="form-check" aria-required="true">
                   <label class="form-check-label" for="type_check_1">Статья</label>
-                  <input class="form-check-input" type="radio" name="type" value="A" id="type_check_1" {% if request.POST.type == 'A' %} checked {% endif %} required>
+                  <input class="form-check-input" type="radio" name="type" value="A" id="type_check_1" required>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label" for="type_check_2">Новость</label>
-                  <input class="form-check-input" type="radio" name="type" value="N" id="type_check_2" {% if request.POST.type == 'N' %} checked {% endif %} required>
+                  <input class="form-check-input" type="radio" name="type" value="N" id="type_check_2" required>
                 </div>
             </div>
                 <div class="col-3 mb-auto" aria-required="true">
                     {% for id, cat in categories %}
                         <div class="form-check form-switch">
                           <input class="form-check-input" value="{{id}}" name="categories" type="checkbox"
-                                 role="switch" id="id_{{id}}" {% if id in post_cat %} checked {% endif %}>
+                                 role="switch" id="id_{{id}}">
                           <label class="form-check-label" for="id_{{id}}">{{cat}}</label>
                         </div>
                     {% endfor %}

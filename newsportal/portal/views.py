@@ -1,7 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity, Category
 from django.views import View
 from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView
 from portal.forms import UserRegistrationForm, LoginForm, PostForm
 from django.contrib.auth import authenticate, login, get_user
 from .filters import PostFilter
@@ -140,33 +144,29 @@ class PostsView(ListView):
     ordering = ['-post_time']
     paginate_by = 10
 
-    def __toint(self, value):
-        try:
-            value = int(value)
-        except TypeError:
-            return None
-        else:
-            return value
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'posts'
         return context
 
 
-def post_create(request):  # функция отображения формы создания поста
-    if request.method == 'POST' and request.user.is_authenticated:
-        post_form = PostForm(request.POST)
-        if post_form.is_valid():
-            post = post_form.save(commit=False)
-            post.author = Author.objects.get(user=request.user)
-            post.save()
-            post_form.save_m2m()
-            return redirect(f'/post/?id={post.id}')
-    else:
-        post_form = PostForm()
-    category = [(_.id, _.name) for _ in Category.objects.all()]
-    return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category,
-                                                   'edit': True if request.POST.get('edit_post') else False})
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    template_name = 'posts/new_post.html'
+    fields = ['title', 'text', 'type', 'categories']
+    success_url = reverse_lazy('post')
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.author = Author.objects.get(user=self.request.user)
+        post.save()
+        form.save_m2m()
+        return redirect(f'/post/?id={post.id}')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.values_list('id', 'name')
+        return context
 
 
 class PostSearch(ListView):
