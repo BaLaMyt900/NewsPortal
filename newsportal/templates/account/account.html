@@ -91,7 +91,7 @@
                         <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                             {% for post in posts %}
                             <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
-                                <a class="card-title rounded-right nav-link bg-body w-75 rounded border h-4" href="/post/?id={{post.id}}">&nbsp{{post.title|censor}}</a>
+                                <a class="card-title rounded-right nav-link bg-body w-75 rounded border h-4" href="/post/{{post.id}}">&nbsp{{post.title|censor}}</a>
                                 <p class="card-text border rounded bg-body">&nbsp{{post.text|censor}}</p>
                                 <div class="row">
                                 <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time}}</small>

@@ -8,13 +8,13 @@ urlpatterns = [
     path('', indexview),
     path('authors/', AuthorsView.as_view()),
     path('posts/', PostsView.as_view()),
-    path('post/', PostView.as_view(), name='post'),
+    path('post/<int:pk>', PostView.as_view(), name='post'),
     path('post/new_post', PostCreate.as_view()),
     path('ihjoudhgpreuahodfnbjofg/', comment_submit, name='comment_submit'),
     path('account/register/', register),
     path('account/login/', user_login),
     path('account/', LK.as_view()),
     path('exit/', LogoutView.as_view(next_page='/'), name='exit'),
-    path('post/post_edit', post_edit),
+    path('post/post_edit/<int:pk>', PostEdit.as_view()),
     path('post/search', PostSearch.as_view())
 ]

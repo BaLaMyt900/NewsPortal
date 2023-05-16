@@ -22,7 +22,7 @@
                     <h6 class="fw-light"><a href="/account/?id={{post.author.user.id}}">{{post.author}}</a> Рейтинг статьи: {{post.rating}} <br> {{post.category}}</h6>
                 <p class="card-text bg-body rounded">&nbsp{{post.text|censor}}</p>
                 <div class="text-muted">Пост написан {{post.post_time|timesince}} назад</div>
-                <a href="/post/?id={{post.id}}" class="btn btn-outline-primary">Продолжение</a>
+                <a href="/post/{{post.id}}" class="btn btn-outline-primary">Продолжение</a>
             </div>
             </div>
         {% endfor %}

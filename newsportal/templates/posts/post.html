@@ -8,19 +8,11 @@
   <div class="card">
   <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
     <div class="row">
-      <div class="col-4">{{post.author}} Рейтинг: {{post.author.user.rating}}</div>
+      <div class="col-4">{{post.author}} Рейтинг автора: {{post.author.user.rating}}</div>
       {% if request.user == post.author.user %}
       <div class="col">
         <div class="text-end">
-          <form action="/post/post_edit" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="text" value="{{post.text}}">
-            <input type="hidden" name="title" value="{{post.title}}">
-            <input type="hidden" name="type" value="{{post.type}}">
-            <input type="hidden" name="post_id" value="{{post.id}}">
-            <input type="hidden" name="edit_post" value="+">
-            <button class="btn btn-outline-primary h-25" type="submit">Редактировать статью</button>
-          </form>
+            <a class="btn btn-outline-primary h-25" href="/post/post_edit/{{ post.id }}">Редактировать статью</a>
         </div>
       </div>
       {% endif %}
@@ -32,7 +24,7 @@
           Категории: {% for cat in post.category %} {{ cat.category_id__name }}{% endfor %}</h6>
       <h5 class="card-title text-body-emphasis">{{post.title|censor}}</h5>
       <div class="card-text p-1">
-        <textarea class="form-control" cols="30" rows="20" wrap="soft">{{post.text|censor}}</textarea>
+        <textarea class="form-control" cols="30" rows="20" wrap="soft" readonly>{{post.text|censor}}</textarea>
       </div>
 
       <div class="text-muted">Рейтинг статьи: {{post.rating}} <br> {{post.post_time}} <br> Пост написан {{post.post_time|timesince}} назад</div>
@@ -45,7 +37,7 @@
     {% if user.is_authenticated %}
       <form method="post">
       {% csrf_token %}
-      <input type="hidden" name="id" value="{{post.id}}">
+      <input type="hidden" name="pk" value="{{post.id}}">
       <div class="btn-group">
         <button class="btn btn-outline-success" name="post" value="+" type="submit">Лайк!</button>
         <button class="btn btn-outline-danger" name="post" value="-" type="submit">Дизлайк!</button>
@@ -88,10 +80,10 @@
     {%for comment in comments %}
       <div class="container p-3">
         <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
-        <h5 class="card-title rounded-right rounded bg-body w-25 border">&nbsp{{comment.user}}</h5>
+        <h5 class="card-title rounded-right rounded bg-body w-25 border">&nbsp{{comment.user__username}}</h5>
           <div class="card-text border bg-body rounded p-1">{{comment.text|censor}}</div>
           <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
-        {% if request.user.is_authenticated and request.user != comment.user %}
+        {% if request.user.is_authenticated and request.user != comment.user__username %}
           {% if comment.id not in comment_activity %}
             <form method="post">
             {% csrf_token %}

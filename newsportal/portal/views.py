@@ -1,45 +1,28 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity, Category
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from portal.forms import UserRegistrationForm, LoginForm, PostForm
 from django.contrib.auth import authenticate, login, get_user
 from .filters import PostFilter
 
 
-class PostView(View):  # класс отображения одиночного поста
-    def get(self, request):
-        try:
-            post = Post.objects.get(id=request.GET.get('id'))
-        except Post.DoesNotExist:
-            return render(request, '404.html')
-        except ValueError:
-            return render(request, '404.html')
-        else:
-            comments = Comment.objects.filter(post=post.id)
-            try:
-                post_activity = PostActivity.objects.get(user=request.user, activity=post)
-            except PostActivity.DoesNotExist:
-                post_activity = None
-            except TypeError:
-                post_activity = None
-            try:
-                comment_activity = [item.activity.id for item in CommentActivity.objects.filter(user=request.user)]
-            except CommentActivity.DoesNotExist:
-                comment_activity = None
-            except TypeError:
-                comment_activity = None
-            try:
-                post.category = PostCategory.objects.filter(post_id=post.id).values('category_id__name')
-            except PostCategory.DoesNotExist:
-                post.category = None
-            return render(request, 'posts/post.html', {'post': post, 'comments': comments,
-                                                       'comment_activity': comment_activity,
-                                                       'post_activity': post_activity})
+
+
+"""      ПОСТЫ      """
+
+
+class PostView(DetailView):
+    model = Post
+    template_name = 'posts/post.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.filter(post=self.object.pk).values('user__username', 'text', 'date', 'rating')
+        context['comment_activity'] = CommentActivity.objects.filter(user_id=self.request.user.id).values('activity_id')
+        return context
 
     def post(self, request):
         if request.POST.get('post'):
@@ -59,6 +42,100 @@ class PostView(View):  # класс отображения одиночного 
                 Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
                 Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
         return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+
+    def post(self, request):
+        if request.POST.get('post'):
+            if request.POST.get('post') == '+':
+                post = Post.objects.get(id=int(request.POST.get('id')))
+                post.like(request.user)
+                PortalUser.objects.get(id=post.author.user.id).update_rating()
+            elif request.POST.get('post') == '-':
+                post = Post.objects.get(id=int(request.POST.get('id')))
+                post.dislike(request.user)
+                PortalUser.objects.get(id=post.author.user.id).update_rating()
+        elif request.POST.get('comment'):
+            if request.POST.get('comment') == '+':
+                Comment.objects.get(id=request.POST.get('id')).like(request.user)
+                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
+            elif request.POST.get('comment') == '-':
+                Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
+                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+class PostsView(ListView):  # Страница показа всех постов с пагинацией
+    model = Post
+    template_name = 'posts/posts.html'
+    context_object_name = 'posts'
+    ordering = ['-post_time']
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'posts'
+        return context
+
+class PostCreate(LoginRequiredMixin, CreateView):  # Страница создания поста
+    model = Post
+    template_name = 'posts/new_post.html'
+    fields = ['title', 'text', 'type', 'categories']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.author = Author.objects.get(user=self.request.user)
+        post.save()
+        form.save_m2m()
+        return redirect(f'/post/?id={post.id}')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.values_list('id', 'name')
+        return context
+
+
+class PostEdit(UpdateView):  # Страница редактирования поста
+    model = Post
+    template_name = 'posts/post_edit.html'
+    fields = ['title', 'type', 'categories', 'text']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.values_list('id', 'name')
+        context['curr_categories'] = [_["category_id"] for _ in PostCategory.objects.filter(post_id=self.object.id).values('category_id')]
+        return context
+
+    def form_valid(self, form):
+        post = form.save()
+        return redirect(f'/post/?id={post.id}')
+
+
+
+class PostSearch(ListView):  #  Страница поиска поста
+    model = Post
+    template_name = 'posts/post_search.html'
+    context_object_name = 'posts'
+    ordering = ['-post_time']
+
+    def __toint(self, value):
+        try:
+            value = int(value)
+        except TypeError:
+            return None
+        else:
+            return value
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+        context['page'] = 'search'
+        context['authors'] = Author.objects.values('user__username', 'id')
+        context['categories'] = Category.objects.values('name', 'id')
+        context['curr_author'] = self.__toint(self.request.GET.get('author'))
+        context['curr_type'] = self.request.GET.get('type')
+        context['curr_categories'] = list(map(int, self.request.GET.getlist('categories')))
+        return context
 
 
 class LK(View):  # класс отображения личного кабинета
@@ -137,85 +214,7 @@ class AuthorsView(View):  # класс отображения списка ав�
                                                     'ordering_type': order_type, 'posts_count': posts_count})
 
 
-class PostsView(ListView):
-    model = Post
-    template_name = 'posts/posts.html'
-    context_object_name = 'posts'
-    ordering = ['-post_time']
-    paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page'] = 'posts'
-        return context
-
-
-class PostCreate(LoginRequiredMixin, CreateView):
-    model = Post
-    template_name = 'posts/new_post.html'
-    fields = ['title', 'text', 'type', 'categories']
-    success_url = reverse_lazy('post')
-
-    def form_valid(self, form):
-        post = form.save(commit=False)
-        post.author = Author.objects.get(user=self.request.user)
-        post.save()
-        form.save_m2m()
-        return redirect(f'/post/?id={post.id}')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.values_list('id', 'name')
-        return context
-
-
-class PostSearch(ListView):
-        model = Post
-        template_name = 'posts/post_search.html'
-        context_object_name = 'posts'
-        ordering = ['-post_time']
-
-        def __toint(self, value):
-            try:
-                value = int(value)
-            except TypeError:
-                return None
-            else:
-                return value
-
-        def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
-            context['page'] = 'search'
-            context['authors'] = Author.objects.values('user__username', 'id')
-            context['categories'] = Category.objects.values('name', 'id')
-            context['curr_author'] = self.__toint(self.request.GET.get('author'))
-            context['curr_type'] = self.request.GET.get('type')
-            context['curr_categories'] = list(map(int, self.request.GET.getlist('categories')))
-            return context
-
-
-
-def post_edit(request):  # функция редактирования поста
-    if request.method == 'POST' and request.user.is_authenticated:
-        post_form = PostForm(request.POST)
-        post_id = request.POST.get('post_id')
-        forms_category = [_.category_id for _ in PostCategory.objects.filter(post_id=post_id)]
-        if post_form.is_valid():
-            post_new = post_form.save(commit=False)
-            post = Post.objects.get(id=post_id)
-            post.edit(post_new)
-            for cat in PostCategory.objects.filter(post_id=post_id):
-                cat.delete()
-            for cat in request.POST.getlist('categories'):
-                PostCategory.objects.create(post_id=post_id, category_id=int(cat))
-            return redirect(f'/post/?id={post.id}')
-    else:
-        post_form = PostForm()
-    category = [(_.id, _.name) for _ in Category.objects.all()]
-    return render(request, 'posts/post_edit.html', {'form': post_form, 'categories': category,
-                                                   'edit': True if request.POST.get('edit_post') else False,
-                                                   'post_cat': forms_category if forms_category else None})
 
 
 def indexview(request):  # функция отображения стартовой старницы
