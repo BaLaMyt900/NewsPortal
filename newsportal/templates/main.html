@@ -32,7 +32,29 @@
                             </div>
                         {% else %}
                             <div class="d-flex">
-                                <a class="btn btn-outline-primary me-2" href="/account/login">Логин</a>
+                                <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginform">Логин</button>
+                                        <div class="modal fade" id="loginform" tabindex="-1" aria-labelledby="test" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Авторизация</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                                    </div>
+                                                    <form action="/account/login/" method="post">{% csrf_token %}
+                                                    <div class="modal-body">
+                                                        <label class="form-label" for="modallogin">Логин</label>
+                                                        <input class="form-control" type="text" name="username" id="modallogin" required>
+                                                        <label class="form-label" for="modalpass">Пароль</label>
+                                                        <input class="form-control" type="text" name="password" required>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-outline-danger" data-bs-dismiss="modal">Отмена</button>
+                                                        <button class="btn btn-outline-primary" type="submit">Авторизация</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                 <a class="btn btn-primary" href="/account/register">Регистрация</a>
                             </div>
                         {% endif %}
