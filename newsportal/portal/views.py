@@ -4,8 +4,8 @@ from django.views import View
 from django.views.generic import ListView
 from portal.forms import UserRegistrationForm, LoginForm, PostForm
 from django.contrib.auth import authenticate, login, get_user
-from django.core.paginator import Paginator
 from .filters import PostFilter
+
 
 class PostView(View):  # класс отображения одиночного поста
     def get(self, request):
@@ -30,9 +30,7 @@ class PostView(View):  # класс отображения одиночного 
             except TypeError:
                 comment_activity = None
             try:
-                post.category = [__.name for __ in Category.objects.filter(id__in=
-                                                [_.category_id for _ in PostCategory.objects.filter(post_id=post.id)])]
-                post.category = ', '.join(post.category)
+                post.category = PostCategory.objects.filter(post_id=post.id).values('category_id__name')
             except PostCategory.DoesNotExist:
                 post.category = None
             return render(request, 'posts/post.html', {'post': post, 'comments': comments,
@@ -151,13 +149,7 @@ class PostsView(ListView):
             return value
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['page'] = 'posts'
-        context['authors'] = Author.objects.values('user__username', 'id')
-        context['categories'] = Category.objects.values('name', 'id')
-        context['curr_author'] = self.__toint(self.request.GET.get('author'))
-        context['curr_type'] = self.request.GET.get('type')
-        context['curr_categories'] = list(map(int, self.request.GET.getlist('categories')))
         return context
 
 
@@ -175,6 +167,33 @@ def post_create(request):  # функция отображения формы с
     category = [(_.id, _.name) for _ in Category.objects.all()]
     return render(request, 'posts/new_post.html', {'form': post_form, 'categories': category,
                                                    'edit': True if request.POST.get('edit_post') else False})
+
+
+class PostSearch(ListView):
+        model = Post
+        template_name = 'posts/post_search.html'
+        context_object_name = 'posts'
+        ordering = ['-post_time']
+
+        def __toint(self, value):
+            try:
+                value = int(value)
+            except TypeError:
+                return None
+            else:
+                return value
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+            context['page'] = 'search'
+            context['authors'] = Author.objects.values('user__username', 'id')
+            context['categories'] = Category.objects.values('name', 'id')
+            context['curr_author'] = self.__toint(self.request.GET.get('author'))
+            context['curr_type'] = self.request.GET.get('type')
+            context['curr_categories'] = list(map(int, self.request.GET.getlist('categories')))
+            return context
+
 
 
 def post_edit(request):  # функция редактирования поста

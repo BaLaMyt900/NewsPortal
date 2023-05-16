@@ -11,5 +11,5 @@ class PostFilter(FilterSet):
             'author__user__username': ['icontains'],
             'type': ['exact'],
             'categories': ['exact'],
-            'post_time': ['date__lt']
+            'post_time': ['date__gte']
         }

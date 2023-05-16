@@ -17,6 +17,11 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Переключатель навигации">
                 <span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary me-2 {% if page == 'search' %} active {% endif %}" aria-current="page" href="/post/search">Поиск статьи</a>
+                        </li>
+                    </ul>
                     <div class="d-flex mx-auto"></div>
                     <div class="d-flex justify-content-end">
                         {% if request.user.is_authenticated %}

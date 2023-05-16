@@ -15,5 +15,6 @@ urlpatterns = [
     path('account/login/', user_login),
     path('account/', LK.as_view()),
     path('exit/', LogoutView.as_view(next_page='/'), name='exit'),
-    path('post/post_edit', post_edit)
+    path('post/post_edit', post_edit),
+    path('post/search', PostSearch.as_view())
 ]

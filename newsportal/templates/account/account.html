@@ -2,6 +2,7 @@
 {% block title %}Личный кабинет{% endblock title %}
 
 {% block body %}
+{% load my_filters %}
 <div class="container mx-auto py-5">
     <div class="card shadow">
         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
@@ -74,14 +75,31 @@
                         <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                             {% for post in posts %}
                             <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
-                                <a class="card-title rounded-right nav-link bg-body w-75 rounded border h-4" href="/post/?id={{post.id}}">&nbsp{{post.title}}</a>
-                                <p class="card-text border rounded bg-body">&nbsp{{post.text}}</p>
+                                <a class="card-title rounded-right nav-link bg-body w-75 rounded border h-4" href="/post/?id={{post.id}}">&nbsp{{post.title|censor}}</a>
+                                <p class="card-text border rounded bg-body">&nbsp{{post.text|censor}}</p>
                                 <div class="row">
-                                <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан в {{post.post_time}}</small>
+                                <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time}}</small>
                                     {% if request.user == user %}
-                                    <form class="col form" method="post">{% csrf_token %}
-                                        <button class="btn btn-outline-danger" name="delete_post" value="{{post.pk}}">Удалить статью.</button>
-                                    </form>
+                                    <div class="col"><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletepost{{ post.pk }}">Удалить статью</button></div>
+                                        <div class="modal fade" id="deletepost{{ post.pk }}" data-value="" tabindex="-1" aria-labelledby="test" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Вы уверены, что хотите удалить статью?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        После потверждения, статья будет безвозвозвратно удалена!<br>Вы уверены?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
+                                                        <form class="form" method="post">{% csrf_token %}
+                                                            <button class="btn btn-outline-danger" name="delete_post" value="{{post.pk}}">Удалить статью.</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -106,8 +124,8 @@
                     <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                         {% for comment in comments %}
                         <div class="card-body border bg-gradient bg-body-tertiary text-body-emphasis rounded my-2 py-2">
-                            <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{comment.post_id}}">&nbsp{{comment.post}}</a>
-                            <p class="card-text border rounded bg-body">{{comment.text}}</p>
+                            <a class="card-title rounded-right nav-link w-75 bg-body rounded border h-4" href="/post/?id={{comment.post_id}}">&nbsp{{comment.post|censor}}</a>
+                            <p class="card-text border rounded bg-body">{{comment.text|censor}}</p>
                             <small class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</small>
                         </div>
                         {% endfor %}
@@ -131,4 +149,25 @@
     <p></p>
     </div>
 </div>
+{#    Модальное окно подверждения#}
+    <div class="modal fade" id="deletepost" data-value="" tabindex="-1" aria-labelledby="test" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Вы уверены, что хотите удалить статью?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    После потверждения, статья будет безвозвозвратно удалена!<br>Вы уверены?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
+                    <form class="form" method="post">{% csrf_token %}
+                        <button class="btn btn-outline-danger" name="delete_post" value="{{post.pk}}">Удалить статью.</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock body %}

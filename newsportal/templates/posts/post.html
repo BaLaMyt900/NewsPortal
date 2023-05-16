@@ -28,7 +28,8 @@
     </div>
   <div class="container p-3">
     <div class="card-body rounded-4">
-      <h6 class="card-title">Тип статьи:{% if post.type == "N" %} Новость {% else %} Статья {% endif %}<br>Категории: {{post.category}}</h6>
+      <h6 class="card-title">Тип статьи:{% if post.type == "N" %} Новость {% else %} Статья {% endif %}<br>
+          Категории: {% for cat in post.category %} {{ cat.category_id__name }}{% endfor %}</h6>
       <h5 class="card-title text-body-emphasis">{{post.title|censor}}</h5>
       <div class="card-text p-1">
         <textarea class="form-control" cols="30" rows="20" wrap="soft">{{post.text|censor}}</textarea>
