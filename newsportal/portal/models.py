@@ -29,6 +29,9 @@ class Author(models.Model):
     def __str__(self):
         return 'Автор: ' + self.user.username
 
+    def post_count(self):
+        return len(Post.objects.filter(author=self))
+
     def update_rating(self):
         posts = Post.objects.filter(author=self)
         try:

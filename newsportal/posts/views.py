@@ -56,7 +56,6 @@ class PostsView(ListView):  # Страница показа всех посто�
     model = Post
     template_name = 'posts/posts.html'
     context_object_name = 'posts'
-    ordering = ['-post_time']
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
