@@ -10,14 +10,15 @@ class PortalUser(AbstractUser):
     comment_active = models.ManyToManyField("Comment", through="CommentActivity")
 
     def update_rating(self):
-        self.rating = Comment.objects.filter(user=self).aggregate(Sum('rating'))['rating__sum']
+        comments_rating = Comment.objects.filter(user=self).aggregate(Sum('rating'))['rating__sum']
+        comments_rating = comments_rating if comments_rating else 0
         try:
             if_author = Author.objects.get(user=self)
         except Author.DoesNotExist:
             pass
         else:
             if_author.update_rating()
-            self.rating += if_author.rating
+            self.rating = comments_rating + if_author.rating
         self.save()
 
 

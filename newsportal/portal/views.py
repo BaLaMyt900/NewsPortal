@@ -24,44 +24,23 @@ class PostView(DetailView):
         context['comment_activity'] = CommentActivity.objects.filter(user_id=self.request.user.id).values('activity_id')
         return context
 
-    def post(self, request):
+    def post(self, request, pk):
         if request.POST.get('post'):
             if request.POST.get('post') == '+':
-                post = Post.objects.get(id=int(request.POST.get('id')))
+                post = Post.objects.get(id=pk)
                 post.like(request.user)
                 PortalUser.objects.get(id=post.author.user.id).update_rating()
             elif request.POST.get('post') == '-':
-                post = Post.objects.get(id=int(request.POST.get('id')))
+                post = Post.objects.get(id=pk)
                 post.dislike(request.user)
                 PortalUser.objects.get(id=post.author.user.id).update_rating()
         elif request.POST.get('comment'):
             if request.POST.get('comment') == '+':
-                Comment.objects.get(id=request.POST.get('id')).like(request.user)
-                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
+                Comment.objects.get(id=pk.like(request.user))
+                Post.objects.get(id=pk).author.user.update_rating()
             elif request.POST.get('comment') == '-':
-                Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
-                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-
-    def post(self, request):
-        if request.POST.get('post'):
-            if request.POST.get('post') == '+':
-                post = Post.objects.get(id=int(request.POST.get('id')))
-                post.like(request.user)
-                PortalUser.objects.get(id=post.author.user.id).update_rating()
-            elif request.POST.get('post') == '-':
-                post = Post.objects.get(id=int(request.POST.get('id')))
-                post.dislike(request.user)
-                PortalUser.objects.get(id=post.author.user.id).update_rating()
-        elif request.POST.get('comment'):
-            if request.POST.get('comment') == '+':
-                Comment.objects.get(id=request.POST.get('id')).like(request.user)
-                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
-            elif request.POST.get('comment') == '-':
-                Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
-                Post.objects.get(id=request.POST.get('post_id')).author.user.update_rating()
+                Comment.objects.get(id=pk).dislike(request.user)
+                Post.objects.get(id=pk).author.user.update_rating()
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -87,7 +66,7 @@ class PostCreate(LoginRequiredMixin, CreateView):  # Страница созда
         post.author = Author.objects.get(user=self.request.user)
         post.save()
         form.save_m2m()
-        return redirect(f'/post/?id={post.id}')
+        return redirect(f'/post/{post.id}')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -169,7 +148,7 @@ class LK(View):  # класс отображения личного кабине
                         if len(post.title) > 40:
                             post.title = post.title[:37] + '...'
                         if len(post.text) > 60:
-                            post.text = post.text[:57   ] + '...'
+                            post.text = post.text[:57] + '...'
                 return render(request, 'account/account.html', {'user': user, 'owner': owner,
                                                                 'comments': comments, 'posts': posts, 'author': author})
             if error:
@@ -180,7 +159,10 @@ class LK(View):  # класс отображения личного кабине
         if request.POST.get('author'):
             Author.objects.create(user=PortalUser.objects.get(username=request.user))
         elif request.POST.get('delete_post'):
-            Post.objects.get(pk=request.POST.get('delete_post')).delete()
+            post = Post.objects.get(pk=request.POST.get('delete_post'))
+            user = PortalUser.objects.get(username=request.user)
+            post.delete()
+            user.update_rating()
         elif request.POST.get('change_acc'):
             user = get_user(request)
             if user.check_password(request.POST.get('password')):

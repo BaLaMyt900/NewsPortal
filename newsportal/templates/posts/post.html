@@ -37,7 +37,7 @@
     {% if user.is_authenticated %}
       <form method="post">
       {% csrf_token %}
-      <input type="hidden" name="pk" value="{{post.id}}">
+      <input type="hidden" name="id" value="{{post.id}}">
       <div class="btn-group">
         <button class="btn btn-outline-success" name="post" value="+" type="submit">Лайк!</button>
         <button class="btn btn-outline-danger" name="post" value="-" type="submit">Дизлайк!</button>
