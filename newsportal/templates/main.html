@@ -19,15 +19,15 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="btn btn-outline-primary me-2 {% if page == 'search' %} active {% endif %}" aria-current="page" href="/post/search">Поиск статьи</a>
+                            <a class="btn btn-outline-primary me-2 text-nowrap {% if page == 'search' %} active {% endif %}" aria-current="page" href="/post/search">Поиск статьи</a>
                         </li>
                     </ul>
                     <div class="d-flex mx-auto"></div>
                     <div class="d-flex justify-content-end">
                         {% if request.user.is_authenticated %}
                             <div class="d-flex">
-                                <div class="text-center p-2">Здравствуй {{request.user}}!</div>
-                                <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/account/{{request.user.id}}">Личный кабинет</a></div>
+                                <div class="text-center text-nowrap p-2">Здравствуй {{request.user}}!</div>
+                                <div class="px-1"><a class="btn btn-outline-primary p-2 text-nowrap" aria-current="page" href="/account/{{request.user.id}}">Личный кабинет</a></div>
                                 <div class="px-1"><a class="btn btn-outline-danger p-2" aria-current="page" href="{% url 'exit' %}">Выход</a></div>
                             </div>
                         {% else %}

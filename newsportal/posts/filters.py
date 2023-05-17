@@ -6,7 +6,6 @@ from portal.models import Post
 class PostFilter(FilterSet):
     class Meta:
         model = Post
-        # fields = ('author__user__username', 'type', 'categories', 'post_time')
         fields = {
             'author__user__username': ['exact'],
             'type': ['exact'],

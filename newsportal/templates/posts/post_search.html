@@ -16,12 +16,12 @@
                             <div class="form-label">Автор</div>
                             <div class="form-check">
                             <label class="form-check-label" for="id_aut_all">Все</label>
-                            <input class="form-check-input" id="id_aut_all" type="radio" name="author__user__username" value="" {% if curr_author == '' %} checked {% endif %}>
+                            <input class="form-check-input" id="id_aut_all" type="radio" name="author__user__username" value="" {% if request.GET.author__user__username == '' or not request.GET.author__user__username %} checked {% endif %}>
                             </div>
                             {% for author in authors %}
                             <div class="form-check">
                             <label class="form-check-label" for="id_{{ author.id }}">{{ author.user__username }}</label>
-                            <input class="form-check-input" id="id_{{ author.id }}" type="radio" name="author__user__username" value="{{ author.user__username }}" {% if curr_author == author.user__username %} checked {% endif %}>
+                            <input class="form-check-input" id="id_{{ author.id }}" type="radio" name="author__user__username" value="{{ author.user__username }}" {% if request.GET.author__user__username == author.user__username %} checked {% endif %}>
                             </div>
                             {% endfor %}
                         </div>
@@ -29,15 +29,15 @@
                             <div class="form-label">Тип</div>
                             <div class="form-check">
                             <label class="form-check-label" for="id_type_all">Все</label>
-                            <input class="form-check-input" id="id_type_all" type="radio" name="type" value="" {% if curr_type == '' %} checked {% endif %}>
+                            <input class="form-check-input" id="id_type_all" type="radio" name="type" value="" {% if request.GET.type == '' or not request.GET.type %} checked {% endif %}>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label" for="id_A">Статья</label>
-                                <input class="form-check-input" type="radio" value="A" name="type" id="id_A" {% if curr_type == 'A' %} checked {% endif %}>
+                                <input class="form-check-input" type="radio" value="A" name="type" id="id_A" {% if request.GET.type == 'A' %} checked {% endif %}>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label" for="id_N">Новость</label>
-                                <input class="form-check-input" type="radio" name="type" value="N" id="id_N" {% if curr_type == 'N' %} checked {% endif %}>
+                                <input class="form-check-input" type="radio" name="type" value="N" id="id_N" {% if request.GET.type == 'N' %} checked {% endif %}>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                     <div class="col">
                                             <div class="form-check">
                                                 <label class="form-check-label" for="id_{{ category.name }}">{{ category.name }}</label>
-                                                <input class="form-check-input" id="id_{{ category.name }}" type="checkbox" name="categories" value="{{ category.id }}" {% if category.id in curr_categories %} checked {% endif %}>
+                                                <input class="form-check-input" id="id_{{ category.name }}" type="checkbox" name="categories" value="{{ category.id }}" {% if category.id|slugify  in request.GET|get_list:'categories' %} checked {% endif %}>
                                         </div>
                                     </div>
                                 {% endfor %}

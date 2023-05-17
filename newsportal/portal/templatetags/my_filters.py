@@ -13,3 +13,8 @@ def censor(text: str):
             text = text.replace(word, word[:1] + '*' * (len(word)-1), 1)
 
     return text
+
+@register.filter
+def get_list(list, value):
+    return list.getlist(value)
+

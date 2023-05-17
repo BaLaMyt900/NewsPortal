@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from portal.models import Author, Post, Comment, PortalUser
-from django.views import View
 from django.views.generic import ListView
 
 
