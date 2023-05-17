@@ -31,7 +31,10 @@ class Author(models.Model):
 
     def update_rating(self):
         posts = Post.objects.filter(author=self)
-        posts_rating = posts.aggregate(Sum('rating'))['rating__sum'] * 3
+        try:
+            posts_rating = posts.aggregate(Sum('rating'))['rating__sum'] * 3
+        except TypeError:
+            posts_rating = 0
         try:
             posts_comments_rating = sum(
                 [Comment.objects.filter(post__in=posts).aggregate(Sum('rating'))['rating__sum']])

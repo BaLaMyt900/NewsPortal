@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'portal',
+    'posts',
+    'account',
 ]
 AUTH_USER_MODEL = 'portal.PortalUser'
 MIDDLEWARE = [

@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-md rounded-bottom-3 bg-gradient shadow bg-body-tertiary rounded">
         <div class="container-fluid">
             <a class="navbar-brand btn me-2 btn-outline-primary {% if page == 'home' %} active {% endif %}" href="/">Главная</a>
-            <a class="btn btn-outline-primary me-2 {% if page == 'posts' %} active {% endif %}" aria-current="page" href="/posts">Посты</a>
+            <a class="btn btn-outline-primary me-2 {% if page == 'posts' %} active {% endif %}" aria-current="page" href="/post/list">Посты</a>
             <a class="btn btn-outline-primary me-2 {% if page == 'authors' %} active {% endif %}" aria-current="page" href="/authors">Авторы</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Переключатель навигации">
                 <span class="navbar-toggler-icon"></span></button>
@@ -45,7 +45,7 @@
                                                         <label class="form-label" for="modallogin">Логин</label>
                                                         <input class="form-control" type="text" name="username" id="modallogin" required>
                                                         <label class="form-label" for="modalpass">Пароль</label>
-                                                        <input class="form-control" type="text" name="password" required>
+                                                        <input class="form-control" id="modalpass" type="password" name="password" required>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger" data-bs-dismiss="modal">Отмена</button>

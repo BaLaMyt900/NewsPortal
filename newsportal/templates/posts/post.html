@@ -83,12 +83,11 @@
         <h5 class="card-title rounded-right rounded bg-body w-25 border p-1">{{comment.user__username}}</h5>
           <div class="card-text border bg-body rounded p-1">{{comment.text|censor}}</div>
           <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
-        {% if request.user.is_authenticated and not request.user == comment.user__username %}
+        {% if request.user.is_authenticated and request.user.id != comment.user__id %}
           {% if comment.id not in comment_activity %}
             <form method="post">
             {% csrf_token %}
                 <input type="hidden" name="id" value="{{comment.id}}">
-                <input type="hidden" name="post_id" value="{{post.id}}">
                 <div class="btn-group">
                   <button class="btn btn-outline-success" name="comment" value="+" type="submit">Лайк!</button>
                   <button class="btn btn-outline-danger" name="comment" value="-" type="submit">Дизлайк!</button>

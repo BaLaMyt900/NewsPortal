@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import forms
-from django.forms import ModelForm
-from portal.models import PortalUser, Category, Post
+from portal.models import PortalUser
 
 
 class UserRegistrationForm(forms.ModelForm):  # Форма регистрации пользователя
@@ -25,15 +24,3 @@ class UserRegistrationForm(forms.ModelForm):  # Форма регистраци�
 class UserLoginForm(forms.Form):  # форма авторизации пользователя
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}))
-
-
-class PostForm(ModelForm):  # форма создания и редактирования поста
-    title = forms.CharField()
-    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
-    __types = [('A', 'Статья'), ('N', 'Новость')]
-    type = forms.ChoiceField(choices=__types)
-    text = forms.CharField()
-
-    class Meta:
-        model = Post
-        fields = ('title', 'categories', 'type', 'text')

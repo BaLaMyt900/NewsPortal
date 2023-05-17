@@ -1,5 +1,5 @@
 from django_filters import FilterSet
-from .models import Post
+from portal.models import Post
 
 
 
