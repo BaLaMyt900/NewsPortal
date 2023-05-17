@@ -22,7 +22,7 @@ class UserRegistrationForm(forms.ModelForm):  # Форма регистраци�
         return cd['password2']
 
 
-class LoginForm(forms.Form):  # форма авторизации пользователя
+class UserLoginForm(forms.Form):  # форма авторизации пользователя
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}))
 

@@ -14,8 +14,8 @@
 <div class="container rounded-4 shadow bg-body-tertiary rounded text-body-emphasis">
     <div class="card">
   <div class="card-header bg-gradient bg-body-tertiary">Последние новости</div>
-      {% if data.posts %}
-        {% for post in data.posts %}
+      {% if object_list %}
+        {% for post in object_list %}
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
                 <h5 class="card-title">{{post.title|censor}}</h5>

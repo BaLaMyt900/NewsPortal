@@ -37,7 +37,7 @@ class Author(models.Model):
                 [Comment.objects.filter(post__in=posts).aggregate(Sum('rating'))['rating__sum']])
         except TypeError:
             posts_comments_rating = 0
-        self.rating = self.user.rating + posts_rating + posts_comments_rating
+        self.rating = posts_rating + posts_comments_rating
         self.save()
 
     class Meta:

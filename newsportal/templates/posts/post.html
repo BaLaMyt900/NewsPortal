@@ -21,7 +21,7 @@
   <div class="container p-3">
     <div class="card-body rounded-4">
       <h6 class="card-title">Тип статьи:{% if post.type == "N" %} Новость {% else %} Статья {% endif %}<br>
-          Категории: {% for cat in post.category %} {{ cat.category_id__name }}{% endfor %}</h6>
+          Категории: {% for cat in object.category %} {{ cat.category_id__name }}{% endfor %}</h6>
       <h5 class="card-title text-body-emphasis">{{post.title|censor}}</h5>
       <div class="card-text p-1">
         <textarea class="form-control" cols="30" rows="20" wrap="soft" readonly>{{post.text|censor}}</textarea>
@@ -80,10 +80,10 @@
     {%for comment in comments %}
       <div class="container p-3">
         <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
-        <h5 class="card-title rounded-right rounded bg-body w-25 border">&nbsp{{comment.user__username}}</h5>
+        <h5 class="card-title rounded-right rounded bg-body w-25 border p-1">{{comment.user__username}}</h5>
           <div class="card-text border bg-body rounded p-1">{{comment.text|censor}}</div>
           <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
-        {% if request.user.is_authenticated and request.user != comment.user__username %}
+        {% if request.user.is_authenticated and not request.user == comment.user__username %}
           {% if comment.id not in comment_activity %}
             <form method="post">
             {% csrf_token %}

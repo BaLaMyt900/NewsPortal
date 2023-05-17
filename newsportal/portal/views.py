@@ -3,12 +3,10 @@ from django.shortcuts import render, redirect
 from portal.models import Author, Post, PostCategory, Comment, PortalUser, PostActivity, CommentActivity, Category
 from django.views import View
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
-from portal.forms import UserRegistrationForm, LoginForm, PostForm
+from django.views.generic.edit import CreateView, UpdateView, FormView
+from portal.forms import UserRegistrationForm, UserLoginForm, PostForm
 from django.contrib.auth import authenticate, login, get_user
 from .filters import PostFilter
-
-
 
 
 """      ПОСТЫ      """
@@ -21,7 +19,20 @@ class PostView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comments'] = Comment.objects.filter(post=self.object.pk).values('user__username', 'text', 'date', 'rating')
-        context['comment_activity'] = CommentActivity.objects.filter(user_id=self.request.user.id).values('activity_id')
+        try:
+            context['comment_activity'] = \
+                [_['activity_id'] for _ in
+                 CommentActivity.objects.filter(user_id=self.request.user.id).values('activity_id')]
+        except CommentActivity.DoesNotExist:
+            pass
+        try:
+            context['post_activity'] = PostActivity.objects.get(user_id=self.request.user, activity_id=self.object.id)
+        except PostActivity.DoesNotExist:
+            pass
+        try:
+            self.object.category = PostCategory.objects.filter(post_id=self.object.id).values('category_id__name')
+        except PostCategory.DoesNotExist:
+            pass
         return context
 
     def post(self, request, pk):
@@ -56,6 +67,7 @@ class PostsView(ListView):  # Страница показа всех посто�
         context['page'] = 'posts'
         return context
 
+
 class PostCreate(LoginRequiredMixin, CreateView):  # Страница создания поста
     model = Post
     template_name = 'posts/new_post.html'
@@ -82,13 +94,13 @@ class PostEdit(UpdateView):  # Страница редактирования п�
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.values_list('id', 'name')
-        context['curr_categories'] = [_["category_id"] for _ in PostCategory.objects.filter(post_id=self.object.id).values('category_id')]
+        context['curr_categories'] = \
+            [_["category_id"] for _ in PostCategory.objects.filter(post_id=self.object.id).values('category_id')]
         return context
 
     def form_valid(self, form):
         post = form.save()
-        return redirect(f'/post/?id={post.id}')
-
+        return redirect(f'/post/{post.id}')
 
 
 class PostSearch(ListView):  #  Страница поиска поста
@@ -97,27 +109,22 @@ class PostSearch(ListView):  #  Страница поиска поста
     context_object_name = 'posts'
     ordering = ['-post_time']
 
-    def __toint(self, value):
-        try:
-            value = int(value)
-        except TypeError:
-            return None
-        else:
-            return value
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['page'] = 'search'
         context['authors'] = Author.objects.values('user__username', 'id')
         context['categories'] = Category.objects.values('name', 'id')
-        context['curr_author'] = self.__toint(self.request.GET.get('author'))
+        context['curr_author'] = int(self.request.GET.get('author'))
         context['curr_type'] = self.request.GET.get('type')
         context['curr_categories'] = list(map(int, self.request.GET.getlist('categories')))
         return context
 
 
-class LK(View):  # класс отображения личного кабинета
+"""  Личный кабинет   """
+
+
+class LK(View):  # Страница отображения личного кабинета
     def get(self, request, error=None):
         try:
             user = PortalUser.objects.get(id=request.GET.get('id'))
@@ -127,19 +134,21 @@ class LK(View):  # класс отображения личного кабине
             return render(request, '404.html')
         else:
             owner = True if request.user == user.username else False
-            raw_comments = Comment.objects.filter(user=user)
-            if raw_comments:
-                comments = []
-                for comment in raw_comments:
-                    comments.append({
-                        'post': comment.post.title,
-                        'text': comment.text[:50] + '...' if len(comment.text) > 47 else comment.text,
-                        'rating': comment.rating,
-                        'date': comment.date,
-                        'post_id': comment.post.id
-                    })
-            else:
-                comments = False
+            comments = Comment.objects.filter(user=user)
+            for comment in comments:
+                comment.text = comment.text[:47] + '...' if len(comment.text) > 50 else comment.text
+            # if raw_comments:
+            #     comments = []
+            #     for comment in raw_comments:
+            #         comments.append({
+            #             'post': comment.post.title,
+            #             'text': comment.text[:50] + '...' if len(comment.text) > 47 else comment.text,
+            #             'rating': comment.rating,
+            #             'date': comment.date,
+            #             'post_id': comment.post.id
+            #         })
+            # else:
+            #     comments = False
             if Author.objects.filter(user=user).exists():
                 author = Author.objects.get(user=user)
                 posts = Post.objects.filter(author=author).order_by('-rating')
@@ -180,6 +189,9 @@ class LK(View):  # класс отображения личного кабине
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
+"""    Авторы   """
+
+
 class AuthorsView(View):  # класс отображения списка авторов
     def get(self, request):
         authors = Author.objects.all().order_by('user')
@@ -197,57 +209,50 @@ class AuthorsView(View):  # класс отображения списка ав�
 
 
 
+"""  Стартовая страница  """
 
 
-def indexview(request):  # функция отображения стартовой старницы
-    posts = Post.objects.all()[:8]
-    if posts:
-        for post in posts:
-            post.text = post.preview()
-    data = {
-        'page': 'home',
-        'posts': posts
-    }
-    return render(request, 'index.html', {'data': data})
+class IndexView(ListView): # Начальная страница. Ограничение 8 постов
+    model = Post
+    paginate_by = 8
+    template_name = 'index.html'
 
 
-def register(request):  # функция регистрации клиента
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
-
-            if new_user is not None:
-                if new_user.is_active:
-                    login(request, new_user)
-                    return redirect('/')
-                else:
-                    return render(request, 'account/account_blocked.html')
-            return render(request, 'account/register_done.html', {'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-    return render(request, 'account/register.html', {'register_form': user_form})
+"""   Регистрация и логин   """
 
 
-def user_login(request):  # функция логирования клиента
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect(request.META.get('HTTP_REFERER', '/'))
-                else:
-                    return render(request, 'account/account_blocked.html')
+class UserRegisterView(FormView):
+    form_class = UserRegistrationForm
+    template_name = 'account/register.html'
+
+    def form_valid(self, form):
+        new_user = form.save(commit=False)
+        new_user.set_password(form.cleaned_data['password'])
+        new_user.save()
+        if new_user is not None:
+            if new_user.is_active:
+                login(self.request, new_user)
+                return redirect('/')
             else:
-                return render(request, 'account/login.html', {'form': form, 'error': 1})
-    else:
-        form = LoginForm()
-    return render(request, 'account/login.html', {'form': form})
+                return render(self.request, 'account/account_blocked.html')
+
+
+class UserLoginView(FormView):  #Страница логирования клиента. Перейдет если в модальном окне произошла ошибка
+    form_class = UserLoginForm
+    template_name = 'account/login.html'
+
+    def form_valid(self, form):
+        cd = form.cleaned_data
+        user = authenticate(username=cd['username'], password=cd['password'])
+        if user is not None:
+            if user.is_active:
+                login(self.request, user)
+                return redirect(self.request.META.get('HTTP_REFERER', '/'))
+            else:
+                return render(self.request, 'account/account_blocked.html')
+        else:
+            return render(self.request, 'account/login.html', {'form': form, 'error': 1})
+
 
 
 def comment_submit(request):  # функция создания комментария
