@@ -13,7 +13,7 @@ urlpatterns = [
     path('ihjoudhgpreuahodfnbjofg/', comment_submit, name='comment_submit'),
     path('account/register/', UserRegisterView.as_view()),
     path('account/login/', UserLoginView.as_view()),
-    path('account/', LK.as_view()),
+    path('account/<int:pk>', AccountView.as_view()),
     path('exit/', LogoutView.as_view(next_page='/'), name='exit'),
     path('post/post_edit/<int:pk>', PostEdit.as_view()),
     path('post/search', PostSearch.as_view())

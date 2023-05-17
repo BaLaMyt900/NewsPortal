@@ -11,7 +11,7 @@
 <div>
     <nav class="navbar navbar-expand-md rounded-bottom-3 bg-gradient shadow bg-body-tertiary rounded">
         <div class="container-fluid">
-            <a class="navbar-brand btn me-2 btn-outline-primary {% if data.page == 'home' %} active {% endif %}" href="/">Главная</a>
+            <a class="navbar-brand btn me-2 btn-outline-primary {% if page == 'home' %} active {% endif %}" href="/">Главная</a>
             <a class="btn btn-outline-primary me-2 {% if page == 'posts' %} active {% endif %}" aria-current="page" href="/posts">Посты</a>
             <a class="btn btn-outline-primary me-2 {% if page == 'authors' %} active {% endif %}" aria-current="page" href="/authors">Авторы</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Переключатель навигации">
@@ -27,7 +27,7 @@
                         {% if request.user.is_authenticated %}
                             <div class="d-flex">
                                 <div class="text-center p-2">Здравствуй {{request.user}}!</div>
-                                <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/account/?id={{request.user.id}}">Личный кабинет</a></div>
+                                <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/account/{{request.user.id}}">Личный кабинет</a></div>
                                 <div class="px-1"><a class="btn btn-outline-danger p-2" aria-current="page" href="{% url 'exit' %}">Выход</a></div>
                             </div>
                         {% else %}

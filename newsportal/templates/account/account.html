@@ -6,21 +6,21 @@
 <div class="container mx-auto py-5">
     <div class="card shadow">
         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
-            Личный кабинет   {% if author %} Рейтинг автора: {{author.rating}} {% else %} Рейтинг пользователя: {{user.rating}} {% endif %}
+            Личный кабинет   {% if author %} Рейтинг автора: {{object.rating}} {% else %} Рейтинг пользователя: {{object.rating}} {% endif %}
         </div>
         <div class="card-body container">
             <div class="row mx-auto">
                 <div class="col">
-                    {% if request.user == user %}
+                    {% if request.user == object %}
                     <form method="post">{% csrf_token %}
                         Имя пользователя:
-                        <input class="form-control w-50 shadow mb-3" type="text" name="username" value="{{user.username}}">
+                        <input class="form-control w-50 shadow mb-3" type="text" name="username" value="{{object.username}}">
                         Имя
-                        <input class="form-control w-50 shadow mb-3" type="text" placeholder="{% if not user.first_name %}Не указано{% endif %}" value="{% if user.first_name %}{{user.first_name}}{% endif %}" name="first_name">
+                        <input class="form-control w-50 shadow mb-3" type="text" placeholder="{% if not object.first_name %}Не указано{% endif %}" value="{% if object.first_name %}{{object.first_name}}{% endif %}" name="first_name">
                         Фамилия
-                        <input class="form-control w-50 shadow mb-3" type="text" placeholder="{% if not user.last_name %}Не указано{% endif %}" value="{% if user.last_name %}{{user.last_name}}{% endif %}" name="last_name">
+                        <input class="form-control w-50 shadow mb-3" type="text" placeholder="{% if not object.last_name %}Не указано{% endif %}" value="{% if object.last_name %}{{object.last_name}}{% endif %}" name="last_name">
                         Почта
-                        <input class="form-control w-50 shadow mb-3" type="email" placeholder="{% if not user.email %}Не указано{% endif %}" value="{% if user.email %}{{user.email}}{% endif %}" name="email">
+                        <input class="form-control w-50 shadow mb-3" type="email" placeholder="{% if not object.email %}Не указано{% endif %}" value="{% if object.email %}{{object.email}}{% endif %}" name="email">
                         <div class="card w-50">
                         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Для подверждения изменений, введите пароль</div>
                             <div class="card-body">
@@ -71,13 +71,13 @@
                     </div>
                     {% else %}
                     Имя пользователя:
-                    <div class="text rounded border w-50 shadow">{{user.username}}</div>
+                    <div class="text rounded border w-50 shadow">{{object.username}}</div>
                     Имя
-                    <div class="text rounded border w-50 shadow">{% if user.first_name %}{{user.first_name}}{% else %}Не указано{% endif %}</div>
+                    <div class="text rounded border w-50 shadow">{% if object.first_name %}{{object.first_name}}{% else %}Не указано{% endif %}</div>
                     Фамилия
-                    <div class="text rounded border w-50 shadow">{% if user.last_name %}{{user.last_name}}{% else %}Не указано{% endif %}</div>
+                    <div class="text rounded border w-50 shadow">{% if object.last_name %}{{object.last_name}}{% else %}Не указано{% endif %}</div>
                     Почта
-                    <div class="text rounded border w-50 shadow">{% if user.email %}{{user.email}}{% else %}Не указано{% endif %}</div>
+                    <div class="text rounded border w-50 shadow">{% if object.email %}{{object.email}}{% else %}Не указано{% endif %}</div>
                     {% endif %}
                 </div>
 
@@ -86,7 +86,7 @@
                 <div class="row py-2">
                     <div class="card py-1 border-0">
                         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи
-                        {% if request.user == user %}<a class="text-end" href="/post/new_post">Создать новую статью</a>{% endif %}</div>
+                        {% if request.user == object %}<a class="text-end" href="/post/new_post">Создать новую статью</a>{% endif %}</div>
                         {% if posts %}
                         <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                             {% for post in posts %}
@@ -95,7 +95,7 @@
                                 <p class="card-text border rounded bg-body">&nbsp{{post.text|censor}}</p>
                                 <div class="row">
                                 <small class="col text-muted">Рейтинг: {{post.rating}} <br> Пост написан {{post.post_time}}</small>
-                                    {% if request.user == user %}
+                                    {% if request.user == object %}
                                     <div class="col"><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletepost{{ post.pk }}">Удалить статью</button></div>
                                         <div class="modal fade" id="deletepost{{ post.pk }}" tabindex="-1" aria-labelledby="test" aria-hidden="true">
                                             <div class="modal-dialog">

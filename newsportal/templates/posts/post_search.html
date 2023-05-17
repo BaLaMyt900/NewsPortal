@@ -1,11 +1,11 @@
 {% extends 'main.html' %}
-{% block title %}Все посты{% endblock title %}
+{% block title %}Поиск поста{% endblock title %}
 
 {% block body %}
 {% load my_filters %}
 <div class="container rounded-4 py-2 shadow bg-body-tertiary rounded text-body-emphasis">
     <div class="card">
-  <div class="card-header bg-gradient bg-body-tertiary">Все посты</div>
+  <div class="card-header bg-gradient bg-body-tertiary">Поиск поста</div>
         <div class="container p-4">
             <div class="card bg-gradient bg-body-tertiary shadow">
             <div class="card-header text-start">Фильр</div>
@@ -14,15 +14,23 @@
                     <div class="row flex-row">
                         <div class="col flex-column mb-3">
                             <div class="form-label">Автор</div>
+                            <div class="form-check">
+                            <label class="form-check-label" for="id_aut_all">Все</label>
+                            <input class="form-check-input" id="id_aut_all" type="radio" name="author__user__username" value="" {% if curr_author == '' %} checked {% endif %}>
+                            </div>
                             {% for author in authors %}
                             <div class="form-check">
                             <label class="form-check-label" for="id_{{ author.id }}">{{ author.user__username }}</label>
-                            <input class="form-check-input" id="id_{{ author.id }}" type="radio" name="author" value="{{ author.id }}" {% if curr_author == author.id %} checked {% endif %}>
+                            <input class="form-check-input" id="id_{{ author.id }}" type="radio" name="author__user__username" value="{{ author.user__username }}" {% if curr_author == author.user__username %} checked {% endif %}>
                             </div>
                             {% endfor %}
                         </div>
                         <div class="col flex-column mb-3">
                             <div class="form-label">Тип</div>
+                            <div class="form-check">
+                            <label class="form-check-label" for="id_type_all">Все</label>
+                            <input class="form-check-input" id="id_type_all" type="radio" name="type" value="" {% if curr_type == '' %} checked {% endif %}>
+                            </div>
                             <div class="form-check">
                                 <label class="form-check-label" for="id_A">Статья</label>
                                 <input class="form-check-input" type="radio" value="A" name="type" id="id_A" {% if curr_type == 'A' %} checked {% endif %}>
@@ -34,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col flex-column mb-3">
-                            <dif class="form-label">Категории</dif>
+                            <div class="form-label">Категории</div>
                             <div class="row row-cols-4">
                                 {% for category in categories %}
                                     <div class="col">
@@ -47,7 +55,7 @@
                             </div>
                         </div>
                     <div class="d-flex">
-                        <input class="form-control" type="date" name="post_time__date__lte">
+                        <input class="form-control" type="date" name="post_time__date__lte" value="{{ curr_date }}">
                     </div>
                     <div class="d-grid gap-2 py-2 col-6 mx-auto">
                         <input class="btn btn-outline-primary" type="submit" value="Найти">
@@ -57,7 +65,7 @@
             </div>
         </div>
         </div>
-      {% if posts %}
+      {% if filter.qs %}
         {% for post in filter.qs %}
             <div class="container p-4">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
@@ -65,13 +73,13 @@
                     <h6 class="fw-light"><a href="/account/?id={{post.author.user.id}}">{{post.author}}</a> Рейтинг статьи: {{post.rating}} {% if post.category %} <br> Категория: {{post.category}} {% endif %}</h6>
                 <p class="card-text bg-body rounded">&nbsp{{post.text|censor}}</p>
                 <div class="text-muted">{{post.post_time}} <br> Пост написан {{post.post_time|timesince}} назад</div>
-                <a href="/post/?id={{post.id}}" class="btn btn-outline-primary">Продолжение</a>
+                <a href="/post/{{post.id}}" class="btn btn-outline-primary">Продолжение</a>
             </div>
             </div>
         {% endfor %}
       {% else %}
         <div class="card-body">
-                <h5 class="card-title">Новости не найдены. Попробуйтк поменять настройки поиска.</h5>
+                <h5 class="card-title">Новости не найдены. Попробуйте изменить параметры поиска</h5>
             </div>
       {% endif %}
 </div>

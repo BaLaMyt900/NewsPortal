@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, FormView
 from portal.forms import UserRegistrationForm, UserLoginForm, PostForm
-from django.contrib.auth import authenticate, login, get_user
+from django.contrib.auth import authenticate, login
 from .filters import PostFilter
 
 
@@ -106,8 +106,8 @@ class PostEdit(UpdateView):  # Страница редактирования п�
 class PostSearch(ListView):  #  Страница поиска поста
     model = Post
     template_name = 'posts/post_search.html'
-    context_object_name = 'posts'
     ordering = ['-post_time']
+    paginate_by = 1
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -115,76 +115,55 @@ class PostSearch(ListView):  #  Страница поиска поста
         context['page'] = 'search'
         context['authors'] = Author.objects.values('user__username', 'id')
         context['categories'] = Category.objects.values('name', 'id')
-        context['curr_author'] = int(self.request.GET.get('author'))
+        context['curr_author'] = self.request.GET.get('author__user__username')
         context['curr_type'] = self.request.GET.get('type')
         context['curr_categories'] = list(map(int, self.request.GET.getlist('categories')))
+        context['curr_date'] = self.request.GET.get('post_time__date__lte')
         return context
 
 
 """  Личный кабинет   """
 
 
-class LK(View):  # Страница отображения личного кабинета
-    def get(self, request, error=None):
-        try:
-            user = PortalUser.objects.get(id=request.GET.get('id'))
-        except PortalUser.DoesNotExist:
-            return render(request, '404.html')
-        except ValueError:
-            return render(request, '404.html')
-        else:
-            owner = True if request.user == user.username else False
-            comments = Comment.objects.filter(user=user)
-            for comment in comments:
-                comment.text = comment.text[:47] + '...' if len(comment.text) > 50 else comment.text
-            # if raw_comments:
-            #     comments = []
-            #     for comment in raw_comments:
-            #         comments.append({
-            #             'post': comment.post.title,
-            #             'text': comment.text[:50] + '...' if len(comment.text) > 47 else comment.text,
-            #             'rating': comment.rating,
-            #             'date': comment.date,
-            #             'post_id': comment.post.id
-            #         })
-            # else:
-            #     comments = False
-            if Author.objects.filter(user=user).exists():
-                author = Author.objects.get(user=user)
-                posts = Post.objects.filter(author=author).order_by('-rating')
-                if posts:
-                    for post in posts:
-                        if len(post.title) > 40:
-                            post.title = post.title[:37] + '...'
-                        if len(post.text) > 60:
-                            post.text = post.text[:57] + '...'
-                return render(request, 'account/account.html', {'user': user, 'owner': owner,
-                                                                'comments': comments, 'posts': posts, 'author': author})
-            if error:
-                return render(request, 'account/account.html', {'user': user, 'owner': owner, 'comments': comments, 'error': 'password'})
-            return render(request, 'account/account.html', {'user': user, 'owner': owner, 'comments': comments})
+class AccountView(DetailView):  # Страница отображения личного кабинета
+    model = PortalUser
+    template_name = 'account/account.html'
 
-    def post(self, request):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['comments'] = Comment.objects.filter(user=self.object)
+        except Comment.DoesNotExist:
+            pass
+        else:
+            for comment in context['comments']:
+                comment.text = comment.text[:47] + '...' if len(comment.text) > 50 else comment.text
+        if Author.objects.filter(user=self.object).exists():
+            context['author'] = True
+            posts = Post.objects.filter(author__user=self.object).order_by('-rating')
+            for post in posts:
+                post.text = post.text[:47] + '...' if len(post.text) > 50 else post.text
+            context['posts'] = posts
+        return context
+
+    def post(self, request, pk):
+        self.object = PortalUser.objects.get(pk=pk)
         if request.POST.get('author'):
-            Author.objects.create(user=PortalUser.objects.get(username=request.user))
+            Author.objects.create(user=self.object)
         elif request.POST.get('delete_post'):
             post = Post.objects.get(pk=request.POST.get('delete_post'))
-            user = PortalUser.objects.get(username=request.user)
             post.delete()
-            user.update_rating()
+            self.object.update_rating()
         elif request.POST.get('change_acc'):
-            user = get_user(request)
-            if user.check_password(request.POST.get('password')):
-                user.username = request.POST.get('username')
-                user.first_name = request.POST.get('first_name')
-                user.last_name = request.POST.get('last_name')
-                user.email = request.POST.get('email')
-                user.save()
+            if self.object.check_password(request.POST.get('password')):
+                self.object.username = request.POST.get('username')
+                self.object.first_name = request.POST.get('first_name')
+                self.object.last_name = request.POST.get('last_name')
+                self.object.email = request.POST.get('email')
+                self.object.save()
                 return self.get(request)
-            else:
-                return self.get(request, 'error')
         elif request.POST.get('delete_acc'):
-            PortalUser.objects.get(username=request.user).delete()
+            self.object.delete()
             return redirect('/exit/')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -212,10 +191,15 @@ class AuthorsView(View):  # класс отображения списка ав�
 """  Стартовая страница  """
 
 
-class IndexView(ListView): # Начальная страница. Ограничение 8 постов
+class IndexView(ListView):  # Начальная страница. Ограничение 8 постов
     model = Post
     paginate_by = 8
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'home'
+        return context
 
 
 """   Регистрация и логин   """
