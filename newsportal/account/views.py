@@ -82,5 +82,5 @@ class UserLoginView(FormView):  #Страница логирования кли�
                 return redirect(self.request.META.get('HTTP_REFERER', '/'))
             else:
                 return render(self.request, 'account/account_blocked.html')
-
-
+        else:
+            return redirect(self.request.META.get('HTTP_REFERER', '/'), {'error': 'pass'})
