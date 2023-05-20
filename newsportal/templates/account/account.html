@@ -7,7 +7,7 @@
     <div class="card shadow">
         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
             Личный кабинет   {% if author %} Рейтинг автора: {{object.rating}} {% else %} Рейтинг пользователя: {{object.rating}} {% endif %}
-            {% if request.user.username == 'admin' %}
+            {% if request.user.username == 'admin' and owner %}
                 <a href="/admin/">Админ панель</a>
             {% endif %}
         </div>

@@ -27,7 +27,7 @@
                         {% if request.user.is_authenticated %}
                             <div class="d-flex">
                                 <div class="text-center p-2">Здравствуй {{request.user}}!</div>
-                                <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/accounts/profile/">Личный кабинет</a></div>
+                                <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/account/profile/{{ request.user.pk }}">Личный кабинет</a></div>
                                 <div class="px-1"><a class="btn btn-outline-danger p-2" aria-current="page" href="{% url 'exit' %}">Выход</a></div>
                             </div>
                         {% else %}

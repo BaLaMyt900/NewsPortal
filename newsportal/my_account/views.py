@@ -27,6 +27,7 @@ class AccountView(DetailView):  # Страница отображения лич
             for post in posts:
                 post.text = post.text[:47] + '...' if len(post.text) > 50 else post.text
             context['posts'] = posts
+            context['owner'] = self.request.user.is_authenticated and self.request.user.pk == self.object.pk
         return context
 
     def post(self, request, pk):
@@ -72,7 +73,7 @@ class UserRegisterView(FormView):
                 return render(self.request, 'account/account_blocked.html')
 
 
-class UserLoginView(FormView):  #Страница логирования клиента. Перейдет если в модальном окне произошла ошибка
+class UserLoginView(FormView):  # Страница логирования клиента. Перейдет если в модальном окне произошла ошибка
     form_class = UserLoginForm
     template_name = 'account/login.html'
 
