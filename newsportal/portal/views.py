@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from portal.models import Author, Post, Comment, PortalUser
 from django.views import View
-from django.views.generic import ListView
-
+from django.views.generic import ListView, DetailView
 
 """    Авторы   """
 
@@ -38,7 +37,9 @@ class IndexView(ListView):  # Начальная страница. Ограни�
         return context
 
 
-
+class ProfileView(DetailView):
+    model = PortalUser
+    template_name = 'accounts/profile.html'
 
 def comment_submit(request):  # функция создания комментария
     Comment.objects.create(post=Post.objects.get(id=request.POST.get('id')), user=request.user,

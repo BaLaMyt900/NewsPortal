@@ -27,7 +27,7 @@
                         {% if request.user.is_authenticated %}
                             <div class="d-flex">
                                 <div class="text-center p-2">Здравствуй {{request.user}}!</div>
-                                <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/account/{{request.user.id}}">Личный кабинет</a></div>
+                                <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/accounts/profile/">Личный кабинет</a></div>
                                 <div class="px-1"><a class="btn btn-outline-danger p-2" aria-current="page" href="{% url 'exit' %}">Выход</a></div>
                             </div>
                         {% else %}
@@ -40,12 +40,13 @@
                                                         <h5 class="modal-title">Авторизация</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                                     </div>
-                                                    <form action="/account/login/" method="post">{% csrf_token %}
+                                                    <form action="/accounts/login/" method="post">{% csrf_token %}
                                                     <div class="modal-body">
                                                         <label class="form-label" for="modallogin">Логин</label>
                                                         <input class="form-control" type="text" name="username" id="modallogin" required>
                                                         <label class="form-label" for="modalpass">Пароль</label>
                                                         <input class="form-control" id="modalpass" type="password" name="password" required>
+                                                        <a title="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login">Google</a>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-outline-danger" data-bs-dismiss="modal">Отмена</button>
@@ -55,7 +56,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                <a class="btn btn-primary" href="/account/register">Регистрация</a>
+                                <a class="btn btn-primary" href="/accounts/register">Регистрация</a>
                             </div>
                         {% endif %}
                     </div>
