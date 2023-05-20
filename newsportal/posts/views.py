@@ -1,8 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from portal.models import Author, Post, Comment, PortalUser, Category, CommentActivity, PostActivity, PostCategory
 from posts.filters import PostFilter
+
 
 """      ПОСТЫ      """
 
