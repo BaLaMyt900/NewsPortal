@@ -40,19 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sites',
     'allauth',
+    'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'portal',
     'posts',
+    'my_account'
 ]
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/account/login/'
 
 SITE_ID = 1
 

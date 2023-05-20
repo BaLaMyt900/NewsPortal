@@ -37,10 +37,6 @@ class IndexView(ListView):  # Начальная страница. Ограни�
         return context
 
 
-class ProfileView(DetailView):
-    model = PortalUser
-    template_name = 'accounts/profile.html'
-
 def comment_submit(request):  # функция создания комментария
     Comment.objects.create(post=Post.objects.get(id=request.POST.get('id')), user=request.user,
                            text=request.POST.get('text'))

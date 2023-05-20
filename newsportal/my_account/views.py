@@ -1,8 +1,9 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, FormView
 from portal.models import Author, Post, Comment, PortalUser
-from account.forms import UserRegistrationForm, UserLoginForm
+from my_account.forms import UserRegistrationForm, UserLoginForm
 
 """  Личный кабинет   """
 
@@ -32,6 +33,7 @@ class AccountView(DetailView):  # Страница отображения лич
         self.object = PortalUser.objects.get(pk=pk)
         if request.POST.get('author'):
             Author.objects.create(user=self.object)
+            Group.objects.get(name='authors').user_set.add(self.object)
         elif request.POST.get('delete_post'):
             post = Post.objects.get(pk=request.POST.get('delete_post'))
             post.delete()
@@ -61,9 +63,10 @@ class UserRegisterView(FormView):
         new_user = form.save(commit=False)
         new_user.set_password(form.cleaned_data['password'])
         new_user.save()
+        Group.objects.get(name='common').user_set.add(new_user)
         if new_user is not None:
             if new_user.is_active:
-                login(self.request, new_user)
+                login(self.request, new_user, backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('/')
             else:
                 return render(self.request, 'account/account_blocked.html')
@@ -83,4 +86,4 @@ class UserLoginView(FormView):  #Страница логирования кли�
             else:
                 return render(self.request, 'account/account_blocked.html')
         else:
-            return redirect(self.request.META.get('HTTP_REFERER', '/'), {'error': 'pass'})
+            return redirect(self.request.META.get('HTTP_REFERER', '/'))
