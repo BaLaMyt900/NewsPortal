@@ -1,16 +1,24 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, FormView
 from portal.models import Author, Post, Comment, PortalUser
 from my_account.forms import UserRegistrationForm, UserLoginForm
 
+
 """  Личный кабинет   """
 
 
-class AccountView(DetailView):  # Страница отображения личного кабинета
+class AccountView(DetailView):  # Страница отображения карточки пользователя
     model = PortalUser
     template_name = 'account/account.html'
+
+    def get(self, request, *args, **kwargs):  # Если авторизованный пользователь заходит на свой профиль
+        if request.user.is_authenticated and request.user.pk == kwargs['pk']:
+            return redirect('/account/profile/')  # Перевести на страницу без гет запроса
+        else:
+            return super().get(request, *args, **kwargs)  # Вернуть свой же гет
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,11 +35,36 @@ class AccountView(DetailView):  # Страница отображения лич
             for post in posts:
                 post.text = post.text[:47] + '...' if len(post.text) > 50 else post.text
             context['posts'] = posts
-            context['owner'] = self.request.user.is_authenticated and self.request.user.pk == self.object.pk
         return context
 
-    def post(self, request, pk):
-        user = PortalUser.objects.get(pk=pk)
+
+class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  # Страница ЛК пользователя
+    permission_required = ('portal.change_portaluser',)
+    template_name = 'account/my_account.html'
+    model = PortalUser
+
+    def get_object(self, queryset=None):  # Достать ключ без гет запроса
+        self.kwargs['pk'] = self.request.user.pk
+        return super().get_object(queryset)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['comments'] = Comment.objects.filter(user=self.object)
+        except Comment.DoesNotExist:
+            pass
+        else:
+            for comment in context['comments']:
+                comment.text = comment.text[:47] + '...' if len(comment.text) > 50 else comment.text
+        if Author.objects.filter(user=self.object).exists():
+            context['author'] = True
+            posts = Post.objects.filter(author__user=self.object).order_by('-rating')
+            for post in posts:
+                post.text = post.text[:47] + '...' if len(post.text) > 50 else post.text
+        return context
+
+    def post(self, request):
+        user = self.get_object()
         if request.POST.get('author'):
             Author.objects.create(user=user)
             Group.objects.get(name='authors').user_set.add(user)
@@ -46,11 +79,10 @@ class AccountView(DetailView):  # Страница отображения лич
                 user.last_name = request.POST.get('last_name')
                 user.email = request.POST.get('email')
                 user.save()
-                return self.get(request)
         elif request.POST.get('delete_acc'):
             user.delete()
             return redirect('/exit/')
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect('/account/profile/')
 
 
 """   Регистрация и логин   """
