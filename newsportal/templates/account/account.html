@@ -14,80 +14,87 @@
         <div class="card-body container">
             <div class="row mx-auto">
                 <div class="col">
-                    {% if request.user == object %}
-                    <form method="post">{% csrf_token %}
-                        Имя пользователя:
-                        <input class="form-control w-50 shadow mb-3" type="text" name="username" value="{{object.username}}">
-                        Имя
-                        <input class="form-control w-50 shadow mb-3" type="text" placeholder="{% if not object.first_name %}Не указано{% endif %}" value="{% if object.first_name %}{{object.first_name}}{% endif %}" name="first_name">
-                        Фамилия
-                        <input class="form-control w-50 shadow mb-3" type="text" placeholder="{% if not object.last_name %}Не указано{% endif %}" value="{% if object.last_name %}{{object.last_name}}{% endif %}" name="last_name">
-                        Почта
-                        <input class="form-control w-50 shadow mb-3" type="email" placeholder="{% if not object.email %}Не указано{% endif %}" value="{% if object.email %}{{object.email}}{% endif %}" name="email">
-                        <div class="card w-50">
-                        <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Для подверждения изменений, введите пароль</div>
-                            <div class="card-body">
-                                {% if error == 'password' %} Неправильный пароль. {% endif %}
-                                <input class="form-control mb-3" type="password" name="password">
-                                <button class="btn btn-outline-success" type="submit" value="+" name="change_acc">Подвердить</button>
-                        </div>
-                        </div>
-                    </form>
-                        <p></p>
-                        {% if not author %}
-                        <div class="card gy-3 w-50">
-                            <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Стать автором!</div>
-                            <div class="card-body">
-                                <form method="post">
-                                    {% csrf_token %}
-                                    Хотите стать автором? Нет ничего проще! Просто нажмите на кнопку!<br>
-                                    <button class="btn btn-outline-success" name="author" value="+" type="submit">Хочу стать автором!</button>
+                    <div class="card shadow">
+                        <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Данные пользователя</div>
+                        <div class="card-body">
+                            {% if request.user == object %}
+                                <form method="post">{% csrf_token %}
+                                    Имя пользователя:
+                                    <input class="form-control mb-3" type="text" name="username" value="{{object.username}}">
+                                    Имя
+                                    <input class="form-control mb-3" type="text" placeholder="{% if not object.first_name %}Не указано{% endif %}" value="{% if object.first_name %}{{object.first_name}}{% endif %}" name="first_name">
+                                    Фамилия
+                                    <input class="form-control mb-3" type="text" placeholder="{% if not object.last_name %}Не указано{% endif %}" value="{% if object.last_name %}{{object.last_name}}{% endif %}" name="last_name">
+                                    Почта
+                                    <input class="form-control mb-3" type="email" placeholder="{% if not object.email %}Не указано{% endif %}" value="{% if object.email %}{{object.email}}{% endif %}" name="email">
+                                    <div class="card">
+                                    <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Для подверждения изменений, введите пароль</div>
+                                        <div class="card-body">
+                                            {% if error == 'password' %} Неправильный пароль. {% endif %}
+                                            <input class="form-control mb-3" type="password" name="password">
+                                            <button class="btn btn-outline-success" type="submit" value="+" name="change_acc">Подвердить</button>
+                                    </div>
+                                    </div>
                                 </form>
-                            </div>
-                        </div>
-                        {% endif %}
-                    <div class="card py-3 border-0 w-50">
-                        <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Удаление аккаунта</div>
-                        <div class="card-body container border">
-                                Внимание! Удаление безвозвратно!
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteaccount">Удаление аккаунта!</button>
-                                <div class="modal fade" id="deleteaccount" data-value="" tabindex="-1" aria-labelledby="test" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Вы уверены, что хотите удалить аккаунт?</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                После потверждения, аккаунт будет безвозвозвратно удален!<br>Вы уверены?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
-                                                <form class="form" method="post">{% csrf_token %}
-                                                    <button class="btn btn-outline-danger" name="delete_acc" value="+">Удаление аккаунта!</button>
-                                                </form>
-                                            </div>
+                                    <p></p>
+                                    {% if not author %}
+                                    <div class="card gy-3">
+                                        <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Стать автором!</div>
+                                        <div class="card-body">
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                Хотите стать автором? Нет ничего проще! Просто нажмите на кнопку!<br>
+                                                <button class="btn btn-outline-success" name="author" value="+" type="submit">Хочу стать автором!</button>
+                                            </form>
                                         </div>
                                     </div>
-                                </div>
+                                    {% endif %}
+                                {% if request.user.username != 'admin' %}
+                                    <div class="card py-3 border-0">
+                                        <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Удаление аккаунта</div>
+                                        <div class="card-body container border">
+                                                Внимание! Удаление безвозвратно!
+                                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteaccount">Удаление аккаунта!</button>
+                                                <div class="modal fade" id="deleteaccount" data-value="" tabindex="-1" aria-labelledby="test" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Вы уверены, что хотите удалить аккаунт?</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                После потверждения, аккаунт будет безвозвозвратно удален!<br>Вы уверены?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
+                                                                <form class="form" method="post">{% csrf_token %}
+                                                                    <button class="btn btn-outline-danger" name="delete_acc" value="+">Удаление аккаунта!</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% else %}
+                                Имя пользователя:
+                                <div class="text rounded border mb-3">{{object.username}}</div>
+                                Имя
+                                <div class="text rounded border mb-3">{% if object.first_name %}{{object.first_name}}{% else %}Не указано{% endif %}</div>
+                                Фамилия
+                                <div class="text rounded border mb-3">{% if object.last_name %}{{object.last_name}}{% else %}Не указано{% endif %}</div>
+                                Почта
+                                <div class="text rounded border mb-3">{% if object.email %}{{object.email}}{% else %}Не указано{% endif %}</div>
+                                {% endif %}
                         </div>
                     </div>
-                    {% else %}
-                    Имя пользователя:
-                    <div class="text rounded border w-50 shadow">{{object.username}}</div>
-                    Имя
-                    <div class="text rounded border w-50 shadow">{% if object.first_name %}{{object.first_name}}{% else %}Не указано{% endif %}</div>
-                    Фамилия
-                    <div class="text rounded border w-50 shadow">{% if object.last_name %}{{object.last_name}}{% else %}Не указано{% endif %}</div>
-                    Почта
-                    <div class="text rounded border w-50 shadow">{% if object.email %}{{object.email}}{% else %}Не указано{% endif %}</div>
-                    {% endif %}
                 </div>
 
                 <div class="col-6">
                 {% if author %}
-                <div class="row py-2">
-                    <div class="card py-1 border-0">
+                <div class="row">
+                    <div class="card border-0">
                         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи
                         {% if request.user == object %}<a class="text-end" href="/post/new_post">Создать новую статью</a>{% endif %}</div>
                         {% if posts %}
@@ -136,8 +143,8 @@
                     </div>
                 </div>
                 {% endif %}
-                <div class="row">
-                    <div class="card py-1 border-0">
+                <div class="row py-3">
+                    <div class="card border-0">
                     <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Комментарии</div>
                     {% if comments %}
                     <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">

@@ -67,7 +67,7 @@ class PostsView(ListView):  # Страница показа всех посто�
 
 
 class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста
-    permission_required = portal.add_Post
+    permission_required = ('portal.add_post', )
     model = Post
     template_name = 'posts/new_post.html'
     fields = ['title', 'text', 'type', 'categories']
@@ -86,7 +86,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
 
 
 class PostEdit(PermissionRequiredMixin, UpdateView):  # Страница редактирования поста
-    permission_required = portal.change_Post
+    permission_required = ('portal.change_post', )
     model = Post
     template_name = 'posts/post_edit.html'
     fields = ['title', 'type', 'categories', 'text']

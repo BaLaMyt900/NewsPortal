@@ -31,24 +31,24 @@ class AccountView(DetailView):  # Страница отображения лич
         return context
 
     def post(self, request, pk):
-        self.object = PortalUser.objects.get(pk=pk)
+        user = PortalUser.objects.get(pk=pk)
         if request.POST.get('author'):
-            Author.objects.create(user=self.object)
-            Group.objects.get(name='authors').user_set.add(self.object)
+            Author.objects.create(user=user)
+            Group.objects.get(name='authors').user_set.add(user)
         elif request.POST.get('delete_post'):
             post = Post.objects.get(pk=request.POST.get('delete_post'))
             post.delete()
-            self.object.update_rating()
+            user.update_rating()
         elif request.POST.get('change_acc'):
-            if self.object.check_password(request.POST.get('password')):
-                self.object.username = request.POST.get('username')
-                self.object.first_name = request.POST.get('first_name')
-                self.object.last_name = request.POST.get('last_name')
-                self.object.email = request.POST.get('email')
-                self.object.save()
+            if user.check_password(request.POST.get('password')):
+                user.username = request.POST.get('username')
+                user.first_name = request.POST.get('first_name')
+                user.last_name = request.POST.get('last_name')
+                user.email = request.POST.get('email')
+                user.save()
                 return self.get(request)
         elif request.POST.get('delete_acc'):
-            self.object.delete()
+            user.delete()
             return redirect('/exit/')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -87,4 +87,4 @@ class UserLoginView(FormView):  # Страница логирования кли
             else:
                 return render(self.request, 'account/account_blocked.html')
         else:
-            return redirect(self.request.META.get('HTTP_REFERER', '/'))
+            return render(self.request, self.template_name, {'form': self.get_form(), 'error': True})
