@@ -1,8 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from portal.models import Author, Post, Comment, PortalUser, Category, CommentActivity, PostActivity, PostCategory
 from posts.filters import PostFilter
+
 
 """      ПОСТЫ      """
 
@@ -64,7 +65,8 @@ class PostsView(ListView):  # Страница показа всех посто�
         return context
 
 
-class PostCreate(LoginRequiredMixin, CreateView):  # Страница создания поста
+class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста
+    permission_required = ('portal.add_post', )
     model = Post
     template_name = 'posts/new_post.html'
     fields = ['title', 'text', 'type', 'categories']
@@ -82,7 +84,8 @@ class PostCreate(LoginRequiredMixin, CreateView):  # Страница созда
         return context
 
 
-class PostEdit(UpdateView):  # Страница редактирования поста
+class PostEdit(PermissionRequiredMixin, UpdateView):  # Страница редактирования поста
+    permission_required = ('portal.change_post', )
     model = Post
     template_name = 'posts/post_edit.html'
     fields = ['title', 'type', 'categories', 'text']

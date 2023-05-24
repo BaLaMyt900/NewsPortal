@@ -80,7 +80,9 @@
     {%for comment in comments %}
       <div class="container p-3">
         <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
-        <h5 class="card-title rounded-right rounded bg-body w-25 border p-1">{{comment.user__username}}</h5>
+        <h5 class="card-title rounded-right rounded bg-body w-25 border p-1">
+          <a href="/account/profile/{{comment.user__id}}">{{comment.user__username}}</a>
+        </h5>
           <div class="card-text border bg-body rounded p-1">{{comment.text|censor}}</div>
           <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
         {% if request.user.is_authenticated and request.user.id != comment.user__id %}

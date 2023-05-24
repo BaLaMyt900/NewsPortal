@@ -1,24 +1,26 @@
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from portal.models import Author, Post, Comment, PortalUser
-from django.views.generic import ListView
-
+from django.views import View
+from django.views.generic import ListView, DetailView
 
 """    Авторы   """
 
 
-class AuthorsView(ListView):  # Страница вывода всех авторов
-    model = Author
-    template_name = 'authors.html'
-    paginate_by = 10
+class AuthorsView(View):  # класс отображения списка авторов
+    def get(self, request):
+        authors = Author.objects.all().order_by('user')
+        ordering_type = 'user'
+        posts_count = [(author, len(Post.objects.filter(author=author))) for author in authors]
+        return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
+                                                    'ordering_type': ordering_type, 'posts_count': posts_count})
 
-    def get_ordering(self):
-        ordering = self.request.GET.get('ordering', '-rating')
-        return ordering
+    def post(self, request):
+        order_type = request.POST.get('order_by')
+        authors = Author.objects.all().order_by(order_type)
+        posts_count = [(author, len(Post.objects.filter(author=author))) for author in authors]
+        return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
+                                                    'ordering_type': order_type, 'posts_count': posts_count})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page'] = 'authors'
-        return context
 
 
 """  Стартовая страница  """
@@ -33,8 +35,6 @@ class IndexView(ListView):  # Начальная страница. Ограни�
         context = super().get_context_data(**kwargs)
         context['page'] = 'home'
         return context
-
-
 
 
 def comment_submit(request):  # функция создания комментария

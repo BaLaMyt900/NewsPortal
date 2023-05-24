@@ -15,7 +15,7 @@ class PortalUser(AbstractUser):
         try:
             if_author = Author.objects.get(user=self)
         except Author.DoesNotExist:
-            pass
+            self.rating = comments_rating
         else:
             if_author.update_rating()
             self.rating = comments_rating + if_author.rating

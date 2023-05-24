@@ -8,10 +8,12 @@ class UserRegistrationForm(forms.ModelForm):  # Форма регистраци�
 
     class Meta:
         model = PortalUser
-        fields = ('username', 'email', 'password', 'password2')
+        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'password2')
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control mb-3'}),
-            'email': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': "Вводить Email необязательно"})
+            'email': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': "Вводить необязательно"}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': "Вводить необязательно"}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': "Вводить необязательно"})
         }
 
     def clean_password2(self):

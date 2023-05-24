@@ -6,45 +6,32 @@
     <div class="card">
   <div class="card-header bg-gradient bg-body-tertiary">Список авторов</div>
         <div class="card bg-gradient bg-body-tertiary md-auto py-4 my-4 mx-4">
-            {% if object_list %}
+            {% if authors %}
             <div class="text-center">Сортировка</div>
             <div class="container">
-                <form method="get">
-                    <button class="btn btn-outline-primary {% if request.GET.ordering == 'user__username' %} active {% endif %}" name="ordering" value="user__username">По алфавиту</button>
-                    <button class="btn btn-outline-primary {% if request.GET.ordering == '-rating' %} active {% endif %}" name="ordering" value="-rating">По рейтингу</button>
+                <form method="post">{% csrf_token %}
+                    <button class="btn btn-outline-primary {% if ordering_type == 'user' %} active {% endif %}" name="order_by" value="user">По алфавиту</button>
+                    <button class="btn btn-outline-primary {% if ordering_type == '-rating' %} active {% endif %}" name="order_by" value="-rating">По рейтингу</button>
                 </form>
             </div>
         </div>
-        {% for author in object_list %}
+        {% for author in authors %}
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
                 <h5 class="card-title">{{author.user.username}}</h5>
                     <h6 class="fw-light">Рейтинг автора: {{author.rating}}</h6>
-                    <h6 class="fw-light">Колличество постов: {{ author.post_count }}</h6>
+                    <h6 class="fw-light">
+                        {% for authorr, count in posts_count %}
+                            {% if author == authorr %}
+                                Колличество постов: {{count}}
+                            {% endif %}
+                        {% endfor %}
+                    </h6>
                 <p class="card-text"></p>
-                <a href="/account/{{author.user.id}}" class="btn btn-outline-primary">Карточка автора</a>
+                <a href="/account/profile/{{author.user.id}}" class="btn btn-outline-primary">Карточка автора</a>
             </div>
             </div>
         {% endfor %}
-        {% if is_paginated %}
-            <nav class="p-4">
-                <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.ordering %}&ordering={{ request.GET.ordering }}{% endif %}">Назад</a></li>
-                    {% endif %}
-                    {% for num in page_obj.paginator.page_range %}
-                        {% if page_obj.number == num %}
-                            <li class="page-item"><a class="page-link active">{{ num }}</a></li>
-                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                            <li class="page-item"><a class="page-link" href="?page={{ num }}{% if request.GET.ordering %}&ordering={{ request.GET.ordering }}{% endif %}">{{ num }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.ordering %}&ordering={{ request.GET.ordering }}{% endif %}">Вперед</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        {% endif %}
       {% else %}
         <div class="card-body">
                 <h5 class="card-title">Пока авторов нет :)</h5>

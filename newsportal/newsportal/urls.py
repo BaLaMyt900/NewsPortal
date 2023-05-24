@@ -6,7 +6,8 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view()),
-    path('account/', include("account.urls")),
+    path('account/', include('my_account.urls')),
+    path('accounts/', include("allauth.urls")),
     path('post/', include("posts.urls")),
     path('authors/', AuthorsView.as_view()),
     path('ihjoudhgpreuahodfnbjofg/', comment_submit, name='comment_submit'),
