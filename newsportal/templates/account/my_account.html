@@ -9,6 +9,8 @@
             Личный кабинет   {% if author %} Рейтинг автора: {{object.rating}} {% else %} Рейтинг пользователя: {{object.rating}} {% endif %}
             {% if request.user.username == 'admin' %}
                 <a href="/admin/">Админ панель</a>
+                <form method="post">{% csrf_token %}
+                <button name="test_mail" value="1" type="submit">TEST MAIL!</button></form>
             {% endif %}
         </div>
         <div class="card-body container">

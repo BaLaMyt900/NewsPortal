@@ -5,7 +5,13 @@ from django.shortcuts import render, redirect
 from django.views.generic import DetailView, FormView
 from portal.models import Author, Post, Comment, PortalUser
 from my_account.forms import UserRegistrationForm, UserLoginForm
+from django.core.mail import send_mail
+from dotenv import load_dotenv, find_dotenv
+import os
 
+load_dotenv(find_dotenv())
+
+dotenv.load_dotenv()
 
 """  Личный кабинет   """
 
@@ -82,6 +88,14 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
         elif request.POST.get('delete_acc'):
             user.delete()
             return redirect('/exit/')
+        elif request.POST.get('test_mail'):
+            # send_mail(
+            #     subject='SEND_DJANGO_MAIL_TEST',
+            #     message='TEST_SUCSESS!',
+            #     from_email=f'{EMAIL_HOST_USER}',
+            #     recipient_list=['balamyt900@gmail.com']
+            # )
+            print(test = )
         return redirect('/account/profile/')
 
 
