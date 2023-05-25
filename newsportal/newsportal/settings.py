@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import find_dotenv, load_dotenv
+
+load_dotenv(find_dotenv(filename='email_config.env'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -150,3 +153,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.environ.get('LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = f'{os.environ.get("LOGIN")}@yandex.ru'

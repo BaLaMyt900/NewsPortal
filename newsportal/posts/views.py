@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.core.mail import send_mass_mail
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-from portal.models import Author, Post, Comment, PortalUser, Category, CommentActivity, PostActivity, PostCategory
+from portal.models import Author, Post, Comment, PortalUser, Category, CommentActivity, PostActivity, PostCategory, \
+    Subscribers
 from posts.filters import PostFilter
-
 
 """      ПОСТЫ      """
 
@@ -14,7 +15,8 @@ class PostView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(post=self.object.pk).values('id', 'user__id', 'user__username', 'text', 'date', 'rating')
+        context['comments'] = Comment.objects.filter(post=self.object.pk).values('id', 'user__id', 'user__username',
+                                                                                 'text', 'date', 'rating')
         try:
             context['comment_activity'] = \
                 [_['activity_id'] for _ in
@@ -28,8 +30,14 @@ class PostView(DetailView):
         except TypeError:
             pass
         try:
-            self.object.category = PostCategory.objects.filter(post_id=self.object.id).values('category_id__name')
+            self.object.category = PostCategory.objects.filter(post_id=self.object.id).values('category_id__name',
+                                                                                              'category_id')
         except PostCategory.DoesNotExist:
+            pass
+        try:
+            user_subs = Subscribers.objects.filter(user=self.request.user).values('category__id')
+            self.object.user_subs = [_['category__id'] for _ in user_subs]
+        except Subscribers.DoesNotExist:
             pass
         return context
 
@@ -50,6 +58,12 @@ class PostView(DetailView):
             elif request.POST.get('comment') == '-':
                 Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
                 Post.objects.get(id=pk).author.user.update_rating()
+        elif request.POST.get('subs_category'):
+            Subscribers.objects.create(user=request.user,
+                                       category=Category.objects.get(id=request.POST.get('subs_category')))
+        elif request.POST.get('unsubs_category'):
+            Subscribers.objects.get(user=request.user,
+                                    category=Category.objects.get(id=request.POST.get('unsubs_category'))).delete()
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -66,7 +80,7 @@ class PostsView(ListView):  # Страница показа всех посто�
 
 
 class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста
-    permission_required = ('portal.add_post', )
+    permission_required = ('portal.add_post',)
     model = Post
     template_name = 'posts/new_post.html'
     fields = ['title', 'text', 'type', 'categories']
@@ -76,6 +90,23 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
         post.author = Author.objects.get(user=self.request.user)
         post.save()
         form.save_m2m()
+        """  Рассылка!  """
+        list_subs = []  # сборка Емаил адресов подписчиков, если он указан в ЛК
+        categories = [_['category__id'] for _ in PostCategory.objects.filter(post=post).values('category__id')]
+        categories = Category.objects.filter(id__in=categories)
+        for subs in Subscribers.objects.filter(category__in=categories):
+            if subs.user.username == post.author.user.username:
+                continue  # Пропуск, если пользователь = автор статьи
+            if subs.user.email:
+                send = ((  # создается отправление если у пользователя введен емаил
+                    f'Здравствуй, {subs.user.username}. Новая статья в твоём любимом разделе!',
+                    post.mail_preview(),
+                    None,   # Чтобы отправщик взял Default значение из settings
+                    [subs.user.email],
+                ))
+                if send not in list_subs:  # Проверка, чтобы не было повторений
+                    list_subs.append(send)
+        send_mass_mail(list_subs, fail_silently=True)
         return redirect(f'/post/{post.id}')
 
     def get_context_data(self, **kwargs):
@@ -85,7 +116,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
 
 
 class PostEdit(PermissionRequiredMixin, UpdateView):  # Страница редактирования поста
-    permission_required = ('portal.change_post', )
+    permission_required = ('portal.change_post',)
     model = Post
     template_name = 'posts/post_edit.html'
     fields = ['title', 'type', 'categories', 'text']
@@ -102,7 +133,7 @@ class PostEdit(PermissionRequiredMixin, UpdateView):  # Страница ред�
         return redirect(f'/post/{post.id}')
 
 
-class PostSearch(ListView):  #  Страница поиска поста
+class PostSearch(ListView):  # Страница поиска поста
     model = Post
     template_name = 'posts/post_search.html'
     ordering = ['-post_time']

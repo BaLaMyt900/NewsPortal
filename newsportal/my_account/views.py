@@ -9,9 +9,8 @@ from django.core.mail import send_mail
 from dotenv import load_dotenv, find_dotenv
 import os
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(filename='email_config.env'))
 
-dotenv.load_dotenv()
 
 """  Личный кабинет   """
 
@@ -67,6 +66,7 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
             posts = Post.objects.filter(author__user=self.object).order_by('-rating')
             for post in posts:
                 post.text = post.text[:47] + '...' if len(post.text) > 50 else post.text
+            context['posts'] = posts
         return context
 
     def post(self, request):
@@ -88,14 +88,13 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
         elif request.POST.get('delete_acc'):
             user.delete()
             return redirect('/exit/')
-        elif request.POST.get('test_mail'):
+        # elif request.POST.get('test_mail'):
             # send_mail(
-            #     subject='SEND_DJANGO_MAIL_TEST',
-            #     message='TEST_SUCSESS!',
-            #     from_email=f'{EMAIL_HOST_USER}',
+            #     subject='SEND_DJANGO',
+            #     message='Тестирую оправку почты джанго ЯНДЕКС ЭТО НЕ СПАМ!!!!',
+            #     from_email=f'{os.environ.get("LOGIN")}@yandex.ru',
             #     recipient_list=['balamyt900@gmail.com']
             # )
-            print(test = )
         return redirect('/account/profile/')
 
 

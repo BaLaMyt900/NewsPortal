@@ -100,6 +100,12 @@ class Post(models.Model):
         else:
             return self.text
 
+    def mail_preview(self):
+        if len(self.text) > 50:
+            return self.text[:47] + '...'
+        else:
+            return self.text
+
     def edit(self, new):
         self.title = new.title
         self.type = new.type
@@ -158,3 +164,8 @@ class PostActivity(models.Model):
 class CommentActivity(models.Model):
     user = models.ForeignKey(PortalUser, on_delete=models.CASCADE)
     activity = models.ForeignKey(Comment, on_delete=models.CASCADE)
+
+
+class Subscribers(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    user = models.ForeignKey(PortalUser, on_delete=models.CASCADE)
