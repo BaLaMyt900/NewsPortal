@@ -1,7 +1,9 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.models import Group
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.views import View
 from django.views.generic import DetailView, FormView
 from portal.models import Author, Post, Comment, PortalUser
 from my_account.forms import UserRegistrationForm, UserLoginForm
@@ -133,3 +135,30 @@ class UserLoginView(FormView):  # Страница логирования кли
                 return render(self.request, 'account/account_blocked.html')
         else:
             return render(self.request, self.template_name, {'form': self.get_form(), 'error': True})
+
+
+class UserLoginAjax(View):
+    def post(self, request):
+            login = request.POST.get('login')
+            password = request.POST.get('password')
+            if login and password:
+                if '@' in login:
+                    user = authenticate(email=login, password=password)
+                else:
+                    user = authenticate(login=login, password=password)
+                if user:
+                    login(request, user)
+                    return JsonResponse(
+                        data={'status': 201},
+                        status=200
+                    )
+                else:
+                    return JsonResponse(data={
+                        'status': 400,
+                        'error': 'Пользователь не найден.'
+                    }, status=200)
+            else:
+                return JsonResponse(data={
+                    'status': 400,
+                    'error': 'Логин или пароль пустые.'
+                }, status=200)
