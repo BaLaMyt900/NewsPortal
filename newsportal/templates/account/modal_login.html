@@ -3,17 +3,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Авторизация</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                <button type="button" class=    "btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <form action="{% url 'login_ajax' %}" method="post" id="form_ajax">{% csrf_token %}
             <div class="modal-body">
+                <div class="alert alert-danger d-none" role="alert"></div>
                 <label class="form-label" for="modallogin">Логин</label>
-                <input class="form-control" type="text" name="username" id="modallogin" required>
-                <div>
-
-                </div>
+                <input class="form-control" type="text" name="username" id="modallogin">
+                <div class="invalid-feedback">test</div>
                 <label class="form-label" for="modalpass">Пароль</label>
-                <input class="form-control" id="modalpass" type="password" name="password" required>
+                <input class="form-control" id="modalpass" type="password" name="password">
                 <br>
                 <h6>Авторизация с помощью почты</h6>
                 <a class="btn btn-primary" href="/accounts/google/login/?process=login">

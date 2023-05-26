@@ -10,6 +10,8 @@ from my_account.forms import UserRegistrationForm, UserLoginForm
 from django.core.mail import send_mail
 from dotenv import load_dotenv, find_dotenv
 import os
+from django.contrib.auth import logout as auth_logout
+
 
 load_dotenv(find_dotenv(filename='email_config.env'))
 
@@ -145,9 +147,9 @@ class UserLoginAjax(View):
             if '@' in username:
                 user = authenticate(email=username, password=password)
             else:
-                user = authenticate(login=username, password=password)
-            if user:
-                username(request, user)
+                user = authenticate(username=username, password=password)
+            if user is not None and user.is_active:
+                login(request, user)
                 return JsonResponse(
                     data={'status': 201},
                     status=200
@@ -162,3 +164,9 @@ class UserLoginAjax(View):
                 'status': 400,
                 'error': 'Логин или пароль пустые.'
             }, status=200)
+
+
+class UserLogoutAjax(View):
+    def post(self, request):
+        auth_logout(request)
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))

@@ -27,7 +27,7 @@
                             <div class="d-flex">
                                 <div class="text-center p-2">Здравствуй {{request.user}}!</div>
                                 <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/account/profile/{{ request.user.pk }}">Личный кабинет</a></div>
-                                <div class="px-1"><a class="btn btn-outline-danger p-2" aria-current="page" href="{% url 'exit' %}">Выход</a></div>
+                                <form class="px-1" method="post" id="#logout_ajax" action="{% url 'logout_ajax' %}">{% csrf_token %}<button class="btn btn-outline-danger" type="submit">Выход</button></form>
                             </div>
                         {% else %}
                             <div class="d-flex">
