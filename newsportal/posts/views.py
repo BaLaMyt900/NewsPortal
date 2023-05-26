@@ -1,10 +1,13 @@
+from asgiref.sync import sync_to_async
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mass_mail
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from portal.models import Author, Post, Comment, PortalUser, Category, CommentActivity, PostActivity, PostCategory, \
     Subscribers
 from posts.filters import PostFilter
+
 
 """      ПОСТЫ      """
 
@@ -60,16 +63,20 @@ class PostView(DetailView):
             elif request.POST.get('comment') == '-':
                 Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
                 Post.objects.get(id=pk).author.user.update_rating()
-        # elif request.POST.get('subs_category'):
-        #     Subscribers.objects.create(user=request.user,
-        #                                category=Category.objects.get(id=request.POST.get('subs_category')))
-        # elif request.POST.get('unsubs_category'):
-        #     Subscribers.objects.get(user=request.user,
-        #                             category=Category.objects.get(id=request.POST.get('unsubs_category'))).delete()
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
-def subscribe(request):
-    print(request)
+
+""" AJAX обработка подписок  """
+def subscribe(request, pk):
+    Subscribers.objects.create(user=request.user,
+                                   category=Category.objects.get(id=pk))
+    return JsonResponse(status=200, data={'status': 201})
+
+
+def unsubscribe(request, pk):
+    Subscribers.objects.get(user=request.user,
+                                   category=Category.objects.get(id=pk)).delete()
+    return JsonResponse(status=200, data={'status': 201})
 
 
 class PostsView(ListView):  # Страница показа всех постов с пагинацией
@@ -84,6 +91,28 @@ class PostsView(ListView):  # Страница показа всех посто�
         return context
 
 
+@sync_to_async
+def mass_mail_send(post):
+    """  Рассылка!  """
+    list_subs = []  # сборка Емаил адресов подписчиков, если он указан в ЛК
+    categories = [_['category__id'] for _ in PostCategory.objects.filter(post=post).values('category__id')]
+    categories = Category.objects.filter(id__in=categories)
+    for subs in Subscribers.objects.filter(category__in=categories):
+        if subs.user.username == post.author.user.username:
+            continue  # Пропуск, если пользователь = автор статьи
+        if subs.user.email:  # создается отправление если у пользователя введен емаил
+            send = ((
+                f'Здравствуй, {subs.user.username}. Новая статья в твоём любимом разделе!',
+                post.mail_preview(),
+                None,  # Чтобы отправщик взял Default значение из settings
+                [subs.user.email],
+            ))
+            if send not in list_subs:  # Проверка, чтобы не было повторений
+                list_subs.append(send)
+    send_mass_mail(list_subs, fail_silently=True)
+
+
+
 class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста
     permission_required = ('portal.add_post',)
     model = Post
@@ -95,23 +124,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
         post.author = Author.objects.get(user=self.request.user)
         post.save()
         form.save_m2m()
-        """  Рассылка!  """
-        list_subs = []  # сборка Емаил адресов подписчиков, если он указан в ЛК
-        categories = [_['category__id'] for _ in PostCategory.objects.filter(post=post).values('category__id')]
-        categories = Category.objects.filter(id__in=categories)
-        for subs in Subscribers.objects.filter(category__in=categories):
-            if subs.user.username == post.author.user.username:
-                continue  # Пропуск, если пользователь = автор статьи
-            if subs.user.email:
-                send = ((  # создается отправление если у пользователя введен емаил
-                    f'Здравствуй, {subs.user.username}. Новая статья в твоём любимом разделе!',
-                    post.mail_preview(),
-                    None,   # Чтобы отправщик взял Default значение из settings
-                    [subs.user.email],
-                ))
-                if send not in list_subs:  # Проверка, чтобы не было повторений
-                    list_subs.append(send)
-        send_mass_mail(list_subs, fail_silently=True)
+        mass_mail_send(post)
         return redirect(f'/post/{post.id}')
 
     def get_context_data(self, **kwargs):

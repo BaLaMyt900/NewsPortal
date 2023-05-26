@@ -6,14 +6,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import DetailView, FormView
 from portal.models import Author, Post, Comment, PortalUser
-from my_account.forms import UserRegistrationForm, UserLoginForm
-from django.core.mail import send_mail
-from dotenv import load_dotenv, find_dotenv
-import os
+from my_account.forms import UserRegistrationForm
 from django.contrib.auth import logout as auth_logout
-
-
-load_dotenv(find_dotenv(filename='email_config.env'))
 
 
 """  Личный кабинет   """
@@ -92,13 +86,6 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
         elif request.POST.get('delete_acc'):
             user.delete()
             return redirect('/exit/')
-        # elif request.POST.get('test_mail'):
-            # send_mail(
-            #     subject='SEND_DJANGO',
-            #     message='Тестирую оправку почты джанго ЯНДЕКС ЭТО НЕ СПАМ!!!!',
-            #     from_email=f'{os.environ.get("LOGIN")}@yandex.ru',
-            #     recipient_list=['balamyt900@gmail.com']
-            # )
         return redirect('/account/profile/')
 
 
@@ -122,24 +109,7 @@ class UserRegisterView(FormView):
                 return render(self.request, 'account/account_blocked.html')
 
 
-class UserLoginView(FormView):  # Страница логирования клиента. Перейдет если в модальном окне произошла ошибка
-    form_class = UserLoginForm
-    template_name = 'account/login.html'
-
-    def form_valid(self, form):
-        cd = form.cleaned_data
-        user = authenticate(username=cd['username'], password=cd['password'])
-        if user is not None:
-            if user.is_active:
-                login(self.request, user)
-                return redirect(self.request.META.get('HTTP_REFERER', '/'))
-            else:
-                return render(self.request, 'account/account_blocked.html')
-        else:
-            return render(self.request, self.template_name, {'form': self.get_form(), 'error': True})
-
-
-class UserLoginAjax(View):
+class UserLoginAjax(View):  # Логин в модальном через AJAX
     def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -166,7 +136,7 @@ class UserLoginAjax(View):
             }, status=200)
 
 
-class UserLogoutAjax(View):
+class UserLogout(View):  # Выход из аккаунта с возвратом на ту же страницу
     def post(self, request):
         auth_logout(request)
         return redirect(self.request.META.get('HTTP_REFERER', '/'))

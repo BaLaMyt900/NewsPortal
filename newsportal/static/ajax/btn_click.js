@@ -12,7 +12,7 @@ function getCookie(name) {
         }
     }
     return cookieValue;
-
+}
 
 
 
@@ -22,10 +22,10 @@ function subscribe(pk)
         url : "/post/subs/subscribe/" + pk,
         type : 'POST',
         data : { 'btn' : pk,
-            csrfmiddlewaretoken: getCookie('csrftoken') },
+            csrfmiddlewaretoken: getCookie('csrftoken')},
 
         success : function (json) {
-            window.location.reload()
+            if (json.status === 201) {window.location.reload()}
         }
     });
 
@@ -35,12 +35,13 @@ function subscribe(pk)
 function unsubscribe(pk)
 {
     $.ajax({
-        url : "/subs/unsubscribe/" + pk + "/" ,
+        url : "/post/subs/unsubscribe/" + pk,
         type : 'POST',
-        data : { 'btn' : pk },
+        data : {'btn' : pk,
+        csrfmiddlewaretoken: getCookie('csrftoken')},
 
         success : function (json) {
-            window.location.reload()
+            if (json.status === 201) {window.location.reload()}
         }
     });
 
