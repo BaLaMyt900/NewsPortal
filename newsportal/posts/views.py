@@ -39,6 +39,8 @@ class PostView(DetailView):
             self.object.user_subs = [_['category__id'] for _ in user_subs]
         except Subscribers.DoesNotExist:
             pass
+        except TypeError:
+            pass
         return context
 
     def post(self, request, pk):
