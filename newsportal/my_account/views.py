@@ -103,7 +103,7 @@ class UserRegisterView(FormView):
         Group.objects.get(name='common').user_set.add(new_user)
         if new_user is not None:
             if new_user.is_active:
-                login(self.request, new_user, backend='django.contrib.auth.backends.ModelBackend')
+                login(self.request, new_user, backend='allauth.account.auth_backends.AuthenticationBackend')
                 return redirect('/')
             else:
                 return render(self.request, 'account/account_blocked.html')
