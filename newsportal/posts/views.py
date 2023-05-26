@@ -60,13 +60,16 @@ class PostView(DetailView):
             elif request.POST.get('comment') == '-':
                 Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
                 Post.objects.get(id=pk).author.user.update_rating()
-        elif request.POST.get('subs_category'):
-            Subscribers.objects.create(user=request.user,
-                                       category=Category.objects.get(id=request.POST.get('subs_category')))
-        elif request.POST.get('unsubs_category'):
-            Subscribers.objects.get(user=request.user,
-                                    category=Category.objects.get(id=request.POST.get('unsubs_category'))).delete()
+        # elif request.POST.get('subs_category'):
+        #     Subscribers.objects.create(user=request.user,
+        #                                category=Category.objects.get(id=request.POST.get('subs_category')))
+        # elif request.POST.get('unsubs_category'):
+        #     Subscribers.objects.get(user=request.user,
+        #                             category=Category.objects.get(id=request.POST.get('unsubs_category'))).delete()
         return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def subscribe(request):
+    print(request)
 
 
 class PostsView(ListView):  # Страница показа всех постов с пагинацией
