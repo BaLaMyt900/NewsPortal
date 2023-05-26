@@ -139,26 +139,26 @@ class UserLoginView(FormView):  # Страница логирования кли
 
 class UserLoginAjax(View):
     def post(self, request):
-            login = request.POST.get('login')
-            password = request.POST.get('password')
-            if login and password:
-                if '@' in login:
-                    user = authenticate(email=login, password=password)
-                else:
-                    user = authenticate(login=login, password=password)
-                if user:
-                    login(request, user)
-                    return JsonResponse(
-                        data={'status': 201},
-                        status=200
-                    )
-                else:
-                    return JsonResponse(data={
-                        'status': 400,
-                        'error': 'Пользователь не найден.'
-                    }, status=200)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if username and password:
+            if '@' in username:
+                user = authenticate(email=username, password=password)
+            else:
+                user = authenticate(login=username, password=password)
+            if user:
+                username(request, user)
+                return JsonResponse(
+                    data={'status': 201},
+                    status=200
+                )
             else:
                 return JsonResponse(data={
                     'status': 400,
-                    'error': 'Логин или пароль пустые.'
+                    'error': 'Пользователь не найден.'
                 }, status=200)
+        else:
+            return JsonResponse(data={
+                'status': 400,
+                'error': 'Логин или пароль пустые.'
+            }, status=200)

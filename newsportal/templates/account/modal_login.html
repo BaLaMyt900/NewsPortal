@@ -5,10 +5,13 @@
                 <h5 class="modal-title">Авторизация</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
-            <form action="{% url 'login_ajax' %}" method="post">{% csrf_token %}
+            <form action="{% url 'login_ajax' %}" method="post" id="form_ajax">{% csrf_token %}
             <div class="modal-body">
                 <label class="form-label" for="modallogin">Логин</label>
                 <input class="form-control" type="text" name="username" id="modallogin" required>
+                <div>
+
+                </div>
                 <label class="form-label" for="modalpass">Пароль</label>
                 <input class="form-control" id="modalpass" type="password" name="password" required>
                 <br>
