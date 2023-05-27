@@ -1,7 +1,6 @@
 from asgiref.sync import sync_to_async
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mass_mail
-from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from portal.models import Author, Post, Comment, PortalUser, Category, CommentActivity, PostActivity, PostCategory, \
@@ -45,38 +44,6 @@ class PostView(DetailView):
         except TypeError:
             pass
         return context
-
-    def post(self, request, pk):
-        if request.POST.get('post'):
-            if request.POST.get('post') == '+':
-                post = Post.objects.get(id=pk)
-                post.like(request.user)
-                PortalUser.objects.get(id=post.author.user.id).update_rating()
-            elif request.POST.get('post') == '-':
-                post = Post.objects.get(id=pk)
-                post.dislike(request.user)
-                PortalUser.objects.get(id=post.author.user.id).update_rating()
-        elif request.POST.get('comment'):
-            if request.POST.get('comment') == '+':
-                Comment.objects.get(id=request.POST.get('id')).like(request.user)
-                Post.objects.get(id=pk).author.user.update_rating()
-            elif request.POST.get('comment') == '-':
-                Comment.objects.get(id=request.POST.get('id')).dislike(request.user)
-                Post.objects.get(id=pk).author.user.update_rating()
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-""" AJAX обработка подписок  """
-def subscribe(request, pk):
-    Subscribers.objects.create(user=request.user,
-                                   category=Category.objects.get(id=pk))
-    return JsonResponse(status=200, data={'status': 201})
-
-
-def unsubscribe(request, pk):
-    Subscribers.objects.get(user=request.user,
-                                   category=Category.objects.get(id=pk)).delete()
-    return JsonResponse(status=200, data={'status': 201})
 
 
 class PostsView(ListView):  # Страница показа всех постов с пагинацией

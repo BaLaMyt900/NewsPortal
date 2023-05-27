@@ -26,6 +26,7 @@ function subscribe(pk)
 
         success : function (json) {
             if (json.status === 201) {window.location.reload()}
+            else if (json.status === 400) {console.log('err - ', json)}
         }
     });
 
@@ -42,6 +43,7 @@ function unsubscribe(pk)
 
         success : function (json) {
             if (json.status === 201) {window.location.reload()}
+            else if (json.status === 400) {console.log('err - ', json)}
         }
     });
 

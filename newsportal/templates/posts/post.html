@@ -79,8 +79,8 @@
       {% csrf_token %}
       <input type="hidden" name="id" value="{{post.id}}">
       <div class="btn-group">
-        <button class="btn btn-outline-success" name="post" value="+" type="submit">Лайк!</button>
-        <button class="btn btn-outline-danger" name="post" value="-" type="submit">Дизлайк!</button>
+        <button class="btn btn-outline-success" onclick="return postlike('{{post.pk}}')">Лайк!</button>
+        <button class="btn btn-outline-success" onclick="return postdislike('{{post.pk}}')">Дизлайк!</button>
       </div>
     </form>
     {% else %}
@@ -127,14 +127,10 @@
           <div class="text-muted">Рейтинг: {{comment.rating}} <br> Комментарий написан {{comment.date|timesince}} назад</div>
         {% if request.user.is_authenticated and request.user.id != comment.user__id %}
           {% if comment.id not in comment_activity %}
-            <form method="post">
-            {% csrf_token %}
-                <input type="hidden" name="id" value="{{comment.id}}">
                 <div class="btn-group">
-                  <button class="btn btn-outline-success" name="comment" value="+" type="submit">Лайк!</button>
-                  <button class="btn btn-outline-danger" name="comment" value="-" type="submit">Дизлайк!</button>
+                  <button class="btn btn-outline-success" onclick="return commlike('{{ comment.id }}')">Лайк!</button>
+                  <button class="btn btn-outline-success" onclick="return commdislike('{{comment.id}}')">Дизлайк!</button>
                 </div>
-              </form>
           {% else %}
           <div class="text">Вы уже оценили данный комментарий. Спасибо за Вашу активность!</div>
           {% endif %}
@@ -153,5 +149,6 @@
 </div>
 </div>
 {% load static %}
-<script src="{% static 'ajax/btn_click.js' %}"></script>
+<script src="{% static 'ajax/category_subs.js' %}"></script>
+<script src="{% static 'ajax/like_btn.js' %}"></script>
 {% endblock body %}
