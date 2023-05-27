@@ -1,3 +1,5 @@
+import asyncio
+
 from asgiref.sync import sync_to_async
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mass_mail
@@ -79,7 +81,6 @@ def mass_mail_send(post):
     send_mass_mail(list_subs, fail_silently=True)
 
 
-
 class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста
     permission_required = ('portal.add_post',)
     model = Post
@@ -91,7 +92,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
         post.author = Author.objects.get(user=self.request.user)
         post.save()
         form.save_m2m()
-        mass_mail_send(post)
+        asyncio.run(mass_mail_send(post))
         return redirect(f'/post/{post.id}')
 
     def get_context_data(self, **kwargs):
