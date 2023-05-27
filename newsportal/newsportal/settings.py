@@ -87,14 +87,19 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/'
 
-ACCOUNT_EMAIL_REQUIRED = False
+# LOGIN
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_FORMS = {
+    'signup': 'my_account.forms.UserRegistraionForm',
+}
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -155,6 +160,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# EMAIL
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465

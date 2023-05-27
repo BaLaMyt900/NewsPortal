@@ -2,12 +2,16 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views import View
-from django.views.generic import DetailView, FormView
+from django.views.generic import DetailView
+
+from my_account.forms import UserRegistraionForm
 from portal.models import Author, Post, Comment, PortalUser
-from my_account.forms import UserRegistrationForm
 from django.contrib.auth import logout as auth_logout
+from allauth.account.views import SignupView
+
+
 
 
 """  Личный кабинет   """
@@ -92,21 +96,9 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
 """   Регистрация и логин   """
 
 
-class UserRegisterView(FormView):
-    form_class = UserRegistrationForm
+class UserRegisterView(SignupView):
     template_name = 'account/register.html'
-
-    def form_valid(self, form):
-        new_user = form.save(commit=False)
-        new_user.set_password(form.cleaned_data['password'])
-        new_user.save()
-        Group.objects.get(name='common').user_set.add(new_user)
-        if new_user is not None:
-            if new_user.is_active:
-                login(self.request, new_user, backend='allauth.account.auth_backends.AuthenticationBackend')
-                return redirect('/')
-            else:
-                return render(self.request, 'account/account_blocked.html')
+    form_class = UserRegistraionForm
 
 
 class UserLoginAjax(View):  # Логин в модальном через AJAX
