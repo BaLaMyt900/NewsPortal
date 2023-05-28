@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'portal',
+    'portal.app.PortalConfig',
     'posts',
     'my_account'
 ]
@@ -170,3 +170,4 @@ EMAIL_HOST_USER = os.environ.get('LOGIN')
 EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = f'{os.environ.get("LOGIN")}@yandex.ru'
+MANAGERS = [('admin', 'illidan-pos@yandex.ru')]
