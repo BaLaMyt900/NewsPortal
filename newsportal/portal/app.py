@@ -4,5 +4,5 @@ from django.apps import AppConfig
 class PortalConfig(AppConfig):
     name = 'portal'
 
-    def ready(self):
-        import portal.signals
+    # def ready(self):
+        # import portal.signals

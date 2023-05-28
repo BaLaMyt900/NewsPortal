@@ -80,7 +80,7 @@
       <input type="hidden" name="id" value="{{post.id}}">
       <div class="btn-group">
         <button class="btn btn-outline-success" onclick="return postlike('{{post.pk}}')">Лайк!</button>
-        <button class="btn btn-outline-success" onclick="return postdislike('{{post.pk}}')">Дизлайк!</button>
+        <button class="btn btn-outline-danger" onclick="return postdislike('{{post.pk}}')">Дизлайк!</button>
       </div>
     </form>
     {% else %}
@@ -129,7 +129,7 @@
           {% if comment.id not in comment_activity %}
                 <div class="btn-group">
                   <button class="btn btn-outline-success" onclick="return commlike('{{ comment.id }}')">Лайк!</button>
-                  <button class="btn btn-outline-success" onclick="return commdislike('{{comment.id}}')">Дизлайк!</button>
+                  <button class="btn btn-outline-danger" onclick="return commdislike('{{comment.id}}')">Дизлайк!</button>
                 </div>
           {% else %}
           <div class="text">Вы уже оценили данный комментарий. Спасибо за Вашу активность!</div>
@@ -151,4 +151,7 @@
 {% load static %}
 <script src="{% static 'ajax/category_subs.js' %}"></script>
 <script src="{% static 'ajax/like_btn.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                                crossorigin="anonymous"></script>
 {% endblock body %}

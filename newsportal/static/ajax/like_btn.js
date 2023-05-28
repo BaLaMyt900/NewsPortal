@@ -22,7 +22,6 @@ function postlike(pk)
         type : 'POST',
         data : { 'btn' : pk,
             csrfmiddlewaretoken: getCookie('csrftoken')},
-
         success : function (json) {
             if (json.status === 201) {window.location.reload()}
             else if (json.status === 400) {console.log('err - ', json)}
@@ -56,7 +55,6 @@ function commlike(pk)
         type : 'POST',
         data : { 'btn' : pk,
             csrfmiddlewaretoken: getCookie('csrftoken')},
-
         success : function (json) {
             if (json.status === 201) {window.location.reload()}
             else if (json.status === 400) {console.log('err - ', json)}

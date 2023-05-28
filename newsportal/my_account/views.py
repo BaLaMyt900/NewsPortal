@@ -84,7 +84,7 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
                 user.save()
         elif request.POST.get('delete_acc'):
             user.delete()
-            return redirect('/exit/')
+            return redirect('/')
         return redirect('/account/profile/')
 
 
