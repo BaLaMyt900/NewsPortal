@@ -26,7 +26,10 @@
                                     Фамилия
                                     <input class="form-control mb-3" type="text" placeholder="{% if not object.last_name %}Не указано{% endif %}" value="{% if object.last_name %}{{object.last_name}}{% endif %}" name="last_name">
                                     Почта
-                                    <input class="form-control mb-3" type="email" placeholder="{% if not object.email %}Не указано{% endif %}" value="{% if object.email %}{{object.email}}{% endif %}" name="email">
+                                    <div class="row py-2">
+                                        <div class="col flex-column"><div class="text rounded border p-2">{% if object.email %}{{object.email}}{% else %}Не указано{% endif %}</div></div>
+                                        <div class="col-md-auto d-flex"><a class="btn btn-outline-primary" href="/accounts/email">Сменить почту</a></div>
+                                    </div>
                                     <div class="card">
                                     <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Для подверждения изменений, введите пароль</div>
                                         <div class="card-body">
@@ -165,4 +168,10 @@
     <p></p>
     </div>
 </div>
+
+<!--{% load static %}-->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"-->
+<!--        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="{% static 'ajax/profile.js' %}"></script>-->
 {% endblock body %}

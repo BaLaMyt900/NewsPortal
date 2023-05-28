@@ -5,6 +5,7 @@
     {% load humanize %}
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <title>{% block title %}{% endblock title %}</title>
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
 <div>
@@ -27,12 +28,17 @@
                             <div class="d-flex">
                                 <div class="text-center p-2">Здравствуй {{request.user}}!</div>
                                 <div class="px-1"><a class="btn btn-outline-primary p-2" aria-current="page" href="/account/profile/{{ request.user.pk }}">Личный кабинет</a></div>
-                                <form class="px-1" method="post" id="#logout_ajax" action="{% url 'logout_ajax' %}">{% csrf_token %}<button class="btn btn-outline-danger" type="submit">Выход</button></form>
+                                <form class="px-1" method="post" id="#logout_ajax" action="{% url 'account_logout' %}">{% csrf_token %}<button class="btn btn-outline-danger" type="submit">Выход</button></form>
                             </div>
                         {% else %}
                             <div class="d-flex">
                                 <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginform">Логин</button>
                                 <a class="btn btn-primary" href="{% url 'signup' %}">Регистрация</a>
+                                {% include 'account/modal_login.html' %}
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                                crossorigin="anonymous"></script>
+                                <script src="{% static 'ajax/ajax_login.js' %}"></script>
                             </div>
                         {% endif %}
                     </div>
@@ -42,11 +48,7 @@
 </div>
     {% block body %}
     {% endblock body %}
-    {% include 'account/modal_login.html' %}
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
-    <script src="{% static 'ajax/ajax_login.js' %}"></script>
+
 </body>
 </html>

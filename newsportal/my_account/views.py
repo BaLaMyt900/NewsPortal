@@ -5,15 +5,10 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.views import View
 from django.views.generic import DetailView
-
 from my_account.forms import UserRegistraionForm
 from portal.models import Author, Post, Comment, PortalUser
 from django.contrib.auth import logout as auth_logout
 from allauth.account.views import SignupView
-
-
-
-
 """  Личный кабинет   """
 
 
@@ -132,3 +127,5 @@ class UserLogout(View):  # Выход из аккаунта с возврато�
     def post(self, request):
         auth_logout(request)
         return redirect(self.request.META.get('HTTP_REFERER', '/'))
+
+
