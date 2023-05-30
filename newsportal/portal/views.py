@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from portal.models import Author, Post, Comment, PortalUser
+from portal.models import Author, Post, Comment
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
 """    Авторы   """
 

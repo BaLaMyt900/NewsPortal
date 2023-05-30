@@ -1,5 +1,4 @@
 import asyncio
-
 from asgiref.sync import sync_to_async
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mass_mail
