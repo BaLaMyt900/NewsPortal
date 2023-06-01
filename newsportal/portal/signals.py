@@ -15,19 +15,20 @@ def async_send_mail(send_list):
 
 @receiver(post_save, sender=Post)
 def post_notifications(sender, instance, created, **kwargs):
-    if created:
-        subject = f'Автор {instance.author.user.username} опубликовал новый пост {instance.title}'
-    else:
-        subject = f'Автор {instance.author.user.username} отредактировал пост: {instance.title}'
-    managers_send_list = []
-    for email in settings.MANAGERS:
-        managers_send_list.append((
-            subject,
-            instance.text,
-            None,
-            [email],
-        ))
-    asyncio.run(async_send_mail(managers_send_list))
+    if settings.MANAGERS:
+        if created:
+            subject = f'Автор {instance.author.user.username} опубликовал новый пост {instance.title}'
+        else:
+            subject = f'Автор {instance.author.user.username} отредактировал пост: {instance.title}'
+        managers_send_list = []
+        for email in settings.MANAGERS:
+            managers_send_list.append((
+                subject,
+                instance.text,
+                None,
+                [email],
+            ))
+        asyncio.run(async_send_mail(managers_send_list))
 
 
 @receiver(post_save, sender=PortalUser)  # Костыль добавления новых пользователей в группу common

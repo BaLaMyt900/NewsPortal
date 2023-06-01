@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'portal.app.PortalConfig',
     'posts',
-    'my_account'
+    'my_account',
+    'django_apscheduler'
 ]
 
 LOGIN_URL = '/account/login/'
@@ -109,6 +110,20 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+# EMAIL
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.environ.get('LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = f'{os.environ.get("LOGIN")}@yandex.ru'
+MANAGERS = []  # Список менеджеров для рассылки. Строки через запятую
+
+# SCHEDULER
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
+
 WSGI_APPLICATION = 'newsportal.wsgi.application'
 
 
@@ -165,12 +180,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# EMAIL
 
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = os.environ.get('LOGIN')
-EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
-EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = f'{os.environ.get("LOGIN")}@yandex.ru'
-MANAGERS = []  # Список менеджеров для рассылки. Строки через запятую
