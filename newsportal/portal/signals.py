@@ -3,8 +3,9 @@ from asgiref.sync import sync_to_async
 from django.core.mail import send_mass_mail
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Post
+from .models import Post, PortalUser
 from django.conf import settings
+from django.contrib.auth.models import Group
 
 
 @sync_to_async
@@ -27,3 +28,9 @@ def post_notifications(sender, instance, created, **kwargs):
             [email],
         ))
     asyncio.run(async_send_mail(managers_send_list))
+
+
+@receiver(post_save, sender=PortalUser)  # Костыль добавления новых пользователей в группу common
+def new_user_signal(sender, instance, created, **kwargs):
+    if created:
+        Group.objects.get(name='common').user_set.add(instance)

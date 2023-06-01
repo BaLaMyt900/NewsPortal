@@ -89,7 +89,12 @@
                 <div class="row">
                     <div class="card border-0">
                         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Статьи
-                        {% if request.user == object %}<a class="text-end" href="/post/new_post">Создать новую статью</a>{% endif %}</div>
+                        {% if request.user == object and number_of_posts != 0 %}<a class="text-end" href="/post/new_post">Создать новую статью</a>
+                            Колличество доступных публикаций: {{ number_of_posts }}
+                        {% else %}
+                            Вы больше не можете создавать посты сегодня.
+                        {% endif %}
+                        </div>
                         {% if posts %}
                         <div class="container rounded shadow overflow-y-auto py-2" style="height: 300px">
                             {% for post in posts %}

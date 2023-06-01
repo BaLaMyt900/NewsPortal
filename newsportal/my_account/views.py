@@ -64,6 +64,7 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
             for post in posts:
                 post.text = post.text[:47] + '...' if len(post.text) > 50 else post.text
             context['posts'] = posts
+            context['number_of_posts'] = Author.objects.get(user=self.object).numbers_of_posts
         return context
 
     def post(self, request):
@@ -80,7 +81,6 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
                 user.username = request.POST.get('username')
                 user.first_name = request.POST.get('first_name')
                 user.last_name = request.POST.get('last_name')
-                user.email = request.POST.get('email')
                 user.save()
         elif request.POST.get('delete_acc'):
             user.delete()

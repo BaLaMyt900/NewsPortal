@@ -91,12 +91,14 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
         post.author = Author.objects.get(user=self.request.user)
         post.save()
         form.save_m2m()
+        post.author.new_post()
         asyncio.run(mass_mail_send(post))
         return redirect(f'/post/{post.id}')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.values_list('id', 'name')
+        context['is_valid'] = Author.objects.get(user=self.request.user).numbers_of_posts != 0
         return context
 
 

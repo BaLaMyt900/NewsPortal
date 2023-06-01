@@ -25,12 +25,21 @@ class PortalUser(AbstractUser):
 class Author(models.Model):
     user = models.OneToOneField(PortalUser, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
+    numbers_of_posts = models.IntegerField(default=3)
 
     def __str__(self):
         return 'Автор: ' + self.user.username
 
     def post_count(self):
         return len(Post.objects.filter(author=self))
+
+    def new_post(self):
+        self.numbers_of_posts -= 1
+        self.save()
+
+    def update_numbers_of_posts(self):
+        self.numbers_of_posts = 3
+        self.save()
 
     def update_rating(self):
         posts = Post.objects.filter(author=self)
