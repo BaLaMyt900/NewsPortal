@@ -14,8 +14,6 @@ function getCookie(name) {
     return cookieValue;
 }
 
-
-
 function subscribe(pk)
 {
     $.ajax({

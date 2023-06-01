@@ -13,10 +13,7 @@ $(function ($) {
                 } else if (response.status === 400) {
                     $('.alert-danger').text(response.error).removeClass('d-none')
                 }
-            },
-            // error: function (response) {
-            //     console.log('err - ', response)
-            // }
+            }
         })
     })
 })

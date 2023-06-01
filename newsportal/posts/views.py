@@ -1,10 +1,12 @@
 import asyncio
 from asgiref.sync import sync_to_async
+from django.conf import settings
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.core.mail import send_mass_mail
+from django.core.mail import EmailMessage
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-from portal.models import Author, Post, Comment, PortalUser, Category, CommentActivity, PostActivity, PostCategory, \
+from portal.models import Author, Post, Comment, Category, CommentActivity, PostActivity, PostCategory, \
     Subscribers
 from posts.filters import PostFilter
 
@@ -69,15 +71,21 @@ def mass_mail_send(post):
         if subs.user.username == post.author.user.username:
             continue  # Пропуск, если пользователь = автор статьи
         if subs.user.email:  # создается отправление если у пользователя введен емаил
-            send = ((
-                f'Здравствуй, {subs.user.username}. Новая статья в твоём любимом разделе!',
-                post.mail_preview(),
-                None,  # Чтобы отправщик взял Default значение из settings
-                [subs.user.email],
-            ))
-            if send not in list_subs:  # Проверка, чтобы не было повторений
-                list_subs.append(send)
-    send_mass_mail(list_subs, fail_silently=True)
+            list_subs.append((subs.user.email, subs.user.username, subs.category.name))
+    for email, username, cat in list_subs:
+        context = {
+            'user': username,
+            'post': post,
+            'cat': cat
+        }
+        message = EmailMessage(
+            f'Вышла новая {"Статья" if post.type == "A" else "Новость"} в Вашей выбранной категории!',
+            render_to_string('posts/email/new_post_email.html', context=context),
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[email]
+        )
+        message.content_subtype = 'html'
+        message.send()
 
 
 class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста

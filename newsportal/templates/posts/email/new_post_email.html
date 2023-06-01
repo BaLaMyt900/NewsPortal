@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автор {{ post.author }} написал новый пост!</title>
+</head>
+<body>
+    <h1>Добрый день {{ user }}!</h1>
+    <h3>В выбранной Вами категории "{{ cat }}" есть новый пост!</h3>
+    <p>{{ post.mail_preview }}</p>
+    <p><a href="http://127.0.0.1:8000/post/{{post.pk}}">Полная статья</a></p>
+</body>
+</html>

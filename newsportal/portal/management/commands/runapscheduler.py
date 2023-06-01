@@ -25,7 +25,7 @@ def previous_week_sending():  # Функция сбора и отправки п
                                                                                         'posts': posts,
                                                                                         'cat': cat.name})
                     message = EmailMessage(  # Сборка сообщения
-                        'Новая выгрузка из Вашей любимой категории: {cat.name}',
+                        f'Новая выгрузка из Вашей любимой категории: {cat.name}',
                         msg,
                         from_email=settings.DEFAULT_FROM_EMAIL,
                         to=[user.email]

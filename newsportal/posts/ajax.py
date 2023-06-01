@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect
-
 from portal.models import Subscribers, Category, Post, PortalUser, PostActivity, Comment, CommentActivity
 
 """ AJAX обработка подписок  """

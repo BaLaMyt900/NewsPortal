@@ -8,13 +8,13 @@ from django.conf import settings
 from django.contrib.auth.models import Group
 
 
-@sync_to_async
-def async_send_mail(send_list):
-    send_mass_mail(send_list)
-
-
 @receiver(post_save, sender=Post)
 def post_notifications(sender, instance, created, **kwargs):
+    @sync_to_async
+    def async_send_mail(send_list):
+        if send_list:
+            send_mass_mail(send_list)
+
     if settings.MANAGERS:
         if created:
             subject = f'Автор {instance.author.user.username} опубликовал новый пост {instance.title}'
