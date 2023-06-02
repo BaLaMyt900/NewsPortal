@@ -7,8 +7,9 @@ from django.views import View
 from django.views.generic import DetailView
 from my_account.forms import UserRegistraionForm
 from portal.models import Author, Post, Comment, PortalUser
-from django.contrib.auth import logout as auth_logout
 from allauth.account.views import SignupView
+
+
 """  Личный кабинет   """
 
 
@@ -121,11 +122,3 @@ class UserLoginAjax(View):  # Логин в модальном через AJAX
                 'status': 400,
                 'error': 'Логин или пароль пустые.'
             }, status=200)
-
-
-class UserLogout(View):  # Выход из аккаунта
-    def post(self, request):
-        auth_logout(request)
-        return redirect('/')
-
-
