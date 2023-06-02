@@ -123,9 +123,9 @@ class UserLoginAjax(View):  # Логин в модальном через AJAX
             }, status=200)
 
 
-class UserLogout(View):  # Выход из аккаунта с возвратом на ту же страницу
+class UserLogout(View):  # Выход из аккаунта
     def post(self, request):
         auth_logout(request)
-        return redirect(self.request.META.get('HTTP_REFERER', '/'))
+        return redirect('/')
 
 
