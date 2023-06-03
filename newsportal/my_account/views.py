@@ -9,7 +9,6 @@ from my_account.forms import UserRegistraionForm
 from portal.models import Author, Post, Comment, PortalUser
 from allauth.account.views import SignupView
 
-
 """  Личный кабинет   """
 
 

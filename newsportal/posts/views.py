@@ -1,4 +1,3 @@
-import asyncio
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
@@ -68,8 +67,8 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
         post.author = Author.objects.get(user=self.request.user)
         post.save()
         form.save_m2m()
-        post.author.new_post()
-        mass_mail_send.delay(post)
+        post.author.new_post()  # отслеживание написания новой статьи и уменьшение счетчика
+        mass_mail_send.apply_async([post.pk])  # Отправка рассылки через celery
         return redirect(f'/post/{post.id}')
 
     def get_context_data(self, **kwargs):

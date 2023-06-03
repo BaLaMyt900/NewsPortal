@@ -2,12 +2,12 @@ from celery import shared_task
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from portal.models import Category, Subscribers
+from portal.models import Category, Subscribers, Post, PostCategory
 
 
 @shared_task
-def mass_mail_send(post):
-    """  Рассылка!  """
+def mass_mail_send(post_id):
+    post = Post.objects.get(pk=post_id)
     list_subs = []  # сборка Емаил адресов подписчиков, если он указан в ЛК
     categories = [_['category__id'] for _ in PostCategory.objects.filter(post=post).values('category__id')]
     categories = Category.objects.filter(id__in=categories)

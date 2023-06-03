@@ -11,11 +11,13 @@ app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
     'previous_week_sending': {
-        'task': 'newsportal.tasks.previous_week_sending',
-        'schedule': crontab(day_of_week='mon', hour=0, minute=0),
+        'task': 'portal.tasks.previous_week_sending',
+        'schedule': crontab(day_of_week='mon', hour=8, minute=0),
+        'args': (),
     },
     'drop_numbers_of_posts': {
-        'task': 'newsportal.tasks.drop_numbers_of_posts',
-        'schedule': crontab(hour=0, minute=0)
-    }
+        'task': 'portal.tasks.drop_numbers_of_posts',
+        'schedule': crontab(hour=0, minute=0),
+        'args': (),
+    },
 }
