@@ -48,8 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'portal.app.PortalConfig',
     'posts',
-    'my_account',
-    'django_apscheduler'
+    'my_account'
 ]
 
 LOGIN_URL = '/account/login/'
@@ -180,4 +179,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CELERY
 
+CELERY_BROKER_URL = 'redis://django:>ZAHMR6A2B__HEu@redis-10736.c1.us-east1-2.gce.cloud.redislabs.com:10736'
+CELERY_RESULT_BACKEND = 'redis://django:>ZAHMR6A2B__HEu@redis-10736.c1.us-east1-2.gce.cloud.redislabs.com:10736'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

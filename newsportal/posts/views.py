@@ -1,15 +1,11 @@
 import asyncio
-from asgiref.sync import sync_to_async
-from django.conf import settings
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.core.mail import EmailMessage
 from django.shortcuts import redirect
-from django.template.loader import render_to_string
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from portal.models import Author, Post, Comment, Category, CommentActivity, PostActivity, PostCategory, \
     Subscribers
 from posts.filters import PostFilter
-
+from .tasks import mass_mail_send
 
 """      ПОСТЫ      """
 
@@ -61,33 +57,6 @@ class PostsView(ListView):  # Страница показа всех посто�
         return context
 
 
-@sync_to_async
-def mass_mail_send(post):
-    """  Рассылка!  """
-    list_subs = []  # сборка Емаил адресов подписчиков, если он указан в ЛК
-    categories = [_['category__id'] for _ in PostCategory.objects.filter(post=post).values('category__id')]
-    categories = Category.objects.filter(id__in=categories)
-    for subs in Subscribers.objects.filter(category__in=categories):
-        if subs.user.username == post.author.user.username:
-            continue  # Пропуск, если пользователь = автор статьи
-        if subs.user.email:  # создается отправление если у пользователя введен емаил
-            list_subs.append((subs.user.email, subs.user.username, subs.category.name))
-    for email, username, cat in list_subs:
-        context = {
-            'user': username,
-            'post': post,
-            'cat': cat
-        }
-        message = EmailMessage(
-            f'Вышла новая {"Статья" if post.type == "A" else "Новость"} в Вашей выбранной категории!',
-            render_to_string('posts/email/new_post_email.html', context=context),
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[email]
-        )
-        message.content_subtype = 'html'
-        message.send()
-
-
 class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста
     permission_required = ('portal.add_post',)
     model = Post
@@ -100,7 +69,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
         post.save()
         form.save_m2m()
         post.author.new_post()
-        asyncio.run(mass_mail_send(post))
+        mass_mail_send.delay(post)
         return redirect(f'/post/{post.id}')
 
     def get_context_data(self, **kwargs):
