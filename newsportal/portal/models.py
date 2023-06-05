@@ -2,6 +2,7 @@ import django.utils.timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Sum
+from django.core.cache import cache
 
 
 class PortalUser(AbstractUser):
@@ -120,6 +121,10 @@ class Post(models.Model):
         self.type = new.type
         self.text = new.text
         self.save()
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        cache.delete(f'post-{self.pk}')
 
     class Meta:
         ordering = ('-post_time', )

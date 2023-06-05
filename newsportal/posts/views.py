@@ -1,22 +1,34 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-from portal.models import Author, Post, Comment, Category, CommentActivity, PostActivity, PostCategory, \
-    Subscribers
+from portal.models import Author, Post, Comment, Category, CommentActivity, \
+    PostActivity, PostCategory, Subscribers
+from django.core.cache import cache
 from posts.filters import PostFilter
 from .tasks import mass_mail_send
+
 
 """      ПОСТЫ      """
 
 
 class PostView(DetailView):
+    """ Класс детального просмотра статьи. Получает аргумент pk в GET запросе """
     model = Post
     template_name = 'posts/post.html'
 
+    def get_object(self, queryset=None):
+        post = cache.get(f'post-{self.kwargs["pk"]}', None)
+
+        if not post:
+            post = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', post)
+
+        return post
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(post=self.object.pk).values('id', 'user__id', 'user__username',
-                                                                                 'text', 'date', 'rating')
+        context['comments'] = Comment.objects.filter(post=self.object.pk).values(
+            'id', 'user__id', 'user__username', 'text', 'date', 'rating')
         try:
             context['comment_activity'] = \
                 [_['activity_id'] for _ in
@@ -24,14 +36,15 @@ class PostView(DetailView):
         except CommentActivity.DoesNotExist:
             pass
         try:
-            context['post_activity'] = PostActivity.objects.get(user_id=self.request.user, activity_id=self.object.id)
+            context['post_activity'] = PostActivity.objects.get(
+                user_id=self.request.user, activity_id=self.object.id)
         except PostActivity.DoesNotExist:
             pass
         except TypeError:
             pass
         try:
-            self.object.category = PostCategory.objects.filter(post_id=self.object.id).values('category_id__name',
-                                                                                              'category_id')
+            self.object.category = PostCategory.objects.filter(post_id=self.object.id).values(
+                'category_id__name', 'category_id')
         except PostCategory.DoesNotExist:
             pass
         try:
@@ -44,7 +57,8 @@ class PostView(DetailView):
         return context
 
 
-class PostsView(ListView):  # Страница показа всех постов с пагинацией
+class PostsView(ListView):
+    """ Страница показа всех постов с пагинацией """
     model = Post
     template_name = 'posts/posts.html'
     context_object_name = 'posts'
@@ -56,7 +70,8 @@ class PostsView(ListView):  # Страница показа всех посто�
         return context
 
 
-class PostCreate(PermissionRequiredMixin, CreateView):  # Страница создания поста
+class PostCreate(PermissionRequiredMixin, CreateView):
+    """ Страница создания поста """
     permission_required = ('portal.add_post',)
     model = Post
     template_name = 'posts/new_post.html'
@@ -78,7 +93,8 @@ class PostCreate(PermissionRequiredMixin, CreateView):  # Страница со�
         return context
 
 
-class PostEdit(PermissionRequiredMixin, UpdateView):  # Страница редактирования поста
+class PostEdit(PermissionRequiredMixin, UpdateView):
+    """ Страница редактирования поста """
     permission_required = ('portal.change_post',)
     model = Post
     template_name = 'posts/post_edit.html'
@@ -87,8 +103,8 @@ class PostEdit(PermissionRequiredMixin, UpdateView):  # Страница ред�
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.values_list('id', 'name')
-        context['curr_categories'] = \
-            [_["category_id"] for _ in PostCategory.objects.filter(post_id=self.object.id).values('category_id')]
+        context['curr_categories'] = [_.category_id for _ in
+                                      PostCategory.objects.filter(post_id=self.object.id)]
         return context
 
     def form_valid(self, form):
@@ -96,7 +112,8 @@ class PostEdit(PermissionRequiredMixin, UpdateView):  # Страница ред�
         return redirect(f'/post/{post.id}')
 
 
-class PostSearch(ListView):  # Страница поиска поста
+class PostSearch(ListView):
+    """ Страница поиска поста """
     model = Post
     template_name = 'posts/post_search.html'
     ordering = ['-post_time']
