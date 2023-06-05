@@ -3,10 +3,9 @@ from portal.models import Author, Post, Comment
 from django.views import View
 from django.views.generic import ListView
 
-"""    Авторы   """
 
-
-class AuthorsView(View):  # класс отображения списка авторов
+class AuthorsView(View):
+    """ класс отображения списка авторов """
     def get(self, request):
         authors = Author.objects.all().order_by('user')
         ordering_type = 'user'
@@ -22,11 +21,8 @@ class AuthorsView(View):  # класс отображения списка ав�
                                                     'ordering_type': order_type, 'posts_count': posts_count})
 
 
-
-"""  Стартовая страница  """
-
-
-class IndexView(ListView):  # Начальная страница. Ограничение 8 постов
+class IndexView(ListView):
+    """ Начальная страница. Ограничение 8 постов """
     model = Post
     paginate_by = 8
     template_name = 'index.html'
@@ -37,7 +33,8 @@ class IndexView(ListView):  # Начальная страница. Ограни�
         return context
 
 
-def comment_submit(request):  # функция создания комментария
+def comment_submit(request):
+    """ функция создания комментария """
     Comment.objects.create(post=Post.objects.get(id=request.POST.get('id')), user=request.user,
                            text=request.POST.get('text'))
     return redirect(request.META.get('HTTP_REFERER', '/'))

@@ -12,17 +12,20 @@ from allauth.account.views import SignupView
 """  Личный кабинет   """
 
 
-class AccountView(DetailView):  # Страница отображения карточки пользователя
+class AccountView(DetailView):
+    """ Страница отображения карточки пользователя """
     model = PortalUser
     template_name = 'account/account.html'
 
-    def get(self, request, *args, **kwargs):  # Если авторизованный пользователь заходит на свой профиль
+    def get(self, request, *args, **kwargs):
+        """ Автоматическое перенаправление если пользователь заходит на свой профиль """
         if request.user.is_authenticated and request.user.pk == kwargs['pk']:
             return redirect('/account/profile/')  # Перевести на страницу без гет запроса
         else:
             return super().get(request, *args, **kwargs)  # Вернуть свой же гет
 
     def get_context_data(self, **kwargs):
+        """ Сбор информации о пользоваетеле: Комментарии и посты если он автор """
         context = super().get_context_data(**kwargs)
         try:
             context['comments'] = Comment.objects.filter(user=self.object)
@@ -40,12 +43,14 @@ class AccountView(DetailView):  # Страница отображения кар
         return context
 
 
-class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  # Страница ЛК пользователя
+class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):
+    """ Страница Личного кабинета пользователя """
     permission_required = ('portal.change_portaluser',)
     template_name = 'account/my_account.html'
     model = PortalUser
 
-    def get_object(self, queryset=None):  # Достать ключ без гет запроса
+    def get_object(self, queryset=None):
+        """ Автоматическое добавление аргумента PK если авторизованный пользователь заходит на свой профиль """
         self.kwargs['pk'] = self.request.user.pk
         return super().get_object(queryset)
 
@@ -68,6 +73,12 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
         return context
 
     def post(self, request):
+        """ Обработка изменений в ЛК.
+        author - При нажатии клавиши Стать автором! создается объект модели Author и добавляется в группу Авторы
+        delete_post - Обработка удаления статьи
+        change_acc - Обработка изменения Логина, Имени и Фамилии
+        delete_acc - Удаление аккаунта пользователем из ЛК
+        """
         user = self.get_object()
         if request.POST.get('author'):
             Author.objects.create(user=user)
@@ -92,11 +103,13 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):  #
 
 
 class UserRegisterView(SignupView):
+    """ Класс отрисовки формы регистрации. С изменением html страницы """
     template_name = 'account/register.html'
     form_class = UserRegistraionForm
 
 
-class UserLoginAjax(View):  # Логин в модальном через AJAX
+class UserLoginAjax(View):
+    """ Логин в модальном через AJAX """
     def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('password')

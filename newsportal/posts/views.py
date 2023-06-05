@@ -8,9 +8,6 @@ from posts.filters import PostFilter
 from .tasks import mass_mail_send
 
 
-"""      ПОСТЫ      """
-
-
 class PostView(DetailView):
     """ Класс детального просмотра статьи. Получает аргумент pk в GET запросе """
     model = Post
