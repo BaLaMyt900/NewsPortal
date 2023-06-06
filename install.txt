@@ -1,0 +1,2 @@
+pip install django, django-filter, django-allauth, celery, redis
+pip install -U "celery[redis]"
