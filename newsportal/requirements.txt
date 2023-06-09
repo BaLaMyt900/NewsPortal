@@ -1,0 +1,7 @@
+Django
+psycopg2
+django-allauth
+django-filter
+celery[redis]
+redis
+python-dotenv

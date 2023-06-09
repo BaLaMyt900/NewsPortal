@@ -1,0 +1,61 @@
+services:
+    db:
+        image: postgres:alpine
+        volumes:
+            - ./data/db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_NAME=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        healthcheck:
+            test:
+                - 'CMD-SHELL'
+                - 'pg_isready -U postgres'
+            interval: 5s
+            timeout: 5s
+            retries: 5
+
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            -   .:/code
+        ports:
+            - "8000:8000"
+        environment:
+            - POSTGRES_NAME=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        depends_on:
+            db:
+                condition: service_healthy
+
+    redis:
+        image: redis:alpine
+        hostname: redis
+
+    worker:
+        build:
+            context: .
+        hostname: worker
+        entrypoint: celery
+        command: -A newsportal worker --loglevel=info
+        volumes:
+            -   .:/code:/newsportal
+        links:
+            -   redis
+        depends_on:
+            -   redis
+
+    beat:
+        build:
+            context: .
+        hostname: worker
+        entrypoint: celery
+        command: -A newsportal worker --loglevel=info -B
+        volumes:
+            - .:/code:/newsportal
+        links:
+            - redis
+        depends_on:
+            - redis
