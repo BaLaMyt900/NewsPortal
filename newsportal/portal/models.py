@@ -6,9 +6,13 @@ from django.core.cache import cache
 
 
 class PortalUser(AbstractUser):
+    """ Модель пользователя портала. """
     rating = models.IntegerField(default=0)
     post_active = models.ManyToManyField("Post", through="PostActivity")
     comment_active = models.ManyToManyField("Comment", through="CommentActivity")
+
+    def __str__(self):
+        return self.username
 
     def update_rating(self):
         comments_rating = Comment.objects.filter(user=self).aggregate(Sum('rating'))['rating__sum']
@@ -24,13 +28,15 @@ class PortalUser(AbstractUser):
 
 
 class Author(models.Model):
+    """ Модель автора портала. Создается с привязкой к пользователю """
     user = models.OneToOneField(PortalUser, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
     numbers_of_posts = models.IntegerField(default=3)
 
     def __str__(self):
-        return 'Автор: ' + self.user.username
+        return self.user.username
 
+    @property
     def post_count(self):
         return len(Post.objects.filter(author=self))
 
@@ -62,6 +68,7 @@ class Author(models.Model):
 
 
 class Category(models.Model):
+    """ Категория поста """
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
@@ -73,6 +80,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    """ Модель поста """
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     __types = [
         ('A', 'Статья'),
@@ -86,7 +94,7 @@ class Post(models.Model):
     rating = models.IntegerField(default=0)
 
     def __str__(self):
-        return 'Статья: ' + self.title + ' Автор: ' + self.author.user.username
+        return self.title
 
     def like(self, user: PortalUser):
         try:
@@ -140,7 +148,11 @@ class Comment(models.Model):
     rating = models.IntegerField(default=0)
 
     def __str__(self):
-        return 'Пост: ' + self.post.title + ' Автор: ' + self.user.username
+        return self.text if len(self.text) < 15 else self.text[:12] + '...'
+
+    @property
+    def prewiew(self):
+        return self.text if len(self.text) < 15 else self.text[:12] + '...'
 
     def like(self, user):
         try:
