@@ -200,6 +200,6 @@ LOGGING = {
     'disable_existing_loggers': False,
     'style': '{',
     'formatters': {
-
+    # TODO доделать логи
     }
 }
