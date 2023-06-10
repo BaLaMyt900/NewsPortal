@@ -9,16 +9,12 @@ class AuthorsView(View):
     def get(self, request):
         authors = Author.objects.all().order_by('user')
         ordering_type = 'user'
-        posts_count = [(author, len(Post.objects.filter(author=author))) for author in authors]
-        return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
-                                                    'ordering_type': ordering_type, 'posts_count': posts_count})
+        return render(request, 'authors.html', {'page': 'authors', 'authors': authors, 'ordering_type': ordering_type})
 
     def post(self, request):
         order_type = request.POST.get('order_by')
         authors = Author.objects.all().order_by(order_type)
-        posts_count = [(author, len(Post.objects.filter(author=author))) for author in authors]
-        return render(request, 'authors.html', {'page': 'authors', 'authors': authors,
-                                                    'ordering_type': order_type, 'posts_count': posts_count})
+        return render(request, 'authors.html', {'page': 'authors', 'authors': authors, 'ordering_type': order_type})
 
 
 class IndexView(ListView):
