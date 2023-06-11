@@ -1,0 +1,54 @@
+2023-06-11 13:09:35,787 - INFO - autoreload - Watching for file changes with StatReloader
+2023-06-11 13:09:37,707 - ERROR - exception - Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+2023-06-11 13:09:37,716 - WARNING - log - Bad Request: /
+2023-06-11 13:09:37,717 - WARNING - basehttp - "GET / HTTP/1.1" 400 143
+2023-06-11 13:10:12,611 - INFO - autoreload - Watching for file changes with StatReloader
+2023-06-11 13:10:15,502 - ERROR - exception - Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+2023-06-11 13:10:15,506 - WARNING - log - Bad Request: /
+2023-06-11 13:10:15,507 - WARNING - basehttp - "GET / HTTP/1.1" 400 143
+2023-06-11 13:10:34,387 - INFO - autoreload - Watching for file changes with StatReloader
+2023-06-11 13:10:37,135 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-11 13:10:37,226 - INFO - basehttp - - Broken pipe from ('127.0.0.1', 59161)
+2023-06-11 13:10:38,562 - INFO - basehttp - "GET /post/list HTTP/1.1" 200 5365
+2023-06-11 13:10:39,092 - INFO - basehttp - "GET /authors/ HTTP/1.1" 200 4781
+2023-06-11 13:10:39,214 - INFO - basehttp - "GET /post/search HTTP/1.1" 200 13390
+2023-06-11 13:10:39,991 - INFO - basehttp - "GET /authors/ HTTP/1.1" 200 4781
+2023-06-11 13:10:40,597 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-11 13:10:41,101 - INFO - basehttp - "GET /authors/ HTTP/1.1" 200 4781
+2023-06-11 13:10:41,530 - INFO - basehttp - "GET /post/search HTTP/1.1" 200 13390
+2023-06-11 13:10:41,944 - INFO - basehttp - "GET /post/list HTTP/1.1" 200 5365
+2023-06-11 13:10:42,333 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-11 13:10:43,472 - INFO - basehttp - "GET /account/profile/1 HTTP/1.1" 302 0
+2023-06-11 13:10:43,523 - INFO - basehttp - "GET /account/profile/ HTTP/1.1" 200 9815
+2023-06-11 13:10:44,550 - INFO - basehttp - "GET /post/new_post HTTP/1.1" 200 6910
+2023-06-11 13:10:49,927 - ERROR - basehttp - "POST /post/new_post HTTP/1.1" 500 145
+2023-06-11 13:10:53,668 - INFO - basehttp - "GET /post/new_post HTTP/1.1" 200 6910
+2023-06-11 13:10:55,239 - INFO - basehttp - "GET /account/profile/1 HTTP/1.1" 302 0
+2023-06-11 13:10:55,271 - INFO - basehttp - "GET /account/profile/ HTTP/1.1" 200 12684
+2023-06-11 13:11:19,571 - INFO - basehttp - "POST /account/profile/ HTTP/1.1" 302 0
+2023-06-11 13:11:19,625 - INFO - basehttp - "GET /account/profile/ HTTP/1.1" 200 9815
+2023-06-11 13:11:20,976 - INFO - basehttp - "GET /account/profile/1 HTTP/1.1" 302 0
+2023-06-11 13:11:21,050 - INFO - basehttp - "GET /account/profile/ HTTP/1.1" 200 9815
+2023-06-11 13:11:21,792 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-11 13:11:21,863 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
+2023-06-11 13:11:22,037 - INFO - basehttp - - Broken pipe from ('127.0.0.1', 59162)

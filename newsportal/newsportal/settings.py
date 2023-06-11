@@ -18,7 +18,6 @@ load_dotenv(find_dotenv(filename='email_config.env'))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -26,10 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+$hgla951!0sm16@m9maf41wdz4z42nhtano7_@j1x+&82s2*8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -87,7 +85,6 @@ TEMPLATES = [
     },
 ]
 
-
 # LOGIN
 
 LOGIN_REDIRECT_URL = '/'
@@ -142,7 +139,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -172,13 +168,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -196,10 +190,114 @@ CELERY_RESULT_SERIALIZER = 'json'
 # Logs
 
 LOGGING = {
-    'versions': 1,
-    'disable_existing_loggers': False,
+    'version': 1,
+    'disable_existing_loggers': True,
     'style': '{',
     'formatters': {
-    # TODO доделать логи
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'warning': {
+            'format': '%(levelname)s %(pathname)s %(message)s'
+        },
+        'err&crit': {
+            'format': '%(levelname)s %(pathname)s %(exc_info)s %(message)s'
+        },
+        'general': {
+            'format': '%(asctime)s - %(levelname)s - %(module)s - %(message)s'
+        },
+        'errors': {
+            'format': '%(asctime)s - %(levelname)s - %(message)s - %(pathname)s - %(exc_info)s'
+        },
+        'errors_mail': {
+            'format': '%(asctime)s - %(levelname)s - %(message)s - %(pathname)s'
+        }
+    },
+    'filters': {
+        'debug': {'()': 'newsportal.log_filter.LevelDebug'},
+        'info': {'()': 'newsportal.log_filter.LevelInfo'},
+        'warning': {'()': 'newsportal.log_filter.LevelWarning'},
+        'error': {'()': 'newsportal.log_filter.LevelError'},
+        'critical': {'()': 'newsportal.log_filter.LevelCritical'},
+        "debug_true": {"()": "django.utils.log.RequireDebugTrue"},
+        "debug_false": {"()": "django.utils.log.RequireDebugFalse"}
+    },
+    'handlers': {
+        'console_debug': {
+            'filters': ['debug', 'debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'console_info': {
+            'filters': ['info', 'debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'console_warn': {
+            'filters': ['warning', 'debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'warning'
+        },
+        'console_err&crit': {
+            'filters': ['error', 'critical', 'debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'err&crit'
+        },
+        'general': {
+            'filters': ['debug_false'],
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': f'{os.path.join(BASE_DIR, "logs")}/general.log',
+            'formatter': 'general'
+        },
+        'errors': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': f'{os.path.join(BASE_DIR, "logs")}/errors.log',
+            'formatter': 'errors'
+        },
+        'security': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': f'{os.path.join(BASE_DIR, "logs")}/security.log',
+            'formatter': 'general'
+        },
+        'mail_admin': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'errors_mail'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': [
+                'console_debug',
+                'console_info',
+                'console_warn',
+                'console_err&crit',
+                'general'
+            ],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['errors', 'mail_admin'],
+            'propagate': True
+        },
+        'django.server': {
+            'handlers': ['errors', 'mail_admin'],
+            'propagate': True
+        },
+        'django.template': {
+            'handlers': ['errors'],
+            'propagate': True
+        },
+        'django.db.backends': {
+            'handlers': ['errors'],
+            'propagate': True
+        },
+        'django.security': {
+            'handlers': ['security'],
+            'propagate': True
+        },
     }
 }

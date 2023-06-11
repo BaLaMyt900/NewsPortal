@@ -10,5 +10,6 @@ urlpatterns = [
     path('post/', include("posts.urls")),
     path('authors/', AuthorsView.as_view()),
     path('ihjoudhgpreuahodfnbjofg/', comment_submit, name='comment_submit')
-
 ]
+
+handler404 = 'portal.views.handler404'

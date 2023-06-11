@@ -29,6 +29,9 @@ class IndexView(ListView):
         return context
 
 
+def handler404(request, *args, **argv):
+    return render(request, '404.html')
+
 def comment_submit(request):
     """ функция создания комментария """
     Comment.objects.create(post=Post.objects.get(id=request.POST.get('id')), user=request.user,
