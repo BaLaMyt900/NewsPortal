@@ -20,3 +20,20 @@ Traceback (most recent call last):
   File "C:\Users\Administrator\PycharmProjects\NewsPortal\venv\lib\site-packages\django\http\request.py", line 150, in get_host
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+2023-06-12 20:53:25,286 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 20:56:19,874 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 20:56:37,436 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 20:56:40,680 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 20:56:42,878 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 20:57:38,576 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 20:57:39,482 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 20:58:19,955 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:00:22,592 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:01:14,235 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:03:13,879 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:04:37,438 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:04:39,626 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:05:11,745 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:05:55,408 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:05:56,300 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/
+2023-06-12 21:07:13,013 - WARNING - log - Forbidden (CSRF token missing.): /i18n/setlang/

@@ -53,11 +53,23 @@ LOGIN_URL = '/account/login/'
 
 SITE_ID = 1
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
+LANGUAGES = [
+    ('ru', 'Русский'),
+    ('en', 'Английский')
+]
+
+USE_I18N = True
+
 AUTH_USER_MODEL = 'portal.PortalUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

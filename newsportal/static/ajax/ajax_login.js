@@ -7,7 +7,7 @@ $(function ($) {
             data: $(this).serialize(),
             dataType: 'json',
             success: function (response) {
-                console.log('ok - ', response)
+                // console.log('ok - ', response)
                 if (response.status === 201) {
                     window.location.reload()
                 } else if (response.status === 400) {

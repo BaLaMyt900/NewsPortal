@@ -52,3 +52,1423 @@ django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000
 2023-06-11 13:11:21,792 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
 2023-06-11 13:11:21,863 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
 2023-06-11 13:11:22,037 - INFO - basehttp - - Broken pipe from ('127.0.0.1', 59162)
+2023-06-12 11:27:35,624 - INFO - autoreload - Watching for file changes with StatReloader
+2023-06-12 11:27:54,607 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
+2023-06-12 11:27:54,682 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4935
+2023-06-12 11:27:54,683 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:27:54,749 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:27:54,767 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4935
+2023-06-12 11:28:00,185 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 15
+2023-06-12 11:28:02,442 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:28:02,596 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2443
+2023-06-12 11:28:04,695 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 11:28:04,744 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
+2023-06-12 11:28:04,850 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:28:04,906 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:28:04,931 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4935
+2023-06-12 11:28:07,139 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 15
+2023-06-12 11:28:12,063 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:28:12,308 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2443
+2023-06-12 11:30:01,866 - INFO - basehttp - "GET /account/profile/1 HTTP/1.1" 302 0
+2023-06-12 11:30:01,934 - INFO - basehttp - "GET /account/profile/ HTTP/1.1" 200 9815
+2023-06-12 11:30:02,054 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2443
+2023-06-12 11:30:02,686 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 11:30:02,734 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
+2023-06-12 11:30:02,826 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:30:02,878 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:30:02,894 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4935
+2023-06-12 11:30:05,161 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 15
+2023-06-12 11:30:08,105 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:30:08,212 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2443
+2023-06-12 11:30:09,251 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:30:10,401 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 11:30:10,436 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
+2023-06-12 11:30:10,494 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:30:10,535 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:30:10,556 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4935
+2023-06-12 11:30:11,602 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
+2023-06-12 11:30:11,646 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:30:11,687 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:30:14,710 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 15
+2023-06-12 11:30:16,042 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:30:16,172 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2443
+2023-06-12 11:31:07,248 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:31:08,298 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 11:31:08,340 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:31:08,432 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:31:08,480 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:31:08,544 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4910
+2023-06-12 11:31:09,677 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:31:09,724 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:31:09,766 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:31:12,139 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:31:12,140 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:31:12,140 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:31:15,283 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:31:15,356 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:31:15,402 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:31:39,782 - INFO - basehttp - "GET / HTTP/1.1" 200 8121
+2023-06-12 11:31:39,848 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:31:39,889 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:31:43,554 - INFO - basehttp - "GET /?csrfmiddlewaretoken=WDJrZDq87TZdVoCYufD8Uq5Ww7YvMzhDnzPb9Eo9qjgqPZytiwgbeKqyWH8hzGwQ&username=admin&password=admin HTTP/1.1" 200 8121
+2023-06-12 11:31:43,619 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:31:43,657 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:31:46,740 - INFO - basehttp - "GET /?csrfmiddlewaretoken=LwNGTHNBjHhK99RvzPHIitvTvCGmi0JrcsTq3ILCC7yX3KN0n6kLCNQvVcQ857YE&username=admin&password=admin HTTP/1.1" 200 8121
+2023-06-12 11:31:46,820 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:31:46,861 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:31:51,255 - INFO - basehttp - "GET /?csrfmiddlewaretoken=uImvjS5HXbEWmyUO8rJyqgFC8plDR9FcVEsftT3IgBV9g9QjWImBKA0eyZvpEgUp&username=admin&password= HTTP/1.1" 200 8121
+2023-06-12 11:31:51,319 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:31:51,358 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4896
+2023-06-12 11:32:19,396 - INFO - basehttp - "GET / HTTP/1.1" 200 8160
+2023-06-12 11:32:19,465 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:32:19,514 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4935
+2023-06-12 11:32:19,539 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4935
+2023-06-12 11:32:22,531 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 15
+2023-06-12 11:32:29,102 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:32:29,233 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2443
+2023-06-12 11:32:38,052 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 11:32:39,259 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 11:32:39,303 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:32:39,372 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:32:39,410 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:32:39,452 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4910
+2023-06-12 11:32:40,628 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:32:40,675 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:32:40,719 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:32:43,400 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:32:43,400 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:32:43,401 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:32:47,424 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:32:47,425 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:32:47,426 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:32:48,490 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:32:48,557 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:32:48,611 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:33:41,358 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:33:41,423 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:33:41,470 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:33:43,824 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:33:43,825 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:33:43,826 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:33:45,436 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:33:45,496 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:33:45,548 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:33:57,941 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:33:57,942 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:33:57,942 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:33:59,346 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:33:59,389 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:33:59,921 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:33:59,971 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:34:00,011 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:34:31,454 - INFO - autoreload - Watching for file changes with StatReloader
+2023-06-12 11:34:48,843 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:34:48,938 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:34:48,975 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:34:52,804 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:34:52,804 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:34:52,805 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:34:54,162 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:34:54,290 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:34:54,337 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:37:54,002 - INFO - autoreload - Watching for file changes with StatReloader
+2023-06-12 11:37:56,880 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:37:57,002 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:37:57,878 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:37:57,976 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:38:01,122 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:38:01,225 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:38:30,326 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:38:30,419 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:38:31,508 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:38:31,627 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:40:09,392 - INFO - autoreload - Watching for file changes with StatReloader
+2023-06-12 11:40:09,972 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:40:10,131 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:40:11,107 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:40:11,237 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:40:16,706 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:40:16,824 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:40:16,904 - ERROR - log - Internal Server Error: /favicon.ico
+2023-06-12 11:40:16,915 - ERROR - basehttp - "GET /favicon.ico HTTP/1.1" 500 145
+2023-06-12 11:41:47,417 - ERROR - log - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 206, in select_template
+    return self.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 35: 'static'. Did you forget to register or load this tag?
+2023-06-12 11:41:47,516 - ERROR - basehttp - "GET / HTTP/1.1" 500 145
+2023-06-12 11:42:37,682 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:42:37,749 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:42:37,797 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:42:43,641 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:42:43,642 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:42:43,642 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:42:45,109 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:42:45,158 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:42:45,198 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:45:41,146 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:45:41,201 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:45:41,244 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:45:41,257 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4910
+2023-06-12 11:45:46,026 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:45:46,027 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:45:46,027 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:45:47,396 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:45:47,443 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:45:47,498 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:46:17,513 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4910
+2023-06-12 11:47:01,492 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:47:01,493 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:47:01,493 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:47:03,709 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 11:47:03,710 - WARNING - log - Method Not Allowed: /
+2023-06-12 11:47:03,710 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 11:47:06,463 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:47:06,576 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:47:06,628 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:47:08,598 - INFO - basehttp - "GET /accounts/google/login/?process=login HTTP/1.1" 200 5000
+2023-06-12 11:47:08,672 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:47:08,717 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:47:09,800 - INFO - basehttp - "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+2023-06-12 11:47:10,513 - INFO - basehttp - "GET /accounts/google/login/callback/?state=7kglar6koyMS&code=4%2F0AbUR2VP6wE_6hqVJCHCR2rpfAJYGS5rQcH7VsOEy11DJgesHYSerVZOVEieUWEUUkdXDqw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none HTTP/1.1" 302 0
+2023-06-12 11:47:10,579 - INFO - basehttp - "GET / HTTP/1.1" 200 5674
+2023-06-12 11:47:10,690 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2449
+2023-06-12 11:47:12,351 - INFO - basehttp - "GET /post/4 HTTP/1.1" 200 7082
+2023-06-12 11:47:16,130 - INFO - basehttp - "POST /post/like/4 HTTP/1.1" 200 15
+2023-06-12 11:47:16,198 - INFO - basehttp - "GET /post/4 HTTP/1.1" 200 6531
+2023-06-12 11:47:17,965 - INFO - basehttp - "GET / HTTP/1.1" 200 5674
+2023-06-12 11:47:20,414 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 11:47:20,465 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:47:20,550 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:47:20,594 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:47:20,615 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4910
+2023-06-12 11:47:37,506 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4910
+2023-06-12 11:52:05,552 - INFO - basehttp - "GET /accounts/google/login/?process=login HTTP/1.1" 200 5455
+2023-06-12 11:52:05,763 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:52:05,879 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:52:05,897 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4910
+2023-06-12 11:52:06,154 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4910
+2023-06-12 11:52:06,184 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4910
+2023-06-12 11:52:06,496 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4910
+2023-06-12 11:52:06,807 - INFO - basehttp - "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+2023-06-12 11:52:07,511 - INFO - basehttp - "GET /accounts/google/login/callback/?state=dmE8iYZgdDIf&code=4%2F0AbUR2VN24IpllZKVU9T2OCk4c5JQJujMv42qs5Y4DoiImJerRa3_shXXHUnN213dB11UtA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none HTTP/1.1" 302 0
+2023-06-12 11:52:07,563 - INFO - basehttp - "GET / HTTP/1.1" 200 5674
+2023-06-12 11:52:07,895 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2449
+2023-06-12 11:52:08,114 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2449
+2023-06-12 11:52:08,824 - INFO - basehttp - "GET /post/4 HTTP/1.1" 200 6531
+2023-06-12 11:52:09,501 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2449
+2023-06-12 11:52:10,627 - INFO - basehttp - "POST /post/subs/subscribe/4 HTTP/1.1" 200 15
+2023-06-12 11:52:10,710 - INFO - basehttp - "GET /post/4 HTTP/1.1" 200 6383
+2023-06-12 11:52:11,204 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2449
+2023-06-12 11:52:12,682 - INFO - basehttp - "POST /post/subs/unsubscribe/4 HTTP/1.1" 200 15
+2023-06-12 11:52:12,768 - INFO - basehttp - "GET /post/4 HTTP/1.1" 200 6531
+2023-06-12 11:52:13,432 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2449
+2023-06-12 11:52:19,831 - INFO - basehttp - "POST /post/subs/subscribe/4 HTTP/1.1" 200 15
+2023-06-12 11:52:19,936 - INFO - basehttp - "GET /post/4 HTTP/1.1" 200 6383
+2023-06-12 11:52:20,569 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2449
+2023-06-12 11:52:21,237 - INFO - basehttp - "POST /post/subs/unsubscribe/4 HTTP/1.1" 200 15
+2023-06-12 11:52:21,314 - INFO - basehttp - "GET /post/4 HTTP/1.1" 200 6531
+2023-06-12 11:52:21,944 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2449
+2023-06-12 11:52:23,311 - INFO - basehttp - "GET / HTTP/1.1" 200 5674
+2023-06-12 11:52:24,095 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2449
+2023-06-12 11:52:24,130 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 11:52:24,180 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:52:24,348 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:52:24,513 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4910
+2023-06-12 11:52:24,888 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4910
+2023-06-12 11:54:23,696 - INFO - basehttp - "GET / HTTP/1.1" 200 8135
+2023-06-12 11:54:23,804 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:54:23,848 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4910
+2023-06-12 11:54:23,900 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4910
+2023-06-12 11:54:24,315 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4910
+2023-06-12 12:01:52,027 - INFO - basehttp - "GET / HTTP/1.1" 200 8158
+2023-06-12 12:01:52,123 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4933
+2023-06-12 12:01:52,206 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4933
+2023-06-12 12:01:52,226 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4933
+2023-06-12 12:01:52,452 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,470 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,485 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,500 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,531 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,544 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,558 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,566 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,601 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,614 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,641 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,659 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,668 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,678 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4933
+2023-06-12 12:01:52,812 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4933
+2023-06-12 12:05:26,155 - INFO - basehttp - "GET / HTTP/1.1" 200 8177
+2023-06-12 12:05:26,347 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4952
+2023-06-12 12:05:26,690 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,725 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,757 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,770 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,779 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,791 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,820 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4952
+2023-06-12 12:05:26,823 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,860 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,874 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,886 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,895 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,928 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,941 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:26,959 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4952
+2023-06-12 12:05:27,080 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4952
+2023-06-12 12:11:03,242 - INFO - basehttp - "GET / HTTP/1.1" 200 8149
+2023-06-12 12:11:03,341 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4924
+2023-06-12 12:11:03,614 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,666 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,702 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,716 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,731 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,767 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,815 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,830 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,844 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,868 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,885 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,896 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,916 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:03,928 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:04,073 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4924
+2023-06-12 12:11:07,989 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,001 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,012 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,025 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,034 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,079 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,100 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,111 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,163 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,176 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,199 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,267 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,281 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:08,332 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:11,023 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 12:11:11,024 - WARNING - log - Method Not Allowed: /
+2023-06-12 12:11:11,025 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 12:11:12,960 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4924
+2023-06-12 12:11:13,196 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,219 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,233 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,248 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,265 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,401 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,419 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,463 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,496 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,561 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,577 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,617 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,632 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,650 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4924
+2023-06-12 12:11:13,795 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4924
+2023-06-12 12:12:23,689 - INFO - basehttp - "GET / HTTP/1.1" 200 8153
+2023-06-12 12:12:23,967 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:23,994 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,012 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,027 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,040 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,048 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,061 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,113 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,157 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,181 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,196 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,211 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,225 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,249 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:24,368 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4928
+2023-06-12 12:12:28,111 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,123 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,143 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,176 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,186 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,222 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,231 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,247 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,290 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,315 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,383 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,398 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,446 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:28,461 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:30,596 - WARNING - base - Method Not Allowed (POST): /
+2023-06-12 12:12:30,596 - WARNING - log - Method Not Allowed: /
+2023-06-12 12:12:30,597 - WARNING - basehttp - "POST / HTTP/1.1" 405 0
+2023-06-12 12:12:32,258 - INFO - basehttp - "GET / HTTP/1.1" 200 8153
+2023-06-12 12:12:32,660 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,741 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,761 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,773 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,875 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,887 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,899 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,931 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,942 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,954 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,979 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:32,993 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:33,007 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:33,027 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4928
+2023-06-12 12:12:33,129 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4928
+2023-06-12 12:12:50,576 - INFO - basehttp - "GET / HTTP/1.1" 200 8178
+2023-06-12 12:12:50,917 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:50,940 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,043 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,080 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,098 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,123 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,139 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,157 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,180 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,196 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,211 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,246 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,262 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,288 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:51,424 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4953
+2023-06-12 12:12:52,225 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,240 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,248 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,259 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,274 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,289 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,313 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,405 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,422 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,482 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,518 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,574 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,590 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:52,618 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:12:54,599 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 152
+2023-06-12 12:13:02,194 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,230 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,298 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,343 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,391 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,406 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,439 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,476 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,498 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,512 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,587 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,624 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,673 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,726 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:02,847 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4953
+2023-06-12 12:13:16,179 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,199 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,215 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,300 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,362 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,382 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,440 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,492 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,544 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,575 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,625 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,644 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,657 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:16,696 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:18,275 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 152
+2023-06-12 12:13:22,723 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:22,747 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:22,809 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:22,863 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:22,908 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:22,922 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:22,964 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,029 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,072 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,083 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,106 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,122 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,133 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,144 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:23,256 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4953
+2023-06-12 12:13:53,005 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,020 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,028 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,043 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,056 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,069 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,108 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,126 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,177 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,206 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,273 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,321 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,338 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:53,357 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:13:59,802 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 151
+2023-06-12 12:14:07,589 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,627 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,645 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,694 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,710 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,805 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,862 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,897 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,921 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,961 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:07,986 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,020 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,037 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,071 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,191 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4953
+2023-06-12 12:14:08,318 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,328 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,341 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,379 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,406 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,478 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,497 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,558 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,589 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,603 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,625 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,708 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,770 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:08,799 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:10,682 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 15
+2023-06-12 12:14:11,813 - INFO - basehttp - "GET / HTTP/1.1" 200 5668
+2023-06-12 12:14:12,050 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 2443
+2023-06-12 12:14:12,255 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 2443
+2023-06-12 12:14:12,291 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:12,340 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 2443
+2023-06-12 12:14:12,355 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:12,407 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 2443
+2023-06-12 12:14:12,428 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:12,469 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 2443
+2023-06-12 12:14:12,496 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:12,539 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 2443
+2023-06-12 12:14:12,556 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:12,579 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 2443
+2023-06-12 12:14:12,595 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:12,617 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 2443
+2023-06-12 12:14:12,639 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:12,785 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 2443
+2023-06-12 12:14:12,808 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 302 0
+2023-06-12 12:14:12,848 - INFO - basehttp - "GET / HTTP/1.1" 200 8178
+2023-06-12 12:14:13,226 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,226 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,243 - INFO - basehttp - "GET /favicon.ico HTTP/1.1" 200 4953
+2023-06-12 12:14:13,271 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,290 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,305 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,305 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,374 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,379 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,404 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,409 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,440 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,445 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,456 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,461 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,502 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,507 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,519 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,522 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,545 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,554 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,559 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,572 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,587 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,594 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,604 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,610 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,621 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,627 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:14:13,759 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4953
+2023-06-12 12:15:10,843 - INFO - basehttp - "GET / HTTP/1.1" 200 8190
+2023-06-12 12:15:10,954 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4965
+2023-06-12 12:15:11,009 - INFO - basehttp - "GET /static/ajax/ajax_login.js HTTP/1.1" 200 4965
+2023-06-12 12:15:11,269 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,286 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,301 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,339 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,352 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,360 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,372 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,417 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,435 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,457 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,590 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,644 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,691 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,722 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4965
+2023-06-12 12:15:11,843 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4965
+2023-06-12 12:15:20,135 - INFO - basehttp - "GET / HTTP/1.1" 200 8178
+2023-06-12 12:15:20,613 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:20,667 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:20,720 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:20,756 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:20,788 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:20,834 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:20,870 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,012 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,119 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,136 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,176 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,187 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,207 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,279 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 4953
+2023-06-12 12:15:21,390 - INFO - basehttp - "GET /static/bootstrap/css/bootstrap.min.css.map HTTP/1.1" 200 4953

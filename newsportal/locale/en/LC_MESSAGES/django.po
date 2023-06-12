@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-12 21:35+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\templates\account\base.html:11
+msgid "Messages:"
+msgstr ""
+
+#: .\templates\account\email.html:5
+msgid "E-mail Addresses"
+msgstr ""
+
+#: .\templates\account\email.html:15
+msgid "The following e-mail addresses are associated with your account:"
+msgstr ""
+
+#: .\templates\account\email.html:29
+msgid "Verified"
+msgstr ""
+
+#: .\templates\account\email.html:31
+msgid "Unverified"
+msgstr ""
+
+#: .\templates\account\email.html:33
+msgid "Primary"
+msgstr ""
+
+#: .\templates\account\email.html:39
+msgid "Make Primary"
+msgstr ""
+
+#: .\templates\account\email.html:40
+msgid "Re-send Verification"
+msgstr ""
+
+#: .\templates\account\email.html:41
+msgid "Remove"
+msgstr ""
+
+#: .\templates\account\email.html:51
+msgid "Warning:"
+msgstr ""
+
+#: .\templates\account\email.html:51
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+
+#: .\templates\account\email.html:57
+msgid "Add E-mail Address"
+msgstr ""
+
+#: .\templates\account\email.html:62
+msgid "Add E-mail"
+msgstr ""
+
+#: .\templates\account\email.html:76
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr ""
+
+#: .\templates\index.html:3
+msgid "Стартовая страница"
+msgstr "Main page"
+
+#: .\templates\index.html:11
+msgid "Добро пожаловать на наш Новостной сайт!"
+msgstr "Welcome to our News site!"
+
+#: .\templates\index.html:12
+msgid "Здесь будет много интересного!"
+msgstr "There will be a lot of interesting things here!"
+
+#: .\templates\index.html:18
+msgid "Последние новости"
+msgstr "Last news"
+
+#: .\templates\index.html:24
+msgid "Рейтинг статьи"
+msgstr "Article Rating"
+
+#: .\templates\index.html:26
+msgid "Пост написан"
+msgstr "Post written"
+
+#: .\templates\index.html:26
+msgid "назад"
+msgstr "ago"
+
+#: .\templates\index.html:27
+msgid "Продолжение"
+msgstr "Continuation of a post"
+
+#: .\templates\index.html:33
+msgid "Пока новостей нет :)"
+msgstr "No news yet :)"
+
+#: .\templates\main.html:18
+msgid "Главная"
+msgstr "Main page"
+
+#: .\templates\main.html:19
+msgid "Посты"
+msgstr "Article"
+
+#: .\templates\main.html:20
+msgid "Авторы"
+msgstr "Authors"
+
+#: .\templates\main.html:26
+msgid "Поиск статьи"
+msgstr "Article search"
+
+#: .\templates\main.html:30
+msgid "Язык"
+msgstr "Language"
+
+#: .\templates\main.html:47
+msgid "Здраствуй"
+msgstr "Hello"
+
+#: .\templates\main.html:48
+msgid "Личный кабинет"
+msgstr "Personal Area"
+
+#: .\templates\main.html:49
+msgid "Выход"
+msgstr "Exit"
+
+#: .\templates\main.html:53
+msgid "Логин"
+msgstr "Login"
+
+#: .\templates\main.html:54
+msgid "Регистрация"
+msgstr "Registration"
