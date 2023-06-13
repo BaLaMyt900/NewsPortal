@@ -4,6 +4,7 @@ from django.views import View
 from django.views.generic import ListView
 
 
+
 class AuthorsView(View):
     """ класс отображения списка авторов """
     def get(self, request):

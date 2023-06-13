@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from modeltranslation.admin import TranslationAdmin
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -14,9 +15,21 @@ class UserAdmin(admin.ModelAdmin):
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ['user', 'rating', 'post_count', 'numbers_of_posts']
 
+
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['prewiew', 'user', 'post', 'date', 'rating']
 
+
+class PostTranslation(TranslationAdmin):
+    model = Post
+
+
+class CategoryTranslation(TranslationAdmin):
+    model = Category
+
+
+class CommentTranslation(TranslationAdmin):
+    model = Comment
 
 
 admin.site.register(Author, AuthorAdmin)

@@ -20,7 +20,7 @@
         {% for post in object_list %}
             <div class="container p-3">
                 <div class="card-body border rounded-4 bg-gradient shadow bg-body-tertiary text-body-emphasis">
-                <h5 class="card-title">{{post.title|censor}}</h5>
+                <h5 class="card-title">{{post.title}}</h5>
                     <h6 class="fw-light"><a href="/account/{{post.author.user.id}}">{{post.author}}</a> {% trans "Рейтинг статьи" %}: {{post.rating}} <br> {{post.category}}</h6>
                 <p class="card-text bg-body rounded px-2">{{post.text|censor}}</p>
                 <div class="text-muted">{% trans "Пост написан" %} {{post.post_time|timesince}} {% trans "назад" %}</div>

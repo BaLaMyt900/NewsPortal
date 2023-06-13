@@ -3,6 +3,7 @@
 
 {% block body %}
 {% load my_filters %}
+{% load tz %}
 <div class="container mx-auto py-5">
     <div class="card shadow">
         <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">
@@ -29,13 +30,11 @@
                                         <div class="col flex-column"><div class="text rounded border p-2">{% if object.email %}{{object.email}}{% else %}Не указано{% endif %}</div></div>
                                         <div class="col-md-auto d-flex"><a class="btn btn-outline-primary" href="/accounts/email">Сменить почту</a></div>
                                     </div>
-                                    <div class="card">
-                                    <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Для подверждения изменений, введите пароль</div>
+                                    <div class="card-header rounded-2 bg-gradient bg-body-tertiary text-body-emphasis">Для подверждения изменений, введите пароль</div>
                                         <div class="card-body">
                                             {% if error == 'password' %} Неправильный пароль. {% endif %}
                                             <input class="form-control mb-3" type="password" name="password">
                                             <button class="btn btn-outline-success" type="submit" value="+" name="change_acc">Подвердить</button>
-                                    </div>
                                     </div>
                                 </form>
                                     <p></p>
@@ -79,6 +78,33 @@
                                         </div>
                                     </div>
                                 {% endif %}
+                        </div>
+                    </div>
+                    <div class="py-3">
+                        <div class="card">
+                            <div class="card-header bg-gradient bg-body-tertiary text-body-emphasis">Настройки сайта</div>
+                            <div class="card-body">
+                                {% get_current_timezone as TIME_ZONE %}
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <label for="timezone">Time zone:</label>
+                                    <select name="timezone">
+                                        {% for tz in timezones %}
+                                        <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected{% endif %}>{{ tz }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="submit" value="Set">
+                                </form>
+
+                                {{ TIME_ZONE }}
+                                {{ current_time|timezone:TIME_ZONE }} <!-- Отображаем время в выбранном часовом поясе  -->
+
+                                {% for model in models %}
+                                <div class="model-class">
+                                    {{ model.name }}
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

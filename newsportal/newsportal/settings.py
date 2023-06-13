@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,10 +60,8 @@ LOCALE_PATHS = [
 
 LANGUAGES = [
     ('ru', 'Русский'),
-    ('en', 'Английский')
+    ('en-us', 'Английский')
 ]
-
-USE_I18N = True
 
 AUTH_USER_MODEL = 'portal.PortalUser'
 
@@ -75,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'newsportal.middlewares.TimezoneMiddleware'
 ]
 
 ROOT_URLCONF = 'newsportal.urls'
@@ -174,7 +174,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Samara'
 
 USE_I18N = True
 

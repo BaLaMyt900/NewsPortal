@@ -8,6 +8,8 @@ from django.views.generic import DetailView
 from my_account.forms import UserRegistraionForm
 from portal.models import Author, Post, Comment, PortalUser
 from allauth.account.views import SignupView
+from django.utils import timezone
+import pytz
 
 """  Личный кабинет   """
 
@@ -70,6 +72,8 @@ class MyAccountView(DetailView, PermissionRequiredMixin, LoginRequiredMixin):
                 post.text = post.text[:47] + '...' if len(post.text) > 50 else post.text
             context['posts'] = posts
             context['number_of_posts'] = Author.objects.get(user=self.object).numbers_of_posts
+            context['current_time'] = timezone.now()
+            context['timezones'] = pytz.common_timezones
         return context
 
     def post(self, request):
