@@ -47,21 +47,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'portal.app.PortalConfig',
     'posts',
-    'my_account'
+    'my_account',
+    'rest_framework'
 ]
 
 LOGIN_URL = '/account/login/'
 
 SITE_ID = 1
-
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale')
-]
-
-LANGUAGES = [
-    ('ru', 'Русский'),
-    ('en-us', 'Английский')
-]
 
 AUTH_USER_MODEL = 'portal.PortalUser'
 
@@ -97,8 +89,27 @@ TEMPLATES = [
     },
 ]
 
-# LOGIN
+# REST_API
+REST_FRAMEWORK = {
+   'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+   'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+   'PAGE_SIZE': 10,
+    'DEFAULT_PERMISSION_CLASSES': [
+       'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+   ]
+}
 
+# Locale
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
+LANGUAGES = [
+    ('ru', 'Русский'),
+    ('en-us', 'Английский')
+]
+
+# LOGIN
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
@@ -119,7 +130,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # EMAIL
-
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = os.environ.get('LOGIN')
@@ -192,7 +202,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CELERY
-
 CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'redis://redis:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -200,7 +209,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 # Logs
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
